@@ -264,7 +264,24 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
 .chpw-form input{width:100%;padding:12px 14px;border:1.5px solid #E5E7EB;border-radius:12px;font-size:14px;background:var(--lt);outline:none;}
 .chpw-form input:focus{border-color:var(--o);}
 
-/* ── TOAST ── */
+/* ── RESET PANEL ── */
+.reset-panel{max-width:560px;display:flex;flex-direction:column;gap:20px;}
+.reset-card{background:#fff;border-radius:18px;padding:28px;box-shadow:0 4px 16px rgba(0,0,0,.08);}
+.reset-card.danger{border:2px solid #FECACA;}
+.rc-head{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+.rc-head-icon{font-size:32px;}
+.rc-head-title{font-size:17px;font-weight:800;color:var(--dk);}
+.rc-head-sub{font-size:13px;color:var(--gy);margin-top:2px;}
+.rc-desc{font-size:13px;color:var(--gy);line-height:1.6;margin-bottom:20px;padding:12px 14px;background:var(--lt);border-radius:10px;}
+.btn-reset-action{width:100%;padding:14px;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;transition:.2s;}
+.btn-reset-shifts{background:#FFF0E8;color:var(--o);}
+.btn-reset-shifts:hover{background:var(--o);color:#fff;}
+.btn-reset-swaps{background:#FFF0F8;color:var(--pk);}
+.btn-reset-swaps:hover{background:var(--pk);color:#fff;}
+.btn-reset-all{background:#FFF0F0;color:var(--rd);}
+.btn-reset-all:hover{background:var(--rd);color:#fff;}
+.btn-reset-emps{background:#F0F0FF;color:var(--pu);}
+.btn-reset-emps:hover{background:var(--pu);color:#fff;}
 .toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%);background:var(--dk);color:#fff;padding:13px 28px;border-radius:14px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .3s;z-index:9999;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.2);}
 .toast.show{opacity:1;}
 
@@ -379,6 +396,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
     <button class="tb"        onclick="mgrTab('slots')"      id="mtb-slots">✏️ Manage Slots</button>
     <button class="tb"        onclick="mgrTab('swap')"       id="mtb-swap">🔁 Swap Requests</button>
     <button class="tb"        onclick="mgrTab('employees')"  id="mtb-employees">👥 Employees</button>
+    <button class="tb"        onclick="mgrTab('reset')"      id="mtb-reset">🔄 Reset Data</button>
   </nav>
   <div class="tcontent">
     <div class="tpanel active" id="mp-overview">
@@ -396,6 +414,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
     <div class="tpanel" id="mp-employees">
       <div class="ph"><h2>Employee Management</h2><p>Add or remove employees and manage their login credentials</p></div>
       <div id="empMgmtContent"></div>
+    </div>
+    <div class="tpanel" id="mp-reset">
+      <div class="ph"><h2>⚠️ Reset Data</h2><p>Clear all shifts, swaps, and availability for the current week</p></div>
+      <div id="resetContent"></div>
     </div>
   </div>
 </div>
@@ -738,7 +760,7 @@ function cancelSwap(id){
 //  MANAGER TABS
 // ════════════════════════════════════════
 function mgrTab(tab){
-  ['overview','slots','swap','employees'].forEach(t=>{
+  ['overview','slots','swap','employees','reset'].forEach(t=>{
     document.getElementById('mp-'+t).classList.toggle('active',t===tab);
     document.getElementById('mtb-'+t).classList.toggle('active',t===tab);
   });
@@ -746,6 +768,7 @@ function mgrTab(tab){
   if(tab==='slots')      renderManageSlots();
   if(tab==='swap')       renderMgrSwap();
   if(tab==='employees')  renderEmpMgmt();
+  if(tab==='reset')      renderResetPanel();
 }
 
 function renderOverview(){
@@ -941,8 +964,69 @@ function saveNewPw(uid){
   showToast(`✅ Password updated for ${emps[i].name}`);
 }
 
-// ════════════════════════════════════════
-//  MODAL & TOAST
+function renderResetPanel(){
+  document.getElementById('resetContent').innerHTML=`
+    <div class="reset-panel">
+      <div class="reset-card">
+        <div class="rc-head"><div class="rc-head-icon">🌅</div><div><div class="rc-head-title">Reset All Shifts</div><div class="rc-head-sub">Clears all employee availability for the week</div></div></div>
+        <div class="rc-desc">Removes every claimed shift across all days and time slots. Employees will need to resubmit their availability. Swap posts and employee accounts are not affected.</div>
+        <button class="btn-reset-action btn-reset-shifts" onclick="resetShifts()">Clear All Shifts</button>
+      </div>
+      <div class="reset-card">
+        <div class="rc-head"><div class="rc-head-icon">🔁</div><div><div class="rc-head-title">Reset Swap Board</div><div class="rc-head-sub">Removes all posted and claimed swaps</div></div></div>
+        <div class="rc-desc">Wipes the entire swap board. All posted and claimed swap entries are permanently deleted. Shifts and employee accounts are not affected.</div>
+        <button class="btn-reset-action btn-reset-swaps" onclick="resetSwaps()">Clear Swap Board</button>
+      </div>
+      <div class="reset-card">
+        <div class="rc-head"><div class="rc-head-icon">👥</div><div><div class="rc-head-title">Reset Employees to Default</div><div class="rc-head-sub">Restores the original 5 employee accounts</div></div></div>
+        <div class="rc-desc">Removes any added employees and restores the original team: Aakanksha, Shefali, Darshil, Rushit, and Prabhsimran. All their shifts and swaps are also cleared.</div>
+        <button class="btn-reset-action btn-reset-emps" onclick="resetEmployees()">Reset to Default Employees</button>
+      </div>
+      <div class="reset-card danger">
+        <div class="rc-head"><div class="rc-head-icon">⚠️</div><div><div class="rc-head-title">Reset Everything</div><div class="rc-head-sub">Wipes all data — shifts, swaps, and employees</div></div></div>
+        <div class="rc-desc">Completely resets the app to factory defaults. All shifts, swaps, and custom employee accounts are permanently deleted. This cannot be undone.</div>
+        <button class="btn-reset-action btn-reset-all" onclick="resetAll()">Reset Everything</button>
+      </div>
+    </div>`;
+}
+
+function resetShifts(){
+  if(!confirm('Clear ALL shifts for all employees this week? This cannot be undone.')) return;
+  const s={};
+  DAYS.forEach(d=>TSLOTS.forEach(t=>{ s[d.id+'_'+t.id]=[]; }));
+  saveSlots(s);
+  showToast('✅ All shifts cleared.');
+}
+
+function resetSwaps(){
+  if(!confirm('Clear the entire swap board? This cannot be undone.')) return;
+  saveSwaps([]);
+  showToast('✅ Swap board cleared.');
+}
+
+function resetEmployees(){
+  if(!confirm('Reset employees to the default 5 team members?\nAll custom accounts and their shifts/swaps will be removed.')) return;
+  saveEmployees([...DEFAULT_EMPLOYEES]);
+  // Clear shifts for removed employees — easiest to just wipe all
+  const s={};
+  DAYS.forEach(d=>TSLOTS.forEach(t=>{ s[d.id+'_'+t.id]=[]; }));
+  saveSlots(s);
+  saveSwaps([]);
+  renderResetPanel();
+  showToast('✅ Employees reset to defaults.');
+}
+
+function resetAll(){
+  if(!confirm('⚠️ Reset EVERYTHING?\n\nAll shifts, swaps, and custom employees will be permanently deleted.\n\nThis cannot be undone.')) return;
+  const s={};
+  DAYS.forEach(d=>TSLOTS.forEach(t=>{ s[d.id+'_'+t.id]=[]; }));
+  saveSlots(s);
+  saveSwaps([]);
+  saveEmployees([...DEFAULT_EMPLOYEES]);
+  localStorage.removeItem(SK.SESSION);
+  showToast('✅ All data reset. Redirecting to login...');
+  setTimeout(()=>{ currentUser=null; showPage('page-login'); document.getElementById('loginForm').classList.add('hidden'); document.getElementById('roleSelector').classList.remove('hidden'); },1800);
+}
 // ════════════════════════════════════════
 function openModal(html){ document.getElementById('modalContent').innerHTML=html; document.getElementById('mov').classList.add('show'); document.getElementById('modal').classList.add('show'); }
 function closeModal(){ document.getElementById('mov').classList.remove('show'); document.getElementById('modal').classList.remove('show'); }
