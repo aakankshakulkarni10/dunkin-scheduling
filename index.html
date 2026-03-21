@@ -1,332 +1,928 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dunkin' Crew — Employee Scheduling</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dunkin' Crew — Scheduling Portal</title>
+<style>
+:root{--o:#FF6E1F;--od:#e05a10;--pk:#DA1884;--dk:#1A1A1A;--gy:#6B7280;--lt:#F5F5F5;--wh:#fff;--gn:#10B981;--rd:#EF4444;--am:#F59E0B;--pu:#6366F1;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(--dk);min-height:100vh;}
+.page{display:none;min-height:100vh;}.page.active{display:block;}
+.hidden{display:none!important;}
+
+/* ── LOGIN ── */
+.login-bg{min-height:100vh;background:linear-gradient(135deg,var(--o) 0%,#c44e00 100%);display:flex;align-items:center;justify-content:center;padding:24px;}
+.login-box{background:#fff;border-radius:24px;padding:40px;width:100%;max-width:480px;box-shadow:0 24px 64px rgba(0,0,0,.25);text-align:center;}
+.login-logo{font-size:56px;margin-bottom:12px;}
+.login-title{font-size:28px;font-weight:900;color:var(--o);}
+.login-sub{font-size:14px;color:var(--gy);margin:4px 0 32px;}
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.role-card{border:2px solid #E5E7EB;border-radius:16px;padding:24px 16px;cursor:pointer;transition:.2s;background:var(--lt);}
+.role-card:hover{border-color:var(--o);background:#FFF0E8;transform:translateY(-3px);box-shadow:0 8px 20px rgba(255,110,31,.2);}
+.rc-icon{font-size:38px;margin-bottom:8px;}
+.rc-title{font-size:16px;font-weight:800;color:var(--dk);}
+.rc-sub{font-size:12px;color:var(--gy);margin-top:4px;}
+.login-form{text-align:left;}
+.login-form h3{font-size:20px;font-weight:800;color:var(--dk);margin-bottom:20px;text-align:center;}
+.back-link{color:var(--o);font-size:14px;font-weight:600;cursor:pointer;margin-bottom:20px;display:inline-flex;align-items:center;gap:4px;}
+.back-link:hover{text-decoration:underline;}
+.fg{margin-bottom:16px;}
+.fg label{display:block;font-size:11px;font-weight:700;color:var(--gy);text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px;}
+.fg input,.fg select{width:100%;padding:13px 16px;border:1.5px solid #E5E7EB;border-radius:12px;font-size:15px;outline:none;background:var(--lt);transition:border-color .2s;}
+.fg input:focus,.fg select:focus{border-color:var(--o);background:#fff;}
+.btn-login{width:100%;padding:15px;background:var(--o);color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:800;cursor:pointer;transition:.2s;margin-top:8px;}
+.btn-login:hover{background:var(--od);transform:translateY(-1px);}
+.demo-box{margin-top:16px;padding:14px;background:#FFF8E1;border-radius:10px;font-size:12px;color:var(--gy);line-height:2;text-align:left;}
+.demo-box strong{color:var(--dk);}
+.login-err{color:var(--rd);font-size:13px;font-weight:600;margin-top:10px;text-align:center;}
+
+/* ── HEADER ── */
+.hdr{display:flex;align-items:center;gap:16px;padding:0 32px;height:64px;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(0,0,0,.12);}
+.hdr-emp{background:var(--o);}
+.hdr-mgr{background:var(--dk);}
+.hdr-logo{font-size:18px;font-weight:900;color:#fff;}
+.mgr-badge{background:var(--o);color:#fff;font-size:10px;font-weight:800;padding:4px 10px;border-radius:20px;letter-spacing:1px;}
+.hdr-r{display:flex;align-items:center;gap:12px;margin-left:auto;}
+.hdr-store{font-size:13px;color:rgba(255,255,255,.75);font-weight:600;}
+.hdr-name{font-size:14px;color:#fff;font-weight:700;}
+.btn-out{padding:7px 16px;background:rgba(255,255,255,.2);color:#fff;border:none;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer;transition:.2s;}
+.btn-out:hover{background:rgba(255,255,255,.35);}
+
+/* ── TAB NAV ── */
+.tab-nav{background:#fff;border-bottom:2px solid #F0F0F0;display:flex;padding:0 32px;gap:4px;position:sticky;top:64px;z-index:199;overflow-x:auto;scrollbar-width:none;}
+.tab-nav::-webkit-scrollbar{display:none;}
+.mgr-tn{border-bottom-color:var(--dk);}
+.tb{padding:16px 20px;background:none;border:none;font-size:14px;font-weight:700;color:var(--gy);cursor:pointer;transition:.2s;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;}
+.tb:hover{color:var(--o);}
+.tb.active{color:var(--o);border-bottom-color:var(--o);}
+.mgr-tn .tb.active{color:var(--dk);border-bottom-color:var(--dk);}
+
+/* ── CONTENT ── */
+.tcontent{padding:32px;max-width:1200px;margin:0 auto;}
+.tpanel{display:none;}.tpanel.active{display:block;}
+.ph{margin-bottom:28px;}
+.ph h2{font-size:26px;font-weight:800;color:var(--dk);}
+.ph p{font-size:14px;color:var(--gy);margin-top:4px;}
+
+/* ── BADGES ── */
+.badge{display:inline-block;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;}
+.bg{background:#E8FFF5;color:var(--gn);}
+.ba{background:#FFF8E1;color:var(--am);}
+.br{background:#FFF0F0;color:var(--rd);}
+.bo{background:#FFF0E8;color:var(--o);}
+.bp{background:#FFF0F8;color:var(--pk);}
+.bpu{background:#F0F0FF;color:var(--pu);}
+
+/* ── STATS CARDS ── */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;margin-bottom:28px;}
+.stat-card{background:#fff;border-radius:16px;padding:20px 18px;box-shadow:0 2px 10px rgba(0,0,0,.07);border-top:4px solid var(--o);text-align:center;}
+.stat-card.pink{border-color:var(--pk);}
+.stat-card.green{border-color:var(--gn);}
+.stat-card.purple{border-color:var(--pu);}
+.stat-num{font-size:32px;font-weight:900;color:var(--dk);line-height:1;}
+.stat-unit{font-size:12px;color:var(--gy);margin-top:2px;font-weight:600;}
+.stat-label{font-size:13px;color:var(--gy);margin-top:6px;}
+
+/* ── MY SCHEDULE ── */
+.sched-list{display:flex;flex-direction:column;gap:14px;}
+.sched-card{background:#fff;border-radius:16px;padding:20px 24px;box-shadow:0 2px 10px rgba(0,0,0,.06);border-left:4px solid var(--o);}
+.sc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.sc-day{font-size:15px;font-weight:800;color:var(--dk);}
+.sc-date{font-size:13px;color:var(--gy);}
+.sc-chips{display:flex;flex-wrap:wrap;gap:10px;}
+.schip{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:12px;font-size:13px;font-weight:700;}
+.schip-m{background:#FFF0E8;color:var(--o);}
+.schip-d{background:#FFF0F8;color:var(--pk);}
+.schip-e{background:#F0F0FF;color:var(--pu);}
+.empty-state{text-align:center;padding:56px 24px;background:#fff;border-radius:16px;}
+.es-icon{font-size:48px;margin-bottom:12px;}
+.es-title{font-size:16px;font-weight:700;color:var(--gy);}
+.es-sub{font-size:13px;color:#B0B0B0;margin-top:4px;}
+
+/* ── AVAILABILITY ── */
+.avail-week-header{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:24px;}
+.avail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;}
+.avail-card{background:#fff;border-radius:20px;box-shadow:0 4px 16px rgba(0,0,0,.07);overflow:hidden;}
+.ac-head{padding:16px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #F0F0F0;}
+.ac-day{font-size:16px;font-weight:800;color:var(--dk);}
+.ac-date{font-size:13px;color:var(--gy);}
+.ac-slots{padding:12px 16px;display:flex;flex-direction:column;gap:10px;}
+.slot-opt{border:2px solid #E5E7EB;border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:.2s;background:var(--lt);}
+.slot-opt:hover:not(.so-full):not(.so-claimed){border-color:var(--o);background:#FFF8F5;}
+.slot-opt.so-claimed{border-color:var(--gn);background:#E8FFF5;cursor:default;}
+.slot-opt.so-full{background:#FAFAFA;opacity:.65;cursor:not-allowed;}
+.so-icon{font-size:20px;flex-shrink:0;}
+.so-info{flex:1;}
+.so-label{font-size:13px;font-weight:700;color:var(--dk);}
+.so-time{font-size:11px;color:var(--gy);margin-top:1px;}
+.so-r{display:flex;flex-direction:column;align-items:flex-end;gap:5px;}
+.so-spots{font-size:11px;font-weight:700;}
+.spt-ok{color:var(--gn);}
+.spt-full{color:var(--rd);}
+.so-btn{padding:6px 14px;border:none;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;transition:.2s;}
+.sob-claim{background:var(--o);color:#fff;}
+.sob-claim:hover{background:var(--od);}
+.sob-claimed{background:var(--gn);color:#fff;cursor:default;}
+.sob-full{background:#E5E7EB;color:var(--gy);cursor:not-allowed;}
+.sob-drop{background:#FFF0F0;color:var(--rd);border:1px solid #FECACA;}
+.sob-drop:hover{background:var(--rd);color:#fff;}
+
+/* ── SWAP BOARD ── */
+.swap-stabs{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;}
+.stab{padding:9px 20px;background:#fff;border:2px solid #E5E7EB;border-radius:20px;font-size:13px;font-weight:700;color:var(--gy);cursor:pointer;transition:.2s;}
+.stab.active{background:var(--o);color:#fff;border-color:var(--o);}
+.swap-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+.swap-card{background:#fff;border-radius:16px;padding:20px;box-shadow:0 2px 12px rgba(0,0,0,.07);}
+.swc-top{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.swc-av{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:#fff;flex-shrink:0;}
+.swc-name{font-size:14px;font-weight:700;color:var(--dk);}
+.swc-time{font-size:12px;color:var(--gy);}
+.swc-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px;}
+.stag{padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600;background:var(--lt);color:var(--gy);}
+.swc-note{font-size:13px;color:var(--gy);font-style:italic;margin-bottom:12px;padding:8px 12px;background:var(--lt);border-radius:8px;}
+.swc-btn{width:100%;padding:10px;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;transition:.2s;}
+.swb-claim{background:var(--o);color:#fff;}
+.swb-claim:hover{background:var(--od);}
+.swb-cancel{background:var(--lt);color:var(--gy);}
+.swb-cancel:hover{background:#E5E7EB;}
+.post-form{background:#fff;border-radius:20px;padding:28px;max-width:480px;box-shadow:0 4px 16px rgba(0,0,0,.07);}
+.pf-title{font-size:18px;font-weight:800;margin-bottom:20px;color:var(--dk);}
+.pf-row{margin-bottom:16px;}
+.pf-row label{display:block;font-size:11px;font-weight:700;color:var(--gy);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+.pf-row select,.pf-row textarea{width:100%;padding:12px 14px;border:1.5px solid #E5E7EB;border-radius:12px;font-size:14px;background:var(--lt);outline:none;}
+.pf-row select:focus,.pf-row textarea:focus{border-color:var(--o);}
+.pf-row textarea{resize:vertical;min-height:80px;}
+.btn-post-swap{width:100%;padding:14px;background:var(--o);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;transition:.2s;margin-top:8px;}
+.btn-post-swap:hover{background:var(--od);}
+
+/* ── MANAGER GRID ── */
+.grid-wrap{overflow-x:auto;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.08);}
+.ov-grid{min-width:720px;border-radius:16px;overflow:hidden;}
+.og-hrow{display:grid;grid-template-columns:160px repeat(5,1fr);background:var(--dk);}
+.og-th{padding:14px 12px;font-size:12px;font-weight:700;color:#fff;text-align:center;border-right:1px solid rgba(255,255,255,.1);}
+.og-th:last-child{border-right:none;}
+.og-row{display:grid;grid-template-columns:160px repeat(5,1fr);background:#fff;border-top:1px solid #F0F0F0;}
+.og-row:nth-child(odd){background:#FAFAFA;}
+.og-rlabel{padding:16px 14px;font-size:13px;font-weight:800;color:var(--dk);border-right:2px solid #E5E7EB;display:flex;flex-direction:column;justify-content:center;gap:3px;}
+.og-rtime{font-size:11px;color:var(--gy);font-weight:500;}
+.og-cell{padding:10px;border-right:1px solid #F0F0F0;display:flex;flex-direction:column;gap:5px;min-height:80px;}
+.og-cell:last-child{border-right:none;}
+.og-chip{display:flex;align-items:center;justify-content:space-between;padding:5px 8px;border-radius:8px;font-size:12px;font-weight:600;background:#FFF0E8;color:var(--o);}
+.ogc-x{cursor:pointer;color:var(--rd);font-weight:800;margin-left:4px;line-height:1;}
+.ogc-x:hover{opacity:.7;}
+.og-empty{font-size:11px;color:#D0D0D0;text-align:center;padding:4px;}
+.og-full-tag{font-size:10px;color:var(--rd);text-align:center;font-weight:700;}
+.og-spots{font-size:10px;color:var(--gy);text-align:center;}
+
+/* ── MANAGE SLOTS ── */
+.ms-wrapper{display:flex;flex-direction:column;gap:20px;}
+.ms-day{background:#fff;border-radius:16px;padding:20px 24px;box-shadow:0 2px 10px rgba(0,0,0,.06);}
+.msd-header{font-size:16px;font-weight:800;color:var(--dk);margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;}
+.msd-slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;}
+.msd-slot{border:1.5px solid #E5E7EB;border-radius:12px;padding:14px;}
+.msds-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.msds-label{font-size:13px;font-weight:800;color:var(--dk);}
+.msds-count{font-size:11px;font-weight:700;padding:3px 8px;border-radius:20px;}
+.msds-time{font-size:11px;color:var(--gy);margin-bottom:8px;}
+.msds-names{display:flex;flex-direction:column;gap:5px;}
+.msds-emp{display:flex;align-items:center;justify-content:space-between;padding:6px 10px;background:var(--lt);border-radius:8px;font-size:13px;font-weight:600;}
+.msds-rm{background:none;border:none;color:var(--rd);font-size:16px;font-weight:800;cursor:pointer;line-height:1;padding:0 2px;}
+.msds-rm:hover{opacity:.7;}
+.msds-empty{font-size:12px;color:#C0C0C0;font-style:italic;padding:4px 0;}
+
+/* ── MANAGER SWAP ── */
+.mgrs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;}
+.mgrs-card{background:#fff;border-radius:16px;padding:20px;box-shadow:0 2px 10px rgba(0,0,0,.06);}
+.mgrs-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.mgrs-actions{display:flex;gap:8px;margin-top:12px;}
+.btn-approve{flex:1;padding:9px;background:var(--gn);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;}
+.btn-deny{flex:1;padding:9px;background:var(--rd);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%);background:var(--dk);color:#fff;padding:13px 28px;border-radius:14px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .3s;z-index:9999;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.2);}
+.toast.show{opacity:1;}
+
+/* ── MODAL ── */
+.mov{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:1000;display:none;}
+.mov.show{display:block;}
+.modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;border-radius:20px;padding:28px;width:420px;max-width:calc(100vw - 32px);z-index:1001;display:none;box-shadow:0 24px 64px rgba(0,0,0,.2);}
+.modal.show{display:block;}
+.modal-close{position:absolute;top:16px;right:16px;background:var(--lt);border:none;border-radius:50%;width:32px;height:32px;font-size:16px;cursor:pointer;}
+.modal-title{font-size:18px;font-weight:800;color:var(--dk);margin-bottom:16px;}
+.modal-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #F5F5F5;font-size:14px;}
+.modal-row span{color:var(--gy);}
+.modal-row strong{color:var(--dk);}
+.modal-btns{display:flex;gap:10px;margin-top:16px;}
+.btn-m-ok{flex:1;padding:12px;background:var(--o);color:#fff;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;}
+.btn-m-cancel{flex:1;padding:12px;background:var(--lt);color:var(--gy);border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .tcontent{padding:20px 16px;}
+  .hdr{padding:0 16px;}
+  .tab-nav{padding:0 16px;}
+  .hdr-store{display:none;}
+  .tb{padding:14px 10px;font-size:12px;}
+  .avail-grid{grid-template-columns:1fr;}
+  .og-hrow,.og-row{grid-template-columns:110px repeat(5,1fr);}
+}
+</style>
 </head>
 <body>
 
-  <!-- ── NAVBAR ── -->
-  <nav class="navbar" id="navbar">
-    <div class="nav-logo">☕ Dunkin' Crew</div>
-    <div class="nav-links" id="navLinks">
-      <a href="#dashboard">Dashboard</a>
-      <a href="#availability">Availability</a>
-      <a href="#schedule">Schedule</a>
-      <a href="#swap">Swap Board</a>
-    </div>
-    <div class="nav-right">
-      <span class="nav-store">🏪 Store #1482</span>
-      <div class="nav-notif" onclick="toggleNotif()">
-        🔔 <span class="notif-dot" id="notifDot">3</span>
+<!-- ══════════════ LOGIN PAGE ══════════════ -->
+<div id="page-login" class="page active">
+  <div class="login-bg">
+    <div class="login-box">
+      <div class="login-logo">☕</div>
+      <div class="login-title">Dunkin' Crew</div>
+      <div class="login-sub">Employee Scheduling Portal · Store #1482</div>
+
+      <div id="roleSelector" class="role-grid">
+        <div class="role-card" onclick="selectRole('manager')">
+          <div class="rc-icon">👔</div>
+          <div class="rc-title">Manager</div>
+          <div class="rc-sub">View &amp; edit all schedules</div>
+        </div>
+        <div class="role-card" onclick="selectRole('employee')">
+          <div class="rc-icon">👷</div>
+          <div class="rc-title">Employee</div>
+          <div class="rc-sub">Submit availability &amp; swaps</div>
+        </div>
       </div>
-      <div class="nav-avatar">JT</div>
+
+      <div id="loginForm" class="login-form hidden">
+        <span class="back-link" onclick="backToRoles()">← Back</span>
+        <h3 id="loginFormTitle">Login</h3>
+        <div class="fg"><label>Username</label><input type="text" id="loginUser" placeholder="Enter username" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+        <div class="fg"><label>Password</label><input type="password" id="loginPass" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+        <button class="btn-login" onclick="doLogin()">Log In →</button>
+        <div class="login-err hidden" id="loginErr">❌ Invalid username or password</div>
+        <div class="demo-box" id="demoBox"></div>
+      </div>
     </div>
-    <button class="hamburger" onclick="toggleMenu()" id="hamburger">☰</button>
+  </div>
+</div>
+
+<!-- ══════════════ EMPLOYEE DASHBOARD ══════════════ -->
+<div id="page-employee" class="page">
+  <header class="hdr hdr-emp">
+    <div class="hdr-logo">☕ Dunkin' Crew</div>
+    <div class="hdr-r">
+      <span class="hdr-store">🏪 Store #1482</span>
+      <span class="hdr-name" id="empHdrName"></span>
+      <button class="btn-out" onclick="logout()">Log Out</button>
+    </div>
+  </header>
+  <nav class="tab-nav" id="empNav">
+    <button class="tb active" onclick="empTab('schedule')" id="etb-schedule">📅 My Schedule</button>
+    <button class="tb" onclick="empTab('availability')" id="etb-availability">✋ Availability</button>
+    <button class="tb" onclick="empTab('swap')" id="etb-swap">🔁 Swap Board</button>
   </nav>
-
-  <!-- ── NOTIFICATION DROPDOWN ── -->
-  <div class="notif-dropdown" id="notifDropdown">
-    <div class="notif-header-row">
-      <h3>Notifications</h3>
-      <span onclick="toggleNotif()" style="cursor:pointer;color:var(--gray);">✕</span>
+  <div class="tcontent">
+    <!-- MY SCHEDULE -->
+    <div class="tpanel active" id="ep-schedule">
+      <div class="ph"><h2>My Schedule</h2><p id="empSchedSubtitle">Week of March 17–21, 2026</p></div>
+      <div id="mySchedContent"></div>
     </div>
-    <div class="notif-item orange-b">
-      <span class="notif-icon">📋</span>
-      <div><strong>Shift Assigned</strong><p>Front Counter · Sun Mar 16 · 7AM–12PM</p></div>
+    <!-- AVAILABILITY -->
+    <div class="tpanel" id="ep-availability">
+      <div class="ph"><h2>Submit Availability</h2><p>Mon–Fri, March 17–21 · 3 slots per day · First 3 employees per slot get confirmed!</p></div>
+      <div id="availContent"></div>
     </div>
-    <div class="notif-item green-b">
-      <span class="notif-icon">✅</span>
-      <div><strong>Slot Confirmed</strong><p>You secured Slot 1/3 for the 7AM–12PM shift!</p></div>
-    </div>
-    <div class="notif-item pink-b">
-      <span class="notif-icon">🔁</span>
-      <div><strong>Swap Request</strong><p>Sam K. wants to swap their 12PM–4PM shift.</p></div>
-    </div>
-    <div class="notif-item amber-b">
-      <span class="notif-icon">⚠️</span>
-      <div><strong>Reminder</strong><p>Submit availability by Friday 11:59 PM.</p></div>
+    <!-- SWAP BOARD -->
+    <div class="tpanel" id="ep-swap">
+      <div class="ph"><h2>Swap Board</h2><p>Claim an available shift or post yours for swap</p></div>
+      <div class="swap-stabs">
+        <button class="stab active" onclick="swapSubTab('available')" id="sst-available">Available Swaps</button>
+        <button class="stab" onclick="swapSubTab('post')" id="sst-post">Post a Swap</button>
+        <button class="stab" onclick="swapSubTab('mine')" id="sst-mine">My Posted</button>
+      </div>
+      <div id="swapContent"></div>
     </div>
   </div>
+</div>
 
-  <!-- ── HERO ── -->
-  <section class="hero">
-    <div class="hero-text">
-      <h1>Your Schedule,<br><span>Simplified.</span></h1>
-      <p>Submit availability, claim shifts, and manage your week — all in one place.</p>
-      <div class="hero-btns">
-        <a href="#availability" class="btn-primary">Submit Availability</a>
-        <a href="#schedule" class="btn-outline">View My Schedule</a>
-      </div>
+<!-- ══════════════ MANAGER DASHBOARD ══════════════ -->
+<div id="page-manager" class="page">
+  <header class="hdr hdr-mgr">
+    <div class="hdr-logo">☕ Dunkin' Crew</div>
+    <div class="mgr-badge">MANAGER</div>
+    <div class="hdr-r">
+      <span class="hdr-store">🏪 Store #1482</span>
+      <span class="hdr-name" id="mgrHdrName"></span>
+      <button class="btn-out" onclick="logout()">Log Out</button>
     </div>
-    <div class="hero-card">
-      <div class="hcard-top">
-        <div>
-          <div class="hcard-label">TODAY'S SHIFT</div>
-          <div class="hcard-role">Front Counter</div>
-          <div class="hcard-time">7:00 AM – 12:00 PM · 5 hrs</div>
-        </div>
-        <span class="badge green">✓ Confirmed</span>
-      </div>
-      <div class="hcard-tags">
-        <span class="tag orange">🏪 Store #1482</span>
-        <span class="tag purple">👤 Maria S.</span>
-      </div>
-      <div class="hcard-divider"></div>
-      <div class="hcard-label">NEXT SHIFT</div>
-      <div class="hcard-role" style="font-size:16px;">Drive-Thru · Tue Mar 17</div>
-      <div class="hcard-time">12:00 PM – 4:00 PM</div>
+  </header>
+  <nav class="tab-nav mgr-tn" id="mgrNav">
+    <button class="tb active" onclick="mgrTab('overview')" id="mtb-overview">📊 Schedule Overview</button>
+    <button class="tb" onclick="mgrTab('slots')" id="mtb-slots">✏️ Manage Slots</button>
+    <button class="tb" onclick="mgrTab('swap')" id="mtb-swap">🔁 Swap Requests</button>
+  </nav>
+  <div class="tcontent">
+    <!-- OVERVIEW -->
+    <div class="tpanel active" id="mp-overview">
+      <div class="ph"><h2>Schedule Overview</h2><p>Week of March 17–21, 2026 · Click ✕ to remove a booking</p></div>
+      <div id="overviewContent"></div>
     </div>
-  </section>
-
-  <!-- ── QUICK STATS ── -->
-  <section class="stats-bar">
-    <div class="stat"><span class="stat-num">5</span><span class="stat-label">Shifts This Week</span></div>
-    <div class="stat"><span class="stat-num">27</span><span class="stat-label">Hours This Month</span></div>
-    <div class="stat"><span class="stat-num">3</span><span class="stat-label">Open Swaps</span></div>
-    <div class="stat"><span class="stat-num" id="statOpenSlots">3</span><span class="stat-label">Slots Available</span></div>
-  </section>
-
-  <!-- ── DASHBOARD ── -->
-  <section class="section" id="dashboard">
-    <div class="section-header">
-      <h2>📅 Dashboard</h2>
-      <p>Good morning, Jamie! Here's your week at a glance.</p>
+    <!-- MANAGE SLOTS -->
+    <div class="tpanel" id="mp-slots">
+      <div class="ph"><h2>Manage All Slots</h2><p>View, edit, and remove employee availability submissions</p></div>
+      <div id="manageSlotsContent"></div>
     </div>
-    <div class="week-strip">
-      <div class="week-day">
-        <div class="wd-name">MON</div><div class="wd-num">10</div>
-      </div>
-      <div class="week-day has-shift">
-        <div class="wd-name">TUE</div><div class="wd-num">11</div><div class="wd-dot"></div>
-      </div>
-      <div class="week-day has-shift">
-        <div class="wd-name">WED</div><div class="wd-num">12</div><div class="wd-dot"></div>
-      </div>
-      <div class="week-day">
-        <div class="wd-name">THU</div><div class="wd-num">13</div>
-      </div>
-      <div class="week-day has-shift">
-        <div class="wd-name">FRI</div><div class="wd-num">14</div><div class="wd-dot"></div>
-      </div>
-      <div class="week-day active">
-        <div class="wd-name">SAT</div><div class="wd-num">15</div><div class="wd-dot" style="background:#fff;"></div>
-      </div>
-      <div class="week-day">
-        <div class="wd-name">SUN</div><div class="wd-num">16</div>
-      </div>
-    </div>
-
-    <div class="dashboard-grid">
-      <div class="dash-card" onclick="scrollTo2('availability')">
-        <div class="dc-icon">📅</div>
-        <div class="dc-title">Submit Availability</div>
-        <div class="dc-sub" id="dashSlotStatus">Loading slots...</div>
-      </div>
-      <div class="dash-card" onclick="scrollTo2('swap')">
-        <div class="dc-icon">🔁</div>
-        <div class="dc-title">Swap Board</div>
-        <div class="dc-sub">3 open swaps</div>
-      </div>
-      <div class="dash-card" onclick="scrollTo2('schedule')">
-        <div class="dc-icon">🗓️</div>
-        <div class="dc-title">My Schedule</div>
-        <div class="dc-sub">5 shifts this week</div>
-      </div>
-      <div class="dash-card" onclick="showToast('Time-off request sent! ✅')">
-        <div class="dc-icon">🏖️</div>
-        <div class="dc-title">Request Time Off</div>
-        <div class="dc-sub">Submit leave request</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── AVAILABILITY ── -->
-  <section class="section" id="availability">
-    <div class="section-header">
-      <h2>✋ Submit Availability</h2>
-      <p>Week of March 17–23, 2026 — First 3 employees to submit lock in the slot!</p>
-    </div>
-    <div class="slots-grid" id="slotsGrid"></div>
-    <div class="reset-row">
-      <button class="btn-reset" onclick="resetAll()">🔄 Reset All Slots (Demo)</button>
-    </div>
-  </section>
-
-  <!-- ── SCHEDULE ── -->
-  <section class="section alt-bg" id="schedule">
-    <div class="section-header">
-      <h2>🗓️ My Schedule</h2>
-      <p>March 2026 — Tap a shift to see details</p>
-    </div>
-    <div class="schedule-layout">
-      <!-- Calendar -->
-      <div class="calendar-box">
-        <div class="cal-month-header">
-          <button class="cal-nav">←</button>
-          <span>March 2026</span>
-          <button class="cal-nav">→</button>
-        </div>
-        <div class="cal-grid">
-          <div class="cal-dname">Sun</div><div class="cal-dname">Mon</div><div class="cal-dname">Tue</div>
-          <div class="cal-dname">Wed</div><div class="cal-dname">Thu</div><div class="cal-dname">Fri</div><div class="cal-dname">Sat</div>
-          <div class="cal-d"></div><div class="cal-d"></div><div class="cal-d"></div><div class="cal-d"></div><div class="cal-d"></div><div class="cal-d"></div><div class="cal-d shift">1<span class="cdot"></span></div>
-          <div class="cal-d">2</div><div class="cal-d shift">3<span class="cdot"></span></div><div class="cal-d shift">4<span class="cdot"></span></div><div class="cal-d">5</div><div class="cal-d shift">6<span class="cdot"></span></div><div class="cal-d">7</div><div class="cal-d shift">8<span class="cdot"></span></div>
-          <div class="cal-d">9</div><div class="cal-d shift">10<span class="cdot"></span></div><div class="cal-d shift">11<span class="cdot"></span></div><div class="cal-d">12</div><div class="cal-d shift">13<span class="cdot"></span></div><div class="cal-d">14</div><div class="cal-d shift">15<span class="cdot"></span></div>
-          <div class="cal-d today">16<span class="cdot" style="background:#fff;"></span></div><div class="cal-d shift">17<span class="cdot"></span></div><div class="cal-d">18</div><div class="cal-d shift">19<span class="cdot"></span></div><div class="cal-d">20</div><div class="cal-d shift">21<span class="cdot"></span></div><div class="cal-d">22</div>
-          <div class="cal-d">23</div><div class="cal-d shift">24<span class="cdot"></span></div><div class="cal-d">25</div><div class="cal-d shift">26<span class="cdot"></span></div><div class="cal-d">27</div><div class="cal-d">28</div><div class="cal-d shift">29<span class="cdot"></span></div>
-          <div class="cal-d">30</div><div class="cal-d shift">31<span class="cdot"></span></div>
-        </div>
-      </div>
-      <!-- Shift List -->
-      <div class="shift-list">
-        <h3 class="sl-title">Upcoming Shifts</h3>
-        <div class="shift-row today-shift" onclick="openModal('Front Counter','7:00 AM – 12:00 PM','Front Counter','Today · March 16')">
-          <div class="sr-date today-date"><div class="srd-day">SUN</div><div class="srd-num">16</div></div>
-          <div class="sr-info"><div class="sr-role">Front Counter</div><div class="sr-time">7:00 AM – 12:00 PM · 5 hrs</div></div>
-          <span class="badge green">✓ Today</span>
-        </div>
-        <div class="shift-row" onclick="openModal('Drive-Thru','12:00 PM – 4:00 PM','Drive-Thru','Tuesday · March 17')">
-          <div class="sr-date"><div class="srd-day">TUE</div><div class="srd-num">17</div></div>
-          <div class="sr-info"><div class="sr-role">Drive-Thru</div><div class="sr-time">12:00 PM – 4:00 PM · 4 hrs</div></div>
-          <span class="badge amber">⏳ Upcoming</span>
-        </div>
-        <div class="shift-row" onclick="openModal('Prep Station','4:00 PM – 8:00 PM','Prep Station','Thursday · March 19')">
-          <div class="sr-date"><div class="srd-day">THU</div><div class="srd-num">19</div></div>
-          <div class="sr-info"><div class="sr-role">Prep Station</div><div class="sr-time">4:00 PM – 8:00 PM · 4 hrs</div></div>
-          <span class="badge amber">⏳ Upcoming</span>
-        </div>
-        <div class="shift-row" onclick="openModal('Front Counter','7:00 AM – 12:00 PM','Front Counter','Saturday · March 21')">
-          <div class="sr-date"><div class="srd-day">SAT</div><div class="srd-num">21</div></div>
-          <div class="sr-info"><div class="sr-role">Front Counter</div><div class="sr-time">7:00 AM – 12:00 PM · 5 hrs</div></div>
-          <span class="badge amber">⏳ Upcoming</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── SWAP BOARD ── -->
-  <section class="section" id="swap">
-    <div class="section-header">
-      <h2>🔁 Swap Board</h2>
-      <p>Browse available shifts or post your own for swap</p>
-    </div>
-    <div class="swap-tabs-row">
-      <button class="swap-tab active" id="tab-avail" onclick="switchTab('avail')">Available Swaps</button>
-      <button class="swap-tab" id="tab-mine" onclick="switchTab('mine')">My Posted Shifts</button>
-      <button class="btn-primary" style="margin-left:auto;padding:10px 20px;font-size:14px;" onclick="showToast('Shift posted to swap board! 📋')">+ Post a Shift</button>
-    </div>
-    <div class="swap-grid" id="swapGrid"></div>
-  </section>
-
-  <!-- ── FOOTER ── -->
-  <footer class="footer">
-    <div class="footer-logo">☕ Dunkin' Crew</div>
-    <p>Employee Scheduling Portal · Store #1482 · © 2026 Dunkin'</p>
-    <p style="margin-top:6px;font-size:12px;">Questions? Contact your manager · Maria S.</p>
-  </footer>
-
-  <!-- ── SHIFT MODAL ── -->
-  <div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
-  <div class="modal" id="shiftModal">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-    <h2 id="modalTitle">Shift Details</h2>
-    <p id="modalDate" style="color:var(--gray);margin-bottom:16px;"></p>
-    <div class="modal-row"><span>Station</span><strong id="modalStation"></strong></div>
-    <div class="modal-row"><span>Time</span><strong id="modalTime"></strong></div>
-    <div class="modal-row"><span>Manager</span><strong>Maria S.</strong></div>
-    <div class="modal-row"><span>Status</span><strong style="color:var(--green);">✓ Confirmed</strong></div>
-    <div class="modal-btns">
-      <button class="btn-outline" onclick="closeModal()">Close</button>
-      <button class="btn-primary" onclick="showToast('Swap requested! ✅');closeModal()">Request Swap</button>
+    <!-- SWAP REQUESTS -->
+    <div class="tpanel" id="mp-swap">
+      <div class="ph"><h2>Swap Requests</h2><p>Review and act on employee shift swap requests</p></div>
+      <div id="mgrSwapContent"></div>
     </div>
   </div>
+</div>
 
-  <!-- ── TOAST ── -->
-  <div class="toast" id="toast"></div>
+<!-- ── TOAST ── -->
+<div class="toast" id="toast"></div>
+<!-- ── MODAL ── -->
+<div class="mov" id="mov" onclick="closeModal()"></div>
+<div class="modal" id="modal">
+  <button class="modal-close" onclick="closeModal()">✕</button>
+  <div id="modalContent"></div>
+</div>
 
-  <script src="app.js"></script>
-  <script>
-    // ── NAV ──
-    function toggleMenu() {
-      document.getElementById('navLinks').classList.toggle('open');
+<script>
+// ════════════════════════════════════════
+//  CONFIG
+// ════════════════════════════════════════
+const DAYS = [
+  {id:'mon', label:'Monday',    date:'Mar 17'},
+  {id:'tue', label:'Tuesday',   date:'Mar 18'},
+  {id:'wed', label:'Wednesday', date:'Mar 19'},
+  {id:'thu', label:'Thursday',  date:'Mar 20'},
+  {id:'fri', label:'Friday',    date:'Mar 21'},
+];
+const TSLOTS = [
+  {id:'morning', label:'Morning',  time:'7:00 AM – 12:00 PM', hrs:'5 hrs', icon:'🌅', chip:'schip-m'},
+  {id:'midday',  label:'Midday',   time:'12:00 PM – 4:00 PM', hrs:'4 hrs', icon:'☀️',  chip:'schip-d'},
+  {id:'evening', label:'Evening',  time:'4:00 PM – 8:00 PM',  hrs:'4 hrs', icon:'🌆',  chip:'schip-e'},
+];
+const MAX = 3;
+const SK  = {SLOTS:'dk_slots_v2', SWAPS:'dk_swaps_v2', SESSION:'dk_session_v2'};
+
+const USERS = [
+  {id:'manager', name:'Maria S.',      role:'manager',  pass:'manager123', initials:'MS', color:'#1A1A1A'},
+  {id:'jamie',   name:'Jamie Torres',  role:'employee', pass:'pass123',    initials:'JT', color:'#FF6E1F'},
+  {id:'alex',    name:'Alex Rivera',   role:'employee', pass:'pass123',    initials:'AR', color:'#DA1884'},
+  {id:'sam',     name:'Sam Kim',       role:'employee', pass:'pass123',    initials:'SK', color:'#6366F1'},
+  {id:'jordan',  name:'Jordan Mills',  role:'employee', pass:'pass123',    initials:'JM', color:'#10B981'},
+  {id:'taylor',  name:'Taylor Chen',   role:'employee', pass:'pass123',    initials:'TC', color:'#F59E0B'},
+];
+
+// ════════════════════════════════════════
+//  STATE & STORAGE
+// ════════════════════════════════════════
+let currentUser = null;
+let currentSwapSub = 'available';
+
+function load(key){ try{ const v=localStorage.getItem(key); return v?JSON.parse(v):null; }catch(e){ return null; } }
+function save(key,val){ try{ localStorage.setItem(key,JSON.stringify(val)); }catch(e){} }
+
+function getSlots(){
+  let s = load(SK.SLOTS);
+  if(!s){ s={}; DAYS.forEach(d=>TSLOTS.forEach(t=>{ s[d.id+'_'+t.id]=[]; })); save(SK.SLOTS,s); }
+  return s;
+}
+function saveSlots(s){ save(SK.SLOTS,s); }
+
+function getSwaps(){ return load(SK.SWAPS)||[]; }
+function saveSwaps(sw){ save(SK.SWAPS,sw); }
+
+function slotKey(dayId,slotId){ return dayId+'_'+slotId; }
+
+// ════════════════════════════════════════
+//  AUTH
+// ════════════════════════════════════════
+let selectedRole = null;
+
+function selectRole(role){
+  selectedRole = role;
+  document.getElementById('roleSelector').classList.add('hidden');
+  document.getElementById('loginForm').classList.remove('hidden');
+  document.getElementById('loginFormTitle').textContent = role==='manager' ? '👔 Manager Login' : '👷 Employee Login';
+  document.getElementById('loginErr').classList.add('hidden');
+  document.getElementById('loginUser').value='';
+  document.getElementById('loginPass').value='';
+  const demoBox = document.getElementById('demoBox');
+  if(role==='manager'){
+    demoBox.innerHTML='<strong>Demo credentials:</strong><br>Username: <strong>manager</strong> &nbsp; Password: <strong>manager123</strong>';
+  } else {
+    demoBox.innerHTML='<strong>Demo employees:</strong><br>jamie / alex / sam / jordan / taylor<br>Password for all: <strong>pass123</strong>';
+  }
+  setTimeout(()=>document.getElementById('loginUser').focus(),50);
+}
+
+function backToRoles(){
+  document.getElementById('loginForm').classList.add('hidden');
+  document.getElementById('roleSelector').classList.remove('hidden');
+}
+
+function doLogin(){
+  const u = document.getElementById('loginUser').value.trim().toLowerCase();
+  const p = document.getElementById('loginPass').value.trim();
+  const user = USERS.find(x=>x.id===u && x.pass===p && x.role===selectedRole);
+  if(!user){ document.getElementById('loginErr').classList.remove('hidden'); return; }
+  currentUser = user;
+  save(SK.SESSION, user.id);
+  document.getElementById('loginErr').classList.add('hidden');
+  if(user.role==='manager') openManager();
+  else openEmployee();
+}
+
+function logout(){
+  currentUser=null;
+  localStorage.removeItem(SK.SESSION);
+  showPage('page-login');
+  document.getElementById('loginForm').classList.add('hidden');
+  document.getElementById('roleSelector').classList.remove('hidden');
+}
+
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function openEmployee(){
+  document.getElementById('empHdrName').textContent = currentUser.name;
+  showPage('page-employee');
+  empTab('schedule');
+}
+
+function openManager(){
+  document.getElementById('mgrHdrName').textContent = currentUser.name;
+  showPage('page-manager');
+  mgrTab('overview');
+}
+
+// ════════════════════════════════════════
+//  EMPLOYEE TABS
+// ════════════════════════════════════════
+function empTab(tab){
+  ['schedule','availability','swap'].forEach(t=>{
+    document.getElementById('ep-'+t).classList.toggle('active',t===tab);
+    document.getElementById('etb-'+t).classList.toggle('active',t===tab);
+  });
+  if(tab==='schedule')    renderMySchedule();
+  if(tab==='availability') renderAvailability();
+  if(tab==='swap')         swapSubTab(currentSwapSub);
+}
+
+function renderMySchedule(){
+  const slots  = getSlots();
+  const swaps  = getSwaps();
+  const uid    = currentUser.id;
+
+  // ── compute stats ──
+  let totalShifts = 0, totalHours = 0;
+  const hrsMap = {morning:5, midday:4, evening:4};
+  DAYS.forEach(d => TSLOTS.forEach(t => {
+    if((slots[slotKey(d.id,t.id)]||[]).some(e=>e.uid===uid)){
+      totalShifts++; totalHours += hrsMap[t.id]||0;
     }
-    function toggleNotif() {
-      document.getElementById('notifDropdown').classList.toggle('show');
-    }
-    window.addEventListener('scroll', () => {
-      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
-      document.getElementById('notifDropdown').classList.remove('show');
+  }));
+  const openSwaps  = swaps.filter(s=>s.status==='open' && s.fromUid!==uid).length;
+  const openSlots  = DAYS.reduce((acc,d)=>
+    acc + TSLOTS.filter(t=>{
+      const arr=slots[slotKey(d.id,t.id)]||[];
+      return arr.length<MAX && !arr.some(e=>e.uid===uid);
+    }).length, 0);
+
+  // ── stats bar ──
+  const statsHtml = `
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-num">${totalShifts}</div>
+        <div class="stat-unit">shifts</div>
+        <div class="stat-label">This Week</div>
+      </div>
+      <div class="stat-card pink">
+        <div class="stat-num">${totalHours}</div>
+        <div class="stat-unit">hrs</div>
+        <div class="stat-label">Total Hours</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-num">${openSwaps}</div>
+        <div class="stat-unit">swaps</div>
+        <div class="stat-label">Open Swaps</div>
+      </div>
+      <div class="stat-card purple">
+        <div class="stat-num">${openSlots}</div>
+        <div class="stat-unit">slots</div>
+        <div class="stat-label">Available Slots</div>
+      </div>
+    </div>`;
+
+  // ── schedule list ──
+  let hasAny = false;
+  let listHtml = '<div class="sched-list">';
+  DAYS.forEach(d=>{
+    const myChips = TSLOTS.filter(t=>(slots[slotKey(d.id,t.id)]||[]).some(e=>e.uid===uid));
+    if(!myChips.length) return;
+    hasAny = true;
+    const dayHrs = myChips.reduce((a,t)=>a+(hrsMap[t.id]||0),0);
+    listHtml += `<div class="sched-card">
+      <div class="sc-top">
+        <span class="sc-day">${d.label}</span>
+        <span style="display:flex;align-items:center;gap:10px;">
+          <span class="badge bo">${myChips.length} shift${myChips.length>1?'s':''} · ${dayHrs} hrs</span>
+          <span class="sc-date">${d.date}, 2026</span>
+        </span>
+      </div>
+      <div class="sc-chips">${myChips.map(t=>`<span class="schip ${t.chip}">${t.icon} ${t.label} · ${t.time}</span>`).join('')}</div>
+    </div>`;
+  });
+  listHtml += '</div>';
+
+  if(!hasAny) listHtml = `<div class="empty-state"><div class="es-icon">📅</div><div class="es-title">No shifts yet</div><div class="es-sub">Go to the Availability tab to claim your shifts!</div></div>`;
+
+  document.getElementById('mySchedContent').innerHTML = statsHtml + listHtml;
+}
+
+// ── AVAILABILITY ──
+function renderAvailability(){
+  const slots = getSlots();
+  const uid   = currentUser.id;
+  let html    = '<div class="avail-grid">';
+  DAYS.forEach(d=>{
+    html += `<div class="avail-card">
+      <div class="ac-head"><span class="ac-day">${d.label}</span><span class="ac-date">${d.date}</span></div>
+      <div class="ac-slots">`;
+    TSLOTS.forEach(t=>{
+      const k    = slotKey(d.id,t.id);
+      const arr  = slots[k]||[];
+      const mine = arr.some(e=>e.uid===uid);
+      const full = arr.length>=MAX && !mine;
+      let cls    = 'slot-opt';
+      let btnHtml= '';
+      let spotCls= 'spt-ok';
+      let spotTxt= `${arr.length}/${MAX} filled`;
+      if(mine){
+        cls+=' so-claimed';
+        btnHtml=`<button class="so-btn sob-drop" onclick="dropSlot('${d.id}','${t.id}')">Drop</button>`;
+        spotCls='spt-ok'; spotTxt='You\'re in ✓';
+      } else if(full){
+        cls+=' so-full';
+        btnHtml=`<button class="so-btn sob-full" disabled>Full</button>`;
+        spotCls='spt-full'; spotTxt='3/3 Full';
+      } else {
+        btnHtml=`<button class="so-btn sob-claim" onclick="claimSlot('${d.id}','${t.id}')">Claim</button>`;
+      }
+      html+=`<div class="${cls}">
+        <span class="so-icon">${t.icon}</span>
+        <div class="so-info"><div class="so-label">${t.label}</div><div class="so-time">${t.time}</div></div>
+        <div class="so-r"><span class="so-spots ${spotCls}">${spotTxt}</span>${btnHtml}</div>
+      </div>`;
     });
-    function scrollTo2(id) {
-      document.getElementById(id).scrollIntoView({behavior:'smooth'});
-    }
+    html += '</div></div>';
+  });
+  html += '</div>';
+  document.getElementById('availContent').innerHTML = html;
+}
 
-    // ── MODAL ──
-    function openModal(role, time, station, date) {
-      document.getElementById('modalTitle').textContent = role;
-      document.getElementById('modalDate').textContent = date;
-      document.getElementById('modalStation').textContent = station;
-      document.getElementById('modalTime').textContent = time;
-      document.getElementById('modalOverlay').classList.add('show');
-      document.getElementById('shiftModal').classList.add('show');
-    }
-    function closeModal() {
-      document.getElementById('modalOverlay').classList.remove('show');
-      document.getElementById('shiftModal').classList.remove('show');
-    }
+function claimSlot(dayId,slotId){
+  const slots = getSlots();
+  const k     = slotKey(dayId,slotId);
+  const arr   = slots[k]||[];
+  if(arr.length>=MAX){ showToast('Sorry, this slot is full! 🚫'); return; }
+  if(arr.some(e=>e.uid===currentUser.id)){ showToast('You already have this slot!'); return; }
+  const now = new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+  arr.push({uid:currentUser.id, name:currentUser.name, at:now});
+  slots[k]=arr;
+  saveSlots(slots);
+  renderAvailability();
+  const d = DAYS.find(x=>x.id===dayId);
+  const t = TSLOTS.find(x=>x.id===slotId);
+  showToast(`✅ ${t.label} on ${d.label} confirmed! (${arr.length}/3)`);
+}
 
-    // ── TOAST ──
-    let toastTimer;
-    function showToast(msg) {
-      const t = document.getElementById('toast');
-      t.textContent = msg;
-      t.classList.add('show');
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
-    }
+function dropSlot(dayId,slotId){
+  if(!confirm('Drop this shift? You may not get it back if others claim it.')) return;
+  const slots = getSlots();
+  const k = slotKey(dayId,slotId);
+  slots[k] = (slots[k]||[]).filter(e=>e.uid!==currentUser.id);
+  saveSlots(slots);
+  renderAvailability();
+  showToast('Shift dropped.');
+}
 
-    // ── SWAP TABS ──
-    const swapsData = {
-      avail: [
-        {name:'Alex R.', initials:'AR', color:'#FF6E1F', role:'Morning Shift', date:'Mon, Mar 17', time:'7AM – 12PM'},
-        {name:'Sam K.',  initials:'SK', color:'#DA1884', role:'Midday Shift',  date:'Thu, Mar 20', time:'12PM – 4PM'},
-        {name:'Jordan M.',initials:'JM',color:'#6366F1', role:'Evening Shift', date:'Sat, Mar 22', time:'4PM – 8PM'},
-      ],
-      mine: [
-        {name:'Jamie T.', initials:'JT', color:'#10B981', role:'Morning Shift', date:'Wed, Mar 19', time:'7AM – 12PM'},
-      ]
-    };
-    function switchTab(type) {
-      document.getElementById('tab-avail').classList.toggle('active', type==='avail');
-      document.getElementById('tab-mine').classList.toggle('active', type==='mine');
-      buildSwaps(type);
+// ── SWAP BOARD ──
+function swapSubTab(sub){
+  currentSwapSub=sub;
+  ['available','post','mine'].forEach(s=>{
+    document.getElementById('sst-'+s).classList.toggle('active',s===sub);
+  });
+  if(sub==='available') renderAvailableSwaps();
+  if(sub==='post')      renderPostSwap();
+  if(sub==='mine')      renderMySwaps();
+}
+
+function avatarBg(userId){
+  const u=USERS.find(x=>x.id===userId);
+  return u?u.color:'#888';
+}
+function initials(userId){
+  const u=USERS.find(x=>x.id===userId);
+  return u?u.initials:'??';
+}
+
+function renderAvailableSwaps(){
+  const swaps=getSwaps().filter(s=>s.status==='open'&&s.fromUid!==currentUser.id);
+  const div=document.getElementById('swapContent');
+  if(!swaps.length){
+    div.innerHTML=`<div class="empty-state"><div class="es-icon">🔁</div><div class="es-title">No swaps available right now</div><div class="es-sub">Check back later or post your own shift!</div></div>`;
+    return;
+  }
+  const cards=swaps.map(s=>{
+    const d=DAYS.find(x=>x.id===s.dayId)||{label:s.dayId,date:''};
+    const t=TSLOTS.find(x=>x.id===s.slotId)||{label:s.slotId,time:''};
+    return `<div class="swap-card">
+      <div class="swc-top">
+        <div class="swc-av" style="background:${avatarBg(s.fromUid)}">${initials(s.fromUid)}</div>
+        <div><div class="swc-name">${s.fromName}</div><div class="swc-time">Posted ${s.postedAt}</div></div>
+      </div>
+      <div class="swc-tags">
+        <span class="stag">📅 ${d.label} ${d.date}</span>
+        <span class="stag">⏰ ${t.time}</span>
+        <span class="stag">${t.icon} ${t.label}</span>
+      </div>
+      ${s.note?`<div class="swc-note">"${s.note}"</div>`:''}
+      <button class="swc-btn swb-claim" onclick="claimSwap('${s.id}')">Claim This Shift</button>
+    </div>`;
+  }).join('');
+  div.innerHTML=`<div class="swap-grid">${cards}</div>`;
+}
+
+function claimSwap(swapId){
+  const swaps=getSwaps();
+  const i=swaps.findIndex(s=>s.id===swapId);
+  if(i<0){ showToast('Swap not found.'); return; }
+  const sw=swaps[i];
+  if(sw.status!=='open'){ showToast('This swap is no longer available.'); return; }
+  // Transfer slot
+  const slots=getSlots();
+  const k=slotKey(sw.dayId,sw.slotId);
+  const arr=slots[k]||[];
+  const idx=arr.findIndex(e=>e.uid===sw.fromUid);
+  if(idx>=0){ arr[idx]={uid:currentUser.id,name:currentUser.name,at:arr[idx].at}; }
+  slots[k]=arr;
+  saveSlots(slots);
+  swaps[i].status='claimed';
+  swaps[i].claimedBy=currentUser.id;
+  swaps[i].claimedName=currentUser.name;
+  saveSwaps(swaps);
+  renderAvailableSwaps();
+  showToast(`🎉 Swap claimed! You now have ${TSLOTS.find(x=>x.id===sw.slotId).label} on ${DAYS.find(x=>x.id===sw.dayId).label}`);
+}
+
+function renderPostSwap(){
+  const slots=getSlots();
+  const uid=currentUser.id;
+  // Build options from employee's confirmed slots
+  let options='<option value="">-- Select a shift to swap --</option>';
+  DAYS.forEach(d=>TSLOTS.forEach(t=>{
+    const k=slotKey(d.id,t.id);
+    if((slots[k]||[]).some(e=>e.uid===uid)){
+      options+=`<option value="${d.id}|${t.id}">${d.label} ${d.date} · ${t.label} (${t.time})</option>`;
     }
-    function buildSwaps(type) {
-      const grid = document.getElementById('swapGrid');
-      grid.innerHTML = '';
-      swapsData[type].forEach(s => {
-        const card = document.createElement('div');
-        card.className = 'swap-card';
-        card.innerHTML = `
-          <div class="sc-top">
-            <div class="sc-avatar" style="background:${s.color}">${s.initials}</div>
-            <div><div class="sc-name">${s.name}</div><div class="sc-role">${s.role}</div></div>
-          </div>
-          <div class="sc-tags">
-            <span class="tag gray">📅 ${s.date}</span>
-            <span class="tag gray">⏰ ${s.time}</span>
-          </div>
-          ${type==='avail'
-            ? `<button class="btn-primary sc-btn" onclick="showToast('Swap claimed! 🎉')">Claim Shift</button>`
-            : `<button class="btn-gray sc-btn" onclick="showToast('Shift removed from board.')">Remove Post</button>`}
-        `;
-        grid.appendChild(card);
-      });
-    }
-    buildSwaps('avail');
-  </script>
+  }));
+  document.getElementById('swapContent').innerHTML=`
+    <div class="post-form">
+      <div class="pf-title">📤 Post a Shift for Swap</div>
+      <div class="pf-row"><label>Select Your Shift</label><select id="postSwapShift">${options}</select></div>
+      <div class="pf-row"><label>Note for Colleagues (optional)</label><textarea id="postSwapNote" placeholder="e.g. Looking to swap for family event..."></textarea></div>
+      <button class="btn-post-swap" onclick="postSwap()">Post Shift for Swap</button>
+    </div>`;
+}
+
+function postSwap(){
+  const val=document.getElementById('postSwapShift').value;
+  if(!val){ showToast('Please select a shift ⚠️'); return; }
+  const [dayId,slotId]=val.split('|');
+  const note=document.getElementById('postSwapNote').value.trim();
+  const swaps=getSwaps();
+  // Check not already posted
+  if(swaps.some(s=>s.fromUid===currentUser.id&&s.dayId===dayId&&s.slotId===slotId&&s.status==='open')){
+    showToast('You already posted this shift!'); return;
+  }
+  const now=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+  swaps.push({
+    id:'sw_'+Date.now(), fromUid:currentUser.id, fromName:currentUser.name,
+    dayId, slotId, note, postedAt:now, status:'open', claimedBy:null, claimedName:null
+  });
+  saveSwaps(swaps);
+  swapSubTab('mine');
+  showToast('✅ Shift posted to swap board!');
+}
+
+function renderMySwaps(){
+  const swaps=getSwaps().filter(s=>s.fromUid===currentUser.id);
+  const div=document.getElementById('swapContent');
+  if(!swaps.length){
+    div.innerHTML=`<div class="empty-state"><div class="es-icon">📋</div><div class="es-title">No posted swaps</div><div class="es-sub">Post a shift from the "Post a Swap" tab</div></div>`;
+    return;
+  }
+  const cards=swaps.map(s=>{
+    const d=DAYS.find(x=>x.id===s.dayId)||{label:s.dayId,date:''};
+    const t=TSLOTS.find(x=>x.id===s.slotId)||{label:s.slotId,time:''};
+    const statusBadge=s.status==='claimed'
+      ?`<span class="badge bg">✓ Claimed by ${s.claimedName}</span>`
+      :`<span class="badge ba">⏳ Open</span>`;
+    const cancelBtn=s.status==='open'
+      ?`<button class="swc-btn swb-cancel" onclick="cancelSwap('${s.id}')">Cancel Post</button>`
+      :'';
+    return `<div class="swap-card">
+      <div class="swc-top">
+        <div class="swc-av" style="background:${avatarBg(s.fromUid)}">${initials(s.fromUid)}</div>
+        <div><div class="swc-name">${d.label} ${d.date}</div><div class="swc-time">${t.time}</div></div>
+        ${statusBadge}
+      </div>
+      <div class="swc-tags"><span class="stag">${t.icon} ${t.label}</span><span class="stag">📤 Posted ${s.postedAt}</span></div>
+      ${s.note?`<div class="swc-note">"${s.note}"</div>`:''}
+      ${cancelBtn}
+    </div>`;
+  }).join('');
+  div.innerHTML=`<div class="swap-grid">${cards}</div>`;
+}
+
+function cancelSwap(swapId){
+  if(!confirm('Cancel this swap post?')) return;
+  const swaps=getSwaps();
+  const i=swaps.findIndex(s=>s.id===swapId);
+  if(i>=0){ swaps.splice(i,1); saveSwaps(swaps); }
+  renderMySwaps();
+  showToast('Swap post cancelled.');
+}
+
+// ════════════════════════════════════════
+//  MANAGER TABS
+// ════════════════════════════════════════
+function mgrTab(tab){
+  ['overview','slots','swap'].forEach(t=>{
+    document.getElementById('mp-'+t).classList.toggle('active',t===tab);
+    document.getElementById('mtb-'+t).classList.toggle('active',t===tab);
+  });
+  if(tab==='overview') renderOverview();
+  if(tab==='slots')    renderManageSlots();
+  if(tab==='swap')     renderMgrSwap();
+}
+
+// ── SCHEDULE OVERVIEW GRID ──
+function renderOverview(){
+  const slots=getSlots();
+  let html=`<div class="grid-wrap"><div class="ov-grid">
+    <div class="og-hrow">
+      <div class="og-th">Shift</div>
+      ${DAYS.map(d=>`<div class="og-th">${d.label}<br><span style="font-weight:400;font-size:11px;opacity:.7;">${d.date}</span></div>`).join('')}
+    </div>`;
+  TSLOTS.forEach(t=>{
+    html+=`<div class="og-row"><div class="og-rlabel">${t.icon} ${t.label}<span class="og-rtime">${t.time}</span></div>`;
+    DAYS.forEach(d=>{
+      const k=slotKey(d.id,t.id);
+      const arr=slots[k]||[];
+      const full=arr.length>=MAX;
+      let chips=arr.map(e=>`<div class="og-chip"><span>${e.name.split(' ')[0]}</span><span class="ogc-x" onclick="mgrRemove('${d.id}','${t.id}','${e.uid}')" title="Remove ${e.name}">✕</span></div>`).join('');
+      const remaining=MAX-arr.length;
+      html+=`<div class="og-cell">
+        ${chips}
+        ${full?`<div class="og-full-tag">FULL</div>`:`<div class="og-spots">${remaining} spot${remaining!==1?'s':''} open</div>`}
+      </div>`;
+    });
+    html+='</div>';
+  });
+  html+='</div></div>';
+  document.getElementById('overviewContent').innerHTML=html;
+}
+
+// ── MANAGE SLOTS ──
+function renderManageSlots(){
+  const slots=getSlots();
+  let html='<div class="ms-wrapper">';
+  DAYS.forEach(d=>{
+    html+=`<div class="ms-day">
+      <div class="msd-header"><span>${d.label} · ${d.date}, 2026</span></div>
+      <div class="msd-slots">`;
+    TSLOTS.forEach(t=>{
+      const k=slotKey(d.id,t.id);
+      const arr=slots[k]||[];
+      const pct=arr.length;
+      let countCls=pct>=MAX?'br':pct>0?'bg':'ba';
+      let empRows=arr.map(e=>`<div class="msds-emp">
+        <span>${e.name} <span style="font-size:11px;color:var(--gy);">(${e.at})</span></span>
+        <button class="msds-rm" onclick="mgrRemove('${d.id}','${t.id}','${e.uid}')" title="Remove">✕</button>
+      </div>`).join('');
+      if(!arr.length) empRows=`<div class="msds-empty">No submissions yet</div>`;
+      html+=`<div class="msd-slot">
+        <div class="msds-top"><span class="msds-label">${t.icon} ${t.label}</span><span class="msds-count badge ${countCls}">${arr.length}/${MAX}</span></div>
+        <div class="msds-time">${t.time}</div>
+        <div class="msds-names">${empRows}</div>
+      </div>`;
+    });
+    html+='</div></div>';
+  });
+  html+='</div>';
+  document.getElementById('manageSlotsContent').innerHTML=html;
+}
+
+function mgrRemove(dayId,slotId,uid){
+  const name=USERS.find(u=>u.id===uid)?.name||uid;
+  if(!confirm(`Remove ${name} from this slot?`)) return;
+  const slots=getSlots();
+  const k=slotKey(dayId,slotId);
+  slots[k]=(slots[k]||[]).filter(e=>e.uid!==uid);
+  saveSlots(slots);
+  renderOverview();
+  renderManageSlots();
+  showToast(`${name} removed from slot.`);
+}
+
+// ── MANAGER SWAP ──
+function renderMgrSwap(){
+  const swaps=getSwaps();
+  const div=document.getElementById('mgrSwapContent');
+  if(!swaps.length){
+    div.innerHTML=`<div class="empty-state"><div class="es-icon">🔁</div><div class="es-title">No swap requests</div><div class="es-sub">Employees haven't posted any swaps yet.</div></div>`;
+    return;
+  }
+  const cards=swaps.map(s=>{
+    const d=DAYS.find(x=>x.id===s.dayId)||{label:s.dayId,date:''};
+    const t=TSLOTS.find(x=>x.id===s.slotId)||{label:s.slotId,time:''};
+    const statusBadge=s.status==='claimed'
+      ?`<span class="badge bg">✓ Claimed by ${s.claimedName}</span>`
+      :`<span class="badge ba">⏳ Open</span>`;
+    const actions=s.status==='open'?`
+      <div class="mgrs-actions">
+        <button class="btn-approve" onclick="mgrApproveSwap('${s.id}')">✓ Approve &amp; Close</button>
+        <button class="btn-deny"    onclick="mgrDenySwap('${s.id}')">✕ Remove Post</button>
+      </div>`:
+      `<p style="font-size:12px;color:var(--gy);margin-top:8px;">Claimed by ${s.claimedName}</p>`;
+    return `<div class="mgrs-card">
+      <div class="mgrs-top">
+        <div>
+          <div style="font-size:14px;font-weight:800;">${s.fromName}</div>
+          <div style="font-size:12px;color:var(--gy);">${d.label} ${d.date} · ${t.label} · ${t.time}</div>
+        </div>
+        ${statusBadge}
+      </div>
+      ${s.note?`<div class="swc-note" style="margin:8px 0;">"${s.note}"</div>`:''}
+      ${actions}
+    </div>`;
+  }).join('');
+  div.innerHTML=`<div class="mgrs-grid">${cards}</div>`;
+}
+
+function mgrApproveSwap(id){
+  showToast('Swap approved and marked as closed ✅');
+  const swaps=getSwaps();
+  const i=swaps.findIndex(s=>s.id===id);
+  if(i>=0){ swaps[i].status='claimed'; swaps[i].claimedName='Approved by Manager'; saveSwaps(swaps); }
+  renderMgrSwap();
+}
+function mgrDenySwap(id){
+  if(!confirm('Remove this swap post?')) return;
+  const swaps=getSwaps();
+  const i=swaps.findIndex(s=>s.id===id);
+  if(i>=0){ swaps.splice(i,1); saveSwaps(swaps); }
+  renderMgrSwap();
+  showToast('Swap post removed.');
+}
+
+// ════════════════════════════════════════
+//  MODAL & TOAST
+// ════════════════════════════════════════
+function openModal(html){
+  document.getElementById('modalContent').innerHTML=html;
+  document.getElementById('mov').classList.add('show');
+  document.getElementById('modal').classList.add('show');
+}
+function closeModal(){
+  document.getElementById('mov').classList.remove('show');
+  document.getElementById('modal').classList.remove('show');
+}
+let _tt;
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  clearTimeout(_tt); _tt=setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+// ════════════════════════════════════════
+//  INIT — restore session
+// ════════════════════════════════════════
+(function init(){
+  const sid=load(SK.SESSION);
+  if(sid){
+    const u=USERS.find(x=>x.id===sid);
+    if(u){ currentUser=u; if(u.role==='manager') openManager(); else openEmployee(); return; }
+  }
+})();
+</script>
 </body>
 </html>
