@@ -30,12 +30,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
 .back-link:hover{text-decoration:underline;}
 .fg{margin-bottom:16px;}
 .fg label{display:block;font-size:11px;font-weight:700;color:var(--gy);text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px;}
-.fg input,.fg select{width:100%;padding:13px 16px;border:1.5px solid #E5E7EB;border-radius:12px;font-size:15px;outline:none;background:var(--lt);transition:border-color .2s;}
-.fg input:focus,.fg select:focus{border-color:var(--o);background:#fff;}
+.fg input{width:100%;padding:13px 16px;border:1.5px solid #E5E7EB;border-radius:12px;font-size:15px;outline:none;background:var(--lt);transition:border-color .2s;}
+.fg input:focus{border-color:var(--o);background:#fff;}
 .btn-login{width:100%;padding:15px;background:var(--o);color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:800;cursor:pointer;transition:.2s;margin-top:8px;}
 .btn-login:hover{background:var(--od);transform:translateY(-1px);}
-.demo-box{margin-top:16px;padding:14px;background:#FFF8E1;border-radius:10px;font-size:12px;color:var(--gy);line-height:2;text-align:left;}
-.demo-box strong{color:var(--dk);}
 .login-err{color:var(--rd);font-size:13px;font-weight:600;margin-top:10px;text-align:center;}
 
 /* ── HEADER ── */
@@ -85,10 +83,15 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
 .stat-unit{font-size:12px;color:var(--gy);margin-top:2px;font-weight:600;}
 .stat-label{font-size:13px;color:var(--gy);margin-top:6px;}
 
-/* ── MY SCHEDULE ── */
+/* ── VIEW TOGGLE ── */
+.view-toggle{display:flex;gap:8px;margin-bottom:24px;}
+.vtbtn{padding:9px 20px;background:#fff;border:2px solid #E5E7EB;border-radius:20px;font-size:13px;font-weight:700;color:var(--gy);cursor:pointer;transition:.2s;}
+.vtbtn.active{background:var(--o);color:#fff;border-color:var(--o);}
+
+/* ── SCHEDULE LIST ── */
 .sched-list{display:flex;flex-direction:column;gap:14px;}
 .sched-card{background:#fff;border-radius:16px;padding:20px 24px;box-shadow:0 2px 10px rgba(0,0,0,.06);border-left:4px solid var(--o);}
-.sc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.sc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px;}
 .sc-day{font-size:15px;font-weight:800;color:var(--dk);}
 .sc-date{font-size:13px;color:var(--gy);}
 .sc-chips{display:flex;flex-wrap:wrap;gap:10px;}
@@ -96,23 +99,51 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
 .schip-m{background:#FFF0E8;color:var(--o);}
 .schip-d{background:#FFF0F8;color:var(--pk);}
 .schip-e{background:#F0F0FF;color:var(--pu);}
+
+/* ── CALENDAR VIEW ── */
+.cal-wrap{background:#fff;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,.08);overflow:hidden;}
+.cal-header{background:var(--dk);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;}
+.cal-header h3{color:#fff;font-size:18px;font-weight:800;}
+.cal-header span{color:rgba(255,255,255,.7);font-size:14px;}
+.cal-grid-header{display:grid;grid-template-columns:100px repeat(5,1fr);background:#2d2d2d;}
+.cgh-cell{padding:12px 8px;text-align:center;font-size:12px;font-weight:700;color:rgba(255,255,255,.8);border-right:1px solid rgba(255,255,255,.08);}
+.cgh-cell:last-child{border-right:none;}
+.cgh-date{font-size:10px;font-weight:400;color:rgba(255,255,255,.5);margin-top:2px;}
+.cal-body{display:flex;flex-direction:column;}
+.cal-row{display:grid;grid-template-columns:100px repeat(5,1fr);border-top:1px solid #F0F0F0;}
+.cal-row:nth-child(odd){background:#FAFAFA;}
+.cal-row:nth-child(even){background:#fff;}
+.cal-row-label{padding:16px 12px;display:flex;flex-direction:column;justify-content:center;border-right:2px solid #E5E7EB;}
+.crl-name{font-size:13px;font-weight:800;color:var(--dk);}
+.crl-time{font-size:10px;color:var(--gy);margin-top:2px;line-height:1.4;}
+.cal-cell{padding:8px;border-right:1px solid #F0F0F0;display:flex;flex-direction:column;gap:5px;min-height:72px;justify-content:center;}
+.cal-cell:last-child{border-right:none;}
+.cc-chip{padding:5px 8px;border-radius:8px;font-size:11px;font-weight:700;background:#FFF0E8;color:var(--o);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.cc-chip.mine{background:var(--o);color:#fff;}
+.cc-empty{font-size:11px;color:#D5D5D5;text-align:center;width:100%;}
+.cc-full{font-size:10px;color:var(--rd);font-weight:700;text-align:center;}
+.cc-open{font-size:10px;color:var(--gy);text-align:center;}
+.cal-legend{display:flex;gap:20px;padding:14px 24px;background:#F9F9F9;border-top:1px solid #F0F0F0;flex-wrap:wrap;}
+.cl-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--gy);}
+.cl-dot{width:12px;height:12px;border-radius:4px;}
+
+/* ── EMPTY STATE ── */
 .empty-state{text-align:center;padding:56px 24px;background:#fff;border-radius:16px;}
 .es-icon{font-size:48px;margin-bottom:12px;}
 .es-title{font-size:16px;font-weight:700;color:var(--gy);}
 .es-sub{font-size:13px;color:#B0B0B0;margin-top:4px;}
 
 /* ── AVAILABILITY ── */
-.avail-week-header{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:24px;}
 .avail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;}
 .avail-card{background:#fff;border-radius:20px;box-shadow:0 4px 16px rgba(0,0,0,.07);overflow:hidden;}
 .ac-head{padding:16px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #F0F0F0;}
 .ac-day{font-size:16px;font-weight:800;color:var(--dk);}
 .ac-date{font-size:13px;color:var(--gy);}
 .ac-slots{padding:12px 16px;display:flex;flex-direction:column;gap:10px;}
-.slot-opt{border:2px solid #E5E7EB;border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:.2s;background:var(--lt);}
+.slot-opt{border:2px solid #E5E7EB;border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:12px;transition:.2s;background:var(--lt);}
 .slot-opt:hover:not(.so-full):not(.so-claimed){border-color:var(--o);background:#FFF8F5;}
-.slot-opt.so-claimed{border-color:var(--gn);background:#E8FFF5;cursor:default;}
-.slot-opt.so-full{background:#FAFAFA;opacity:.65;cursor:not-allowed;}
+.slot-opt.so-claimed{border-color:var(--gn);background:#E8FFF5;}
+.slot-opt.so-full{background:#FAFAFA;opacity:.65;}
 .so-icon{font-size:20px;flex-shrink:0;}
 .so-info{flex:1;}
 .so-label{font-size:13px;font-weight:700;color:var(--dk);}
@@ -124,7 +155,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
 .so-btn{padding:6px 14px;border:none;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;transition:.2s;}
 .sob-claim{background:var(--o);color:#fff;}
 .sob-claim:hover{background:var(--od);}
-.sob-claimed{background:var(--gn);color:#fff;cursor:default;}
 .sob-full{background:#E5E7EB;color:var(--gy);cursor:not-allowed;}
 .sob-drop{background:#FFF0F0;color:var(--rd);border:1px solid #FECACA;}
 .sob-drop:hover{background:var(--rd);color:#fff;}
@@ -151,8 +181,8 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
 .pf-title{font-size:18px;font-weight:800;margin-bottom:20px;color:var(--dk);}
 .pf-row{margin-bottom:16px;}
 .pf-row label{display:block;font-size:11px;font-weight:700;color:var(--gy);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
-.pf-row select,.pf-row textarea{width:100%;padding:12px 14px;border:1.5px solid #E5E7EB;border-radius:12px;font-size:14px;background:var(--lt);outline:none;}
-.pf-row select:focus,.pf-row textarea:focus{border-color:var(--o);}
+.pf-row select,.pf-row textarea,.pf-row input{width:100%;padding:12px 14px;border:1.5px solid #E5E7EB;border-radius:12px;font-size:14px;background:var(--lt);outline:none;}
+.pf-row select:focus,.pf-row textarea:focus,.pf-row input:focus{border-color:var(--o);}
 .pf-row textarea{resize:vertical;min-height:80px;}
 .btn-post-swap{width:100%;padding:14px;background:var(--o);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;transition:.2s;margin-top:8px;}
 .btn-post-swap:hover{background:var(--od);}
@@ -172,14 +202,13 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
 .og-chip{display:flex;align-items:center;justify-content:space-between;padding:5px 8px;border-radius:8px;font-size:12px;font-weight:600;background:#FFF0E8;color:var(--o);}
 .ogc-x{cursor:pointer;color:var(--rd);font-weight:800;margin-left:4px;line-height:1;}
 .ogc-x:hover{opacity:.7;}
-.og-empty{font-size:11px;color:#D0D0D0;text-align:center;padding:4px;}
 .og-full-tag{font-size:10px;color:var(--rd);text-align:center;font-weight:700;}
 .og-spots{font-size:10px;color:var(--gy);text-align:center;}
 
 /* ── MANAGE SLOTS ── */
 .ms-wrapper{display:flex;flex-direction:column;gap:20px;}
 .ms-day{background:#fff;border-radius:16px;padding:20px 24px;box-shadow:0 2px 10px rgba(0,0,0,.06);}
-.msd-header{font-size:16px;font-weight:800;color:var(--dk);margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;}
+.msd-header{font-size:16px;font-weight:800;color:var(--dk);margin-bottom:14px;}
 .msd-slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;}
 .msd-slot{border:1.5px solid #E5E7EB;border-radius:12px;padding:14px;}
 .msds-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
@@ -195,10 +224,45 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
 /* ── MANAGER SWAP ── */
 .mgrs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;}
 .mgrs-card{background:#fff;border-radius:16px;padding:20px;box-shadow:0 2px 10px rgba(0,0,0,.06);}
-.mgrs-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.mgrs-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px;}
 .mgrs-actions{display:flex;gap:8px;margin-top:12px;}
 .btn-approve{flex:1;padding:9px;background:var(--gn);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;}
 .btn-deny{flex:1;padding:9px;background:var(--rd);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;}
+
+/* ── EMPLOYEE MANAGEMENT ── */
+.emp-mgmt-layout{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:flex-start;}
+.emp-list{display:flex;flex-direction:column;gap:14px;}
+.emp-card{background:#fff;border-radius:16px;padding:20px 24px;box-shadow:0 2px 10px rgba(0,0,0,.06);display:flex;align-items:center;gap:16px;}
+.emp-av{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:800;color:#fff;flex-shrink:0;}
+.emp-info{flex:1;}
+.emp-name{font-size:15px;font-weight:800;color:var(--dk);}
+.emp-meta{font-size:12px;color:var(--gy);margin-top:3px;}
+.emp-actions{display:flex;gap:8px;flex-shrink:0;flex-wrap:wrap;}
+.btn-chpw{padding:8px 14px;background:#F0F0FF;color:var(--pu);border:none;border-radius:10px;font-size:12px;font-weight:700;cursor:pointer;transition:.2s;}
+.btn-chpw:hover{background:var(--pu);color:#fff;}
+.btn-rmemp{padding:8px 14px;background:#FFF0F0;color:var(--rd);border:none;border-radius:10px;font-size:12px;font-weight:700;cursor:pointer;transition:.2s;}
+.btn-rmemp:hover{background:var(--rd);color:#fff;}
+.emp-shifts-badge{font-size:11px;color:var(--o);font-weight:700;background:#FFF0E8;padding:3px 8px;border-radius:20px;margin-top:5px;display:inline-block;}
+
+.add-emp-card{background:#fff;border-radius:20px;padding:28px;box-shadow:0 4px 20px rgba(0,0,0,.09);position:sticky;top:96px;}
+.aec-title{font-size:18px;font-weight:800;color:var(--dk);margin-bottom:6px;}
+.aec-sub{font-size:13px;color:var(--gy);margin-bottom:24px;}
+.aec-field{margin-bottom:16px;}
+.aec-field label{display:block;font-size:11px;font-weight:700;color:var(--gy);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+.aec-field input{width:100%;padding:12px 14px;border:1.5px solid #E5E7EB;border-radius:12px;font-size:14px;background:var(--lt);outline:none;transition:border-color .2s;}
+.aec-field input:focus{border-color:var(--o);background:#fff;}
+.aec-err{color:var(--rd);font-size:12px;font-weight:600;margin-bottom:12px;display:none;}
+.btn-add-emp{width:100%;padding:14px;background:var(--o);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;transition:.2s;}
+.btn-add-emp:hover{background:var(--od);}
+.emp-count-bar{background:#fff;border-radius:14px;padding:16px 20px;box-shadow:0 2px 10px rgba(0,0,0,.06);margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.ecb-label{font-size:14px;color:var(--gy);font-weight:600;}
+.ecb-num{font-size:28px;font-weight:900;color:var(--o);}
+
+/* ── CHANGE PASSWORD MODAL ── */
+.chpw-form{display:flex;flex-direction:column;gap:14px;}
+.chpw-form label{font-size:11px;font-weight:700;color:var(--gy);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:5px;}
+.chpw-form input{width:100%;padding:12px 14px;border:1.5px solid #E5E7EB;border-radius:12px;font-size:14px;background:var(--lt);outline:none;}
+.chpw-form input:focus{border-color:var(--o);}
 
 /* ── TOAST ── */
 .toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%);background:var(--dk);color:#fff;padding:13px 28px;border-radius:14px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .3s;z-index:9999;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.2);}
@@ -210,7 +274,8 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
 .modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;border-radius:20px;padding:28px;width:420px;max-width:calc(100vw - 32px);z-index:1001;display:none;box-shadow:0 24px 64px rgba(0,0,0,.2);}
 .modal.show{display:block;}
 .modal-close{position:absolute;top:16px;right:16px;background:var(--lt);border:none;border-radius:50%;width:32px;height:32px;font-size:16px;cursor:pointer;}
-.modal-title{font-size:18px;font-weight:800;color:var(--dk);margin-bottom:16px;}
+.modal-title{font-size:18px;font-weight:800;color:var(--dk);margin-bottom:6px;}
+.modal-sub{font-size:13px;color:var(--gy);margin-bottom:20px;}
 .modal-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #F5F5F5;font-size:14px;}
 .modal-row span{color:var(--gy);}
 .modal-row strong{color:var(--dk);}
@@ -219,6 +284,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
 .btn-m-cancel{flex:1;padding:12px;background:var(--lt);color:var(--gy);border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;}
 
 /* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .emp-mgmt-layout{grid-template-columns:1fr;}
+  .add-emp-card{position:static;}
+}
 @media(max-width:768px){
   .tcontent{padding:20px 16px;}
   .hdr{padding:0 16px;}
@@ -227,32 +296,25 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
   .tb{padding:14px 10px;font-size:12px;}
   .avail-grid{grid-template-columns:1fr;}
   .og-hrow,.og-row{grid-template-columns:110px repeat(5,1fr);}
+  .cal-grid-header,.cal-row{grid-template-columns:80px repeat(5,1fr);}
+  .stats-row{grid-template-columns:repeat(2,1fr);}
+  .emp-card{flex-wrap:wrap;}
 }
 </style>
 </head>
 <body>
 
-<!-- ══════════════ LOGIN PAGE ══════════════ -->
+<!-- ══════════════ LOGIN ══════════════ -->
 <div id="page-login" class="page active">
   <div class="login-bg">
     <div class="login-box">
       <div class="login-logo">☕</div>
       <div class="login-title">Dunkin' Crew</div>
       <div class="login-sub">Employee Scheduling Portal · Store #1482</div>
-
       <div id="roleSelector" class="role-grid">
-        <div class="role-card" onclick="selectRole('manager')">
-          <div class="rc-icon">👔</div>
-          <div class="rc-title">Manager</div>
-          <div class="rc-sub">View &amp; edit all schedules</div>
-        </div>
-        <div class="role-card" onclick="selectRole('employee')">
-          <div class="rc-icon">👷</div>
-          <div class="rc-title">Employee</div>
-          <div class="rc-sub">Submit availability &amp; swaps</div>
-        </div>
+        <div class="role-card" onclick="selectRole('manager')"><div class="rc-icon">👔</div><div class="rc-title">Manager</div><div class="rc-sub">View &amp; edit all schedules</div></div>
+        <div class="role-card" onclick="selectRole('employee')"><div class="rc-icon">👷</div><div class="rc-title">Employee</div><div class="rc-sub">Submit availability &amp; swaps</div></div>
       </div>
-
       <div id="loginForm" class="login-form hidden">
         <span class="back-link" onclick="backToRoles()">← Back</span>
         <h3 id="loginFormTitle">Login</h3>
@@ -260,7 +322,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
         <div class="fg"><label>Password</label><input type="password" id="loginPass" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()"/></div>
         <button class="btn-login" onclick="doLogin()">Log In →</button>
         <div class="login-err hidden" id="loginErr">❌ Invalid username or password</div>
-        <div class="demo-box" id="demoBox"></div>
       </div>
     </div>
   </div>
@@ -276,29 +337,26 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
       <button class="btn-out" onclick="logout()">Log Out</button>
     </div>
   </header>
-  <nav class="tab-nav" id="empNav">
-    <button class="tb active" onclick="empTab('schedule')" id="etb-schedule">📅 My Schedule</button>
-    <button class="tb" onclick="empTab('availability')" id="etb-availability">✋ Availability</button>
-    <button class="tb" onclick="empTab('swap')" id="etb-swap">🔁 Swap Board</button>
+  <nav class="tab-nav">
+    <button class="tb active" onclick="empTab('schedule')"     id="etb-schedule">📅 My Schedule</button>
+    <button class="tb"        onclick="empTab('availability')" id="etb-availability">✋ Availability</button>
+    <button class="tb"        onclick="empTab('swap')"         id="etb-swap">🔁 Swap Board</button>
   </nav>
   <div class="tcontent">
-    <!-- MY SCHEDULE -->
     <div class="tpanel active" id="ep-schedule">
-      <div class="ph"><h2>My Schedule</h2><p id="empSchedSubtitle">Week of March 17–21, 2026</p></div>
+      <div class="ph"><h2>My Schedule</h2><p>Week of March 17–21, 2026</p></div>
       <div id="mySchedContent"></div>
     </div>
-    <!-- AVAILABILITY -->
     <div class="tpanel" id="ep-availability">
-      <div class="ph"><h2>Submit Availability</h2><p>Mon–Fri, March 17–21 · 3 slots per day · First 3 employees per slot get confirmed!</p></div>
+      <div class="ph"><h2>Submit Availability</h2><p>Mon–Fri, March 17–21 · Max 3 employees per slot · First come, first served!</p></div>
       <div id="availContent"></div>
     </div>
-    <!-- SWAP BOARD -->
     <div class="tpanel" id="ep-swap">
       <div class="ph"><h2>Swap Board</h2><p>Claim an available shift or post yours for swap</p></div>
       <div class="swap-stabs">
         <button class="stab active" onclick="swapSubTab('available')" id="sst-available">Available Swaps</button>
-        <button class="stab" onclick="swapSubTab('post')" id="sst-post">Post a Swap</button>
-        <button class="stab" onclick="swapSubTab('mine')" id="sst-mine">My Posted</button>
+        <button class="stab"        onclick="swapSubTab('post')"      id="sst-post">Post a Swap</button>
+        <button class="stab"        onclick="swapSubTab('mine')"      id="sst-mine">My Posted</button>
       </div>
       <div id="swapContent"></div>
     </div>
@@ -316,33 +374,33 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
       <button class="btn-out" onclick="logout()">Log Out</button>
     </div>
   </header>
-  <nav class="tab-nav mgr-tn" id="mgrNav">
-    <button class="tb active" onclick="mgrTab('overview')" id="mtb-overview">📊 Schedule Overview</button>
-    <button class="tb" onclick="mgrTab('slots')" id="mtb-slots">✏️ Manage Slots</button>
-    <button class="tb" onclick="mgrTab('swap')" id="mtb-swap">🔁 Swap Requests</button>
+  <nav class="tab-nav mgr-tn">
+    <button class="tb active" onclick="mgrTab('overview')"   id="mtb-overview">📊 Schedule Overview</button>
+    <button class="tb"        onclick="mgrTab('slots')"      id="mtb-slots">✏️ Manage Slots</button>
+    <button class="tb"        onclick="mgrTab('swap')"       id="mtb-swap">🔁 Swap Requests</button>
+    <button class="tb"        onclick="mgrTab('employees')"  id="mtb-employees">👥 Employees</button>
   </nav>
   <div class="tcontent">
-    <!-- OVERVIEW -->
     <div class="tpanel active" id="mp-overview">
       <div class="ph"><h2>Schedule Overview</h2><p>Week of March 17–21, 2026 · Click ✕ to remove a booking</p></div>
       <div id="overviewContent"></div>
     </div>
-    <!-- MANAGE SLOTS -->
     <div class="tpanel" id="mp-slots">
       <div class="ph"><h2>Manage All Slots</h2><p>View, edit, and remove employee availability submissions</p></div>
       <div id="manageSlotsContent"></div>
     </div>
-    <!-- SWAP REQUESTS -->
     <div class="tpanel" id="mp-swap">
       <div class="ph"><h2>Swap Requests</h2><p>Review and act on employee shift swap requests</p></div>
       <div id="mgrSwapContent"></div>
     </div>
+    <div class="tpanel" id="mp-employees">
+      <div class="ph"><h2>Employee Management</h2><p>Add or remove employees and manage their login credentials</p></div>
+      <div id="empMgmtContent"></div>
+    </div>
   </div>
 </div>
 
-<!-- ── TOAST ── -->
 <div class="toast" id="toast"></div>
-<!-- ── MODAL ── -->
 <div class="mov" id="mov" onclick="closeModal()"></div>
 <div class="modal" id="modal">
   <button class="modal-close" onclick="closeModal()">✕</button>
@@ -351,72 +409,88 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
 
 <script>
 // ════════════════════════════════════════
-//  CONFIG
+//  CONFIG & CONSTANTS
 // ════════════════════════════════════════
 const DAYS = [
-  {id:'mon', label:'Monday',    date:'Mar 17'},
-  {id:'tue', label:'Tuesday',   date:'Mar 18'},
-  {id:'wed', label:'Wednesday', date:'Mar 19'},
-  {id:'thu', label:'Thursday',  date:'Mar 20'},
-  {id:'fri', label:'Friday',    date:'Mar 21'},
+  {id:'mon',label:'Monday',   date:'Mar 17'},
+  {id:'tue',label:'Tuesday',  date:'Mar 18'},
+  {id:'wed',label:'Wednesday',date:'Mar 19'},
+  {id:'thu',label:'Thursday', date:'Mar 20'},
+  {id:'fri',label:'Friday',   date:'Mar 21'},
 ];
 const TSLOTS = [
-  {id:'morning', label:'Morning',  time:'7:00 AM – 12:00 PM', hrs:'5 hrs', icon:'🌅', chip:'schip-m'},
-  {id:'midday',  label:'Midday',   time:'12:00 PM – 4:00 PM', hrs:'4 hrs', icon:'☀️',  chip:'schip-d'},
-  {id:'evening', label:'Evening',  time:'4:00 PM – 8:00 PM',  hrs:'4 hrs', icon:'🌆',  chip:'schip-e'},
+  {id:'morning',label:'Morning',time:'7:00 AM – 12:00 PM',hrs:5,icon:'🌅',chip:'schip-m',color:'#FF6E1F'},
+  {id:'midday', label:'Midday', time:'12:00 PM – 4:00 PM',hrs:4,icon:'☀️', chip:'schip-d',color:'#DA1884'},
+  {id:'evening',label:'Evening',time:'4:00 PM – 8:00 PM', hrs:4,icon:'🌆',chip:'schip-e',color:'#6366F1'},
 ];
 const MAX = 3;
-const SK  = {SLOTS:'dk_slots_v2', SWAPS:'dk_swaps_v2', SESSION:'dk_session_v2'};
+const SK = {SLOTS:'dk_slots_v3',SWAPS:'dk_swaps_v3',SESSION:'dk_session_v3',EMPS:'dk_emps_v3'};
 
-const USERS = [
-  {id:'manager', name:'Maria S.',      role:'manager',  pass:'manager123', initials:'MS', color:'#1A1A1A'},
-  {id:'jamie',   name:'Jamie Torres',  role:'employee', pass:'pass123',    initials:'JT', color:'#FF6E1F'},
-  {id:'alex',    name:'Alex Rivera',   role:'employee', pass:'pass123',    initials:'AR', color:'#DA1884'},
-  {id:'sam',     name:'Sam Kim',       role:'employee', pass:'pass123',    initials:'SK', color:'#6366F1'},
-  {id:'jordan',  name:'Jordan Mills',  role:'employee', pass:'pass123',    initials:'JM', color:'#10B981'},
-  {id:'taylor',  name:'Taylor Chen',   role:'employee', pass:'pass123',    initials:'TC', color:'#F59E0B'},
+const AVATAR_COLORS = ['#FF6E1F','#DA1884','#6366F1','#10B981','#F59E0B','#3B82F6','#EC4899','#8B5CF6','#14B8A6','#F97316'];
+
+const DEFAULT_EMPLOYEES = [
+  {id:'aakanksha',   name:'Aakanksha Kulkarni',  role:'employee', pass:'AK123',      initials:'AK', color:'#FF6E1F'},
+  {id:'shefali',     name:'Shefali Hegde',        role:'employee', pass:'SH123',      initials:'SH', color:'#DA1884'},
+  {id:'darshil',     name:'Darshil Gogri',        role:'employee', pass:'DG123',      initials:'DG', color:'#6366F1'},
+  {id:'rushit',      name:'Rushit Gohil',         role:'employee', pass:'RG123',      initials:'RG', color:'#10B981'},
+  {id:'prabhsimran', name:'Prabhsimran Garcha',   role:'employee', pass:'PG123',      initials:'PG', color:'#F59E0B'},
 ];
+const MANAGER = {id:'manager',name:'Maria S.',role:'manager',pass:'manager123',initials:'MS',color:'#1A1A1A'};
 
 // ════════════════════════════════════════
-//  STATE & STORAGE
+//  STATE
 // ════════════════════════════════════════
-let currentUser = null;
+let currentUser    = null;
 let currentSwapSub = 'available';
+let schedView      = 'list';
 
-function load(key){ try{ const v=localStorage.getItem(key); return v?JSON.parse(v):null; }catch(e){ return null; } }
-function save(key,val){ try{ localStorage.setItem(key,JSON.stringify(val)); }catch(e){} }
+// ════════════════════════════════════════
+//  STORAGE HELPERS
+// ════════════════════════════════════════
+function load(k){ try{ const v=localStorage.getItem(k); return v?JSON.parse(v):null; }catch(e){ return null; } }
+function save(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+
+function getEmployees(){
+  let e=load(SK.EMPS);
+  if(!e){ e=[...DEFAULT_EMPLOYEES]; save(SK.EMPS,e); }
+  return e;
+}
+function saveEmployees(e){ save(SK.EMPS,e); }
+
+function getAllUsers(){ return [MANAGER, ...getEmployees()]; }
 
 function getSlots(){
-  let s = load(SK.SLOTS);
+  let s=load(SK.SLOTS);
   if(!s){ s={}; DAYS.forEach(d=>TSLOTS.forEach(t=>{ s[d.id+'_'+t.id]=[]; })); save(SK.SLOTS,s); }
+  DAYS.forEach(d=>TSLOTS.forEach(t=>{ if(!s[d.id+'_'+t.id]) s[d.id+'_'+t.id]=[]; }));
   return s;
 }
 function saveSlots(s){ save(SK.SLOTS,s); }
-
 function getSwaps(){ return load(SK.SWAPS)||[]; }
 function saveSwaps(sw){ save(SK.SWAPS,sw); }
+function slotKey(d,t){ return d+'_'+t; }
 
-function slotKey(dayId,slotId){ return dayId+'_'+slotId; }
+function makeInitials(name){
+  return name.trim().split(/\s+/).map(w=>w[0]?.toUpperCase()||'').slice(0,2).join('');
+}
+function pickColor(idx){ return AVATAR_COLORS[idx % AVATAR_COLORS.length]; }
+
+function avatarBg(uid){ const u=getAllUsers().find(x=>x.id===uid); return u?u.color:'#888'; }
+function initials(uid){ const u=getAllUsers().find(x=>x.id===uid); return u?u.initials:'??'; }
 
 // ════════════════════════════════════════
 //  AUTH
 // ════════════════════════════════════════
-let selectedRole = null;
+let selectedRole=null;
 
 function selectRole(role){
-  selectedRole = role;
+  selectedRole=role;
   document.getElementById('roleSelector').classList.add('hidden');
   document.getElementById('loginForm').classList.remove('hidden');
-  document.getElementById('loginFormTitle').textContent = role==='manager' ? '👔 Manager Login' : '👷 Employee Login';
+  document.getElementById('loginFormTitle').textContent=role==='manager'?'👔 Manager Login':'👷 Employee Login';
   document.getElementById('loginErr').classList.add('hidden');
   document.getElementById('loginUser').value='';
   document.getElementById('loginPass').value='';
-  const demoBox = document.getElementById('demoBox');
-  if(role==='manager'){
-    demoBox.innerHTML='<strong>Demo credentials:</strong><br>Username: <strong>manager</strong> &nbsp; Password: <strong>manager123</strong>';
-  } else {
-    demoBox.innerHTML='<strong>Demo employees:</strong><br>jamie / alex / sam / jordan / taylor<br>Password for all: <strong>pass123</strong>';
-  }
   setTimeout(()=>document.getElementById('loginUser').focus(),50);
 }
 
@@ -426,15 +500,14 @@ function backToRoles(){
 }
 
 function doLogin(){
-  const u = document.getElementById('loginUser').value.trim().toLowerCase();
-  const p = document.getElementById('loginPass').value.trim();
-  const user = USERS.find(x=>x.id===u && x.pass===p && x.role===selectedRole);
+  const u=document.getElementById('loginUser').value.trim().toLowerCase();
+  const p=document.getElementById('loginPass').value.trim();
+  const user=getAllUsers().find(x=>x.id===u && x.pass===p && x.role===selectedRole);
   if(!user){ document.getElementById('loginErr').classList.remove('hidden'); return; }
-  currentUser = user;
-  save(SK.SESSION, user.id);
+  currentUser=user;
+  save(SK.SESSION,user.id);
   document.getElementById('loginErr').classList.add('hidden');
-  if(user.role==='manager') openManager();
-  else openEmployee();
+  user.role==='manager'?openManager():openEmployee();
 }
 
 function logout(){
@@ -449,15 +522,13 @@ function showPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
-
 function openEmployee(){
-  document.getElementById('empHdrName').textContent = currentUser.name;
+  document.getElementById('empHdrName').textContent=currentUser.name;
   showPage('page-employee');
   empTab('schedule');
 }
-
 function openManager(){
-  document.getElementById('mgrHdrName').textContent = currentUser.name;
+  document.getElementById('mgrHdrName').textContent=currentUser.name;
   showPage('page-manager');
   mgrTab('overview');
 }
@@ -470,67 +541,51 @@ function empTab(tab){
     document.getElementById('ep-'+t).classList.toggle('active',t===tab);
     document.getElementById('etb-'+t).classList.toggle('active',t===tab);
   });
-  if(tab==='schedule')    renderMySchedule();
+  if(tab==='schedule')     renderMySchedule();
   if(tab==='availability') renderAvailability();
   if(tab==='swap')         swapSubTab(currentSwapSub);
 }
 
-function renderMySchedule(){
-  const slots  = getSlots();
-  const swaps  = getSwaps();
-  const uid    = currentUser.id;
-
-  // ── compute stats ──
-  let totalShifts = 0, totalHours = 0;
-  const hrsMap = {morning:5, midday:4, evening:4};
-  DAYS.forEach(d => TSLOTS.forEach(t => {
-    if((slots[slotKey(d.id,t.id)]||[]).some(e=>e.uid===uid)){
-      totalShifts++; totalHours += hrsMap[t.id]||0;
-    }
+// ── STATS ──
+function calcStats(){
+  const slots=getSlots(), swaps=getSwaps(), uid=currentUser.id;
+  let totalShifts=0, totalHours=0;
+  DAYS.forEach(d=>TSLOTS.forEach(t=>{
+    if((slots[slotKey(d.id,t.id)]||[]).some(e=>e.uid===uid)){ totalShifts++; totalHours+=t.hrs; }
   }));
-  const openSwaps  = swaps.filter(s=>s.status==='open' && s.fromUid!==uid).length;
-  const openSlots  = DAYS.reduce((acc,d)=>
-    acc + TSLOTS.filter(t=>{
-      const arr=slots[slotKey(d.id,t.id)]||[];
-      return arr.length<MAX && !arr.some(e=>e.uid===uid);
-    }).length, 0);
+  const openSwaps=swaps.filter(s=>s.status==='open'&&s.fromUid!==uid).length;
+  const openSlots=DAYS.reduce((acc,d)=>acc+TSLOTS.filter(t=>{ const a=slots[slotKey(d.id,t.id)]||[]; return a.length<MAX&&!a.some(e=>e.uid===uid); }).length,0);
+  return {totalShifts,totalHours,openSwaps,openSlots};
+}
 
-  // ── stats bar ──
-  const statsHtml = `
-    <div class="stats-row">
-      <div class="stat-card">
-        <div class="stat-num">${totalShifts}</div>
-        <div class="stat-unit">shifts</div>
-        <div class="stat-label">This Week</div>
-      </div>
-      <div class="stat-card pink">
-        <div class="stat-num">${totalHours}</div>
-        <div class="stat-unit">hrs</div>
-        <div class="stat-label">Total Hours</div>
-      </div>
-      <div class="stat-card green">
-        <div class="stat-num">${openSwaps}</div>
-        <div class="stat-unit">swaps</div>
-        <div class="stat-label">Open Swaps</div>
-      </div>
-      <div class="stat-card purple">
-        <div class="stat-num">${openSlots}</div>
-        <div class="stat-unit">slots</div>
-        <div class="stat-label">Available Slots</div>
-      </div>
-    </div>`;
+// ── MY SCHEDULE ──
+function renderMySchedule(){
+  const {totalShifts,totalHours,openSwaps,openSlots}=calcStats();
+  const statsHtml=`<div class="stats-row">
+    <div class="stat-card"><div class="stat-num">${totalShifts}</div><div class="stat-unit">shifts</div><div class="stat-label">This Week</div></div>
+    <div class="stat-card pink"><div class="stat-num">${totalHours}</div><div class="stat-unit">hrs</div><div class="stat-label">Total Hours</div></div>
+    <div class="stat-card green"><div class="stat-num">${openSwaps}</div><div class="stat-unit">swaps</div><div class="stat-label">Open Swaps</div></div>
+    <div class="stat-card purple"><div class="stat-num">${openSlots}</div><div class="stat-unit">slots</div><div class="stat-label">Available Slots</div></div>
+  </div>`;
+  const toggleHtml=`<div class="view-toggle">
+    <button class="vtbtn ${schedView==='list'?'active':''}"     onclick="setSchedView('list')">☰ List View</button>
+    <button class="vtbtn ${schedView==='calendar'?'active':''}" onclick="setSchedView('calendar')">📆 Calendar View</button>
+  </div>`;
+  document.getElementById('mySchedContent').innerHTML=statsHtml+toggleHtml+(schedView==='calendar'?buildCalendarView():buildListView());
+}
 
-  // ── schedule list ──
-  let hasAny = false;
-  let listHtml = '<div class="sched-list">';
+function setSchedView(v){ schedView=v; renderMySchedule(); }
+
+function buildListView(){
+  const slots=getSlots(), uid=currentUser.id;
+  let hasAny=false, html='<div class="sched-list">';
   DAYS.forEach(d=>{
-    const myChips = TSLOTS.filter(t=>(slots[slotKey(d.id,t.id)]||[]).some(e=>e.uid===uid));
+    const myChips=TSLOTS.filter(t=>(slots[slotKey(d.id,t.id)]||[]).some(e=>e.uid===uid));
     if(!myChips.length) return;
-    hasAny = true;
-    const dayHrs = myChips.reduce((a,t)=>a+(hrsMap[t.id]||0),0);
-    listHtml += `<div class="sched-card">
-      <div class="sc-top">
-        <span class="sc-day">${d.label}</span>
+    hasAny=true;
+    const dayHrs=myChips.reduce((a,t)=>a+t.hrs,0);
+    html+=`<div class="sched-card">
+      <div class="sc-top"><span class="sc-day">${d.label}</span>
         <span style="display:flex;align-items:center;gap:10px;">
           <span class="badge bo">${myChips.length} shift${myChips.length>1?'s':''} · ${dayHrs} hrs</span>
           <span class="sc-date">${d.date}, 2026</span>
@@ -539,261 +594,170 @@ function renderMySchedule(){
       <div class="sc-chips">${myChips.map(t=>`<span class="schip ${t.chip}">${t.icon} ${t.label} · ${t.time}</span>`).join('')}</div>
     </div>`;
   });
-  listHtml += '</div>';
+  html+='</div>';
+  return hasAny?html:`<div class="empty-state"><div class="es-icon">📅</div><div class="es-title">No shifts yet</div><div class="es-sub">Go to Availability tab to claim your shifts!</div></div>`;
+}
 
-  if(!hasAny) listHtml = `<div class="empty-state"><div class="es-icon">📅</div><div class="es-title">No shifts yet</div><div class="es-sub">Go to the Availability tab to claim your shifts!</div></div>`;
-
-  document.getElementById('mySchedContent').innerHTML = statsHtml + listHtml;
+function buildCalendarView(){
+  const slots=getSlots(), uid=currentUser.id;
+  const headerCells=DAYS.map(d=>`<div class="cgh-cell">${d.label}<div class="cgh-date">${d.date}</div></div>`).join('');
+  const bodyRows=TSLOTS.map(t=>{
+    const cells=DAYS.map(d=>{
+      const k=slotKey(d.id,t.id), arr=slots[k]||[];
+      const mine=arr.some(e=>e.uid===uid), full=arr.length>=MAX;
+      let inner='';
+      if(mine){
+        inner=`<div class="cc-chip mine">${t.icon} You</div>`;
+        arr.filter(e=>e.uid!==uid).forEach(e=>{ inner+=`<div class="cc-chip">${e.name.split(' ')[0]}</div>`; });
+      } else if(arr.length>0){
+        arr.forEach(e=>{ inner+=`<div class="cc-chip">${e.name.split(' ')[0]}</div>`; });
+        inner+=full?`<div class="cc-full">FULL</div>`:`<div class="cc-open">${MAX-arr.length} open</div>`;
+      } else { inner=`<div class="cc-empty">—</div>`; }
+      return `<div class="cal-cell">${inner}</div>`;
+    }).join('');
+    return `<div class="cal-row"><div class="cal-row-label"><div class="crl-name">${t.icon} ${t.label}</div><div class="crl-time">${t.time}</div></div>${cells}</div>`;
+  }).join('');
+  return `<div class="cal-wrap">
+    <div class="cal-header"><h3>📆 Week of March 17–21, 2026</h3><span>Mon – Fri</span></div>
+    <div class="cal-grid-header"><div class="cgh-cell">Shift</div>${headerCells}</div>
+    <div class="cal-body">${bodyRows}</div>
+    <div class="cal-legend">
+      <div class="cl-item"><div class="cl-dot" style="background:var(--o);"></div>Your shift</div>
+      <div class="cl-item"><div class="cl-dot" style="background:#FFF0E8;border:1px solid var(--o);"></div>Others</div>
+      <div class="cl-item"><div class="cl-dot" style="background:#F5F5F5;border:1px solid #ddd;"></div>Empty</div>
+    </div>
+  </div>`;
 }
 
 // ── AVAILABILITY ──
 function renderAvailability(){
-  const slots = getSlots();
-  const uid   = currentUser.id;
-  let html    = '<div class="avail-grid">';
+  const slots=getSlots(), uid=currentUser.id;
+  let html='<div class="avail-grid">';
   DAYS.forEach(d=>{
-    html += `<div class="avail-card">
-      <div class="ac-head"><span class="ac-day">${d.label}</span><span class="ac-date">${d.date}</span></div>
-      <div class="ac-slots">`;
+    html+=`<div class="avail-card"><div class="ac-head"><span class="ac-day">${d.label}</span><span class="ac-date">${d.date}</span></div><div class="ac-slots">`;
     TSLOTS.forEach(t=>{
-      const k    = slotKey(d.id,t.id);
-      const arr  = slots[k]||[];
-      const mine = arr.some(e=>e.uid===uid);
-      const full = arr.length>=MAX && !mine;
-      let cls    = 'slot-opt';
-      let btnHtml= '';
-      let spotCls= 'spt-ok';
-      let spotTxt= `${arr.length}/${MAX} filled`;
-      if(mine){
-        cls+=' so-claimed';
-        btnHtml=`<button class="so-btn sob-drop" onclick="dropSlot('${d.id}','${t.id}')">Drop</button>`;
-        spotCls='spt-ok'; spotTxt='You\'re in ✓';
-      } else if(full){
-        cls+=' so-full';
-        btnHtml=`<button class="so-btn sob-full" disabled>Full</button>`;
-        spotCls='spt-full'; spotTxt='3/3 Full';
-      } else {
-        btnHtml=`<button class="so-btn sob-claim" onclick="claimSlot('${d.id}','${t.id}')">Claim</button>`;
-      }
-      html+=`<div class="${cls}">
-        <span class="so-icon">${t.icon}</span>
-        <div class="so-info"><div class="so-label">${t.label}</div><div class="so-time">${t.time}</div></div>
-        <div class="so-r"><span class="so-spots ${spotCls}">${spotTxt}</span>${btnHtml}</div>
-      </div>`;
+      const k=slotKey(d.id,t.id), arr=slots[k]||[];
+      const mine=arr.some(e=>e.uid===uid), full=arr.length>=MAX&&!mine;
+      let cls='slot-opt', spotCls='spt-ok', spotTxt=`${arr.length}/${MAX} filled`, btnHtml='';
+      if(mine){ cls+=' so-claimed'; btnHtml=`<button class="so-btn sob-drop" onclick="dropSlot('${d.id}','${t.id}')">Drop</button>`; spotTxt="You're in ✓"; }
+      else if(full){ cls+=' so-full'; btnHtml=`<button class="so-btn sob-full" disabled>Full</button>`; spotCls='spt-full'; spotTxt='3/3 Full'; }
+      else { btnHtml=`<button class="so-btn sob-claim" onclick="claimSlot('${d.id}','${t.id}')">Claim</button>`; }
+      html+=`<div class="${cls}"><span class="so-icon">${t.icon}</span><div class="so-info"><div class="so-label">${t.label}</div><div class="so-time">${t.time}</div></div><div class="so-r"><span class="so-spots ${spotCls}">${spotTxt}</span>${btnHtml}</div></div>`;
     });
-    html += '</div></div>';
+    html+='</div></div>';
   });
-  html += '</div>';
-  document.getElementById('availContent').innerHTML = html;
+  document.getElementById('availContent').innerHTML=html+'</div>';
 }
 
 function claimSlot(dayId,slotId){
-  const slots = getSlots();
-  const k     = slotKey(dayId,slotId);
-  const arr   = slots[k]||[];
+  const slots=getSlots(), k=slotKey(dayId,slotId), arr=slots[k]||[];
   if(arr.length>=MAX){ showToast('Sorry, this slot is full! 🚫'); return; }
   if(arr.some(e=>e.uid===currentUser.id)){ showToast('You already have this slot!'); return; }
-  const now = new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
-  arr.push({uid:currentUser.id, name:currentUser.name, at:now});
-  slots[k]=arr;
-  saveSlots(slots);
-  renderAvailability();
-  const d = DAYS.find(x=>x.id===dayId);
-  const t = TSLOTS.find(x=>x.id===slotId);
+  const now=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+  arr.push({uid:currentUser.id,name:currentUser.name,at:now});
+  slots[k]=arr; saveSlots(slots); renderAvailability();
+  const d=DAYS.find(x=>x.id===dayId), t=TSLOTS.find(x=>x.id===slotId);
   showToast(`✅ ${t.label} on ${d.label} confirmed! (${arr.length}/3)`);
 }
 
 function dropSlot(dayId,slotId){
   if(!confirm('Drop this shift? You may not get it back if others claim it.')) return;
-  const slots = getSlots();
-  const k = slotKey(dayId,slotId);
-  slots[k] = (slots[k]||[]).filter(e=>e.uid!==currentUser.id);
-  saveSlots(slots);
-  renderAvailability();
-  showToast('Shift dropped.');
+  const slots=getSlots(), k=slotKey(dayId,slotId);
+  slots[k]=(slots[k]||[]).filter(e=>e.uid!==currentUser.id);
+  saveSlots(slots); renderAvailability(); showToast('Shift dropped.');
 }
 
 // ── SWAP BOARD ──
 function swapSubTab(sub){
   currentSwapSub=sub;
-  ['available','post','mine'].forEach(s=>{
-    document.getElementById('sst-'+s).classList.toggle('active',s===sub);
-  });
+  ['available','post','mine'].forEach(s=>document.getElementById('sst-'+s).classList.toggle('active',s===sub));
   if(sub==='available') renderAvailableSwaps();
   if(sub==='post')      renderPostSwap();
   if(sub==='mine')      renderMySwaps();
 }
 
-function avatarBg(userId){
-  const u=USERS.find(x=>x.id===userId);
-  return u?u.color:'#888';
-}
-function initials(userId){
-  const u=USERS.find(x=>x.id===userId);
-  return u?u.initials:'??';
-}
-
 function renderAvailableSwaps(){
   const swaps=getSwaps().filter(s=>s.status==='open'&&s.fromUid!==currentUser.id);
   const div=document.getElementById('swapContent');
-  if(!swaps.length){
-    div.innerHTML=`<div class="empty-state"><div class="es-icon">🔁</div><div class="es-title">No swaps available right now</div><div class="es-sub">Check back later or post your own shift!</div></div>`;
-    return;
-  }
-  const cards=swaps.map(s=>{
-    const d=DAYS.find(x=>x.id===s.dayId)||{label:s.dayId,date:''};
-    const t=TSLOTS.find(x=>x.id===s.slotId)||{label:s.slotId,time:''};
-    return `<div class="swap-card">
-      <div class="swc-top">
-        <div class="swc-av" style="background:${avatarBg(s.fromUid)}">${initials(s.fromUid)}</div>
-        <div><div class="swc-name">${s.fromName}</div><div class="swc-time">Posted ${s.postedAt}</div></div>
-      </div>
-      <div class="swc-tags">
-        <span class="stag">📅 ${d.label} ${d.date}</span>
-        <span class="stag">⏰ ${t.time}</span>
-        <span class="stag">${t.icon} ${t.label}</span>
-      </div>
-      ${s.note?`<div class="swc-note">"${s.note}"</div>`:''}
-      <button class="swc-btn swb-claim" onclick="claimSwap('${s.id}')">Claim This Shift</button>
-    </div>`;
-  }).join('');
-  div.innerHTML=`<div class="swap-grid">${cards}</div>`;
+  if(!swaps.length){ div.innerHTML=`<div class="empty-state"><div class="es-icon">🔁</div><div class="es-title">No swaps available right now</div><div class="es-sub">Check back later or post your own shift!</div></div>`; return; }
+  div.innerHTML=`<div class="swap-grid">${swaps.map(s=>{
+    const d=DAYS.find(x=>x.id===s.dayId)||{label:s.dayId,date:''}, t=TSLOTS.find(x=>x.id===s.slotId)||{label:s.slotId,time:''};
+    return `<div class="swap-card"><div class="swc-top"><div class="swc-av" style="background:${avatarBg(s.fromUid)}">${initials(s.fromUid)}</div><div><div class="swc-name">${s.fromName}</div><div class="swc-time">Posted ${s.postedAt}</div></div></div><div class="swc-tags"><span class="stag">📅 ${d.label} ${d.date}</span><span class="stag">⏰ ${t.time}</span><span class="stag">${t.icon} ${t.label}</span></div>${s.note?`<div class="swc-note">"${s.note}"</div>`:''}<button class="swc-btn swb-claim" onclick="claimSwap('${s.id}')">Claim This Shift</button></div>`;
+  }).join('')}</div>`;
 }
 
 function claimSwap(swapId){
-  const swaps=getSwaps();
-  const i=swaps.findIndex(s=>s.id===swapId);
-  if(i<0){ showToast('Swap not found.'); return; }
-  const sw=swaps[i];
-  if(sw.status!=='open'){ showToast('This swap is no longer available.'); return; }
-  // Transfer slot
-  const slots=getSlots();
-  const k=slotKey(sw.dayId,sw.slotId);
-  const arr=slots[k]||[];
+  const swaps=getSwaps(), i=swaps.findIndex(s=>s.id===swapId);
+  if(i<0||swaps[i].status!=='open'){ showToast('Swap no longer available.'); return; }
+  const sw=swaps[i], slots=getSlots(), k=slotKey(sw.dayId,sw.slotId), arr=slots[k]||[];
   const idx=arr.findIndex(e=>e.uid===sw.fromUid);
-  if(idx>=0){ arr[idx]={uid:currentUser.id,name:currentUser.name,at:arr[idx].at}; }
-  slots[k]=arr;
-  saveSlots(slots);
-  swaps[i].status='claimed';
-  swaps[i].claimedBy=currentUser.id;
-  swaps[i].claimedName=currentUser.name;
-  saveSwaps(swaps);
-  renderAvailableSwaps();
-  showToast(`🎉 Swap claimed! You now have ${TSLOTS.find(x=>x.id===sw.slotId).label} on ${DAYS.find(x=>x.id===sw.dayId).label}`);
+  if(idx>=0) arr[idx]={uid:currentUser.id,name:currentUser.name,at:arr[idx].at};
+  slots[k]=arr; saveSlots(slots);
+  swaps[i].status='claimed'; swaps[i].claimedBy=currentUser.id; swaps[i].claimedName=currentUser.name;
+  saveSwaps(swaps); renderAvailableSwaps();
+  const t=TSLOTS.find(x=>x.id===sw.slotId), d=DAYS.find(x=>x.id===sw.dayId);
+  showToast(`🎉 Swap claimed! You now have ${t.label} on ${d.label}`);
 }
 
 function renderPostSwap(){
-  const slots=getSlots();
-  const uid=currentUser.id;
-  // Build options from employee's confirmed slots
-  let options='<option value="">-- Select a shift to swap --</option>';
-  DAYS.forEach(d=>TSLOTS.forEach(t=>{
-    const k=slotKey(d.id,t.id);
-    if((slots[k]||[]).some(e=>e.uid===uid)){
-      options+=`<option value="${d.id}|${t.id}">${d.label} ${d.date} · ${t.label} (${t.time})</option>`;
-    }
-  }));
-  document.getElementById('swapContent').innerHTML=`
-    <div class="post-form">
-      <div class="pf-title">📤 Post a Shift for Swap</div>
-      <div class="pf-row"><label>Select Your Shift</label><select id="postSwapShift">${options}</select></div>
-      <div class="pf-row"><label>Note for Colleagues (optional)</label><textarea id="postSwapNote" placeholder="e.g. Looking to swap for family event..."></textarea></div>
-      <button class="btn-post-swap" onclick="postSwap()">Post Shift for Swap</button>
-    </div>`;
+  const slots=getSlots(), uid=currentUser.id;
+  let opts='<option value="">-- Select a shift --</option>';
+  DAYS.forEach(d=>TSLOTS.forEach(t=>{ if((slots[slotKey(d.id,t.id)]||[]).some(e=>e.uid===uid)) opts+=`<option value="${d.id}|${t.id}">${d.label} ${d.date} · ${t.label} (${t.time})</option>`; }));
+  document.getElementById('swapContent').innerHTML=`<div class="post-form"><div class="pf-title">📤 Post a Shift for Swap</div><div class="pf-row"><label>Select Your Shift</label><select id="postSwapShift">${opts}</select></div><div class="pf-row"><label>Note (optional)</label><textarea id="postSwapNote" placeholder="e.g. Looking to swap for family event..."></textarea></div><button class="btn-post-swap" onclick="postSwap()">Post Shift for Swap</button></div>`;
 }
 
 function postSwap(){
   const val=document.getElementById('postSwapShift').value;
   if(!val){ showToast('Please select a shift ⚠️'); return; }
-  const [dayId,slotId]=val.split('|');
-  const note=document.getElementById('postSwapNote').value.trim();
-  const swaps=getSwaps();
-  // Check not already posted
-  if(swaps.some(s=>s.fromUid===currentUser.id&&s.dayId===dayId&&s.slotId===slotId&&s.status==='open')){
-    showToast('You already posted this shift!'); return;
-  }
+  const [dayId,slotId]=val.split('|'), note=document.getElementById('postSwapNote').value.trim(), swaps=getSwaps();
+  if(swaps.some(s=>s.fromUid===currentUser.id&&s.dayId===dayId&&s.slotId===slotId&&s.status==='open')){ showToast('You already posted this shift!'); return; }
   const now=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
-  swaps.push({
-    id:'sw_'+Date.now(), fromUid:currentUser.id, fromName:currentUser.name,
-    dayId, slotId, note, postedAt:now, status:'open', claimedBy:null, claimedName:null
-  });
-  saveSwaps(swaps);
-  swapSubTab('mine');
-  showToast('✅ Shift posted to swap board!');
+  swaps.push({id:'sw_'+Date.now(),fromUid:currentUser.id,fromName:currentUser.name,dayId,slotId,note,postedAt:now,status:'open',claimedBy:null,claimedName:null});
+  saveSwaps(swaps); swapSubTab('mine'); showToast('✅ Shift posted to swap board!');
 }
 
 function renderMySwaps(){
-  const swaps=getSwaps().filter(s=>s.fromUid===currentUser.id);
-  const div=document.getElementById('swapContent');
-  if(!swaps.length){
-    div.innerHTML=`<div class="empty-state"><div class="es-icon">📋</div><div class="es-title">No posted swaps</div><div class="es-sub">Post a shift from the "Post a Swap" tab</div></div>`;
-    return;
-  }
-  const cards=swaps.map(s=>{
-    const d=DAYS.find(x=>x.id===s.dayId)||{label:s.dayId,date:''};
-    const t=TSLOTS.find(x=>x.id===s.slotId)||{label:s.slotId,time:''};
-    const statusBadge=s.status==='claimed'
-      ?`<span class="badge bg">✓ Claimed by ${s.claimedName}</span>`
-      :`<span class="badge ba">⏳ Open</span>`;
-    const cancelBtn=s.status==='open'
-      ?`<button class="swc-btn swb-cancel" onclick="cancelSwap('${s.id}')">Cancel Post</button>`
-      :'';
-    return `<div class="swap-card">
-      <div class="swc-top">
-        <div class="swc-av" style="background:${avatarBg(s.fromUid)}">${initials(s.fromUid)}</div>
-        <div><div class="swc-name">${d.label} ${d.date}</div><div class="swc-time">${t.time}</div></div>
-        ${statusBadge}
-      </div>
-      <div class="swc-tags"><span class="stag">${t.icon} ${t.label}</span><span class="stag">📤 Posted ${s.postedAt}</span></div>
-      ${s.note?`<div class="swc-note">"${s.note}"</div>`:''}
-      ${cancelBtn}
-    </div>`;
-  }).join('');
-  div.innerHTML=`<div class="swap-grid">${cards}</div>`;
+  const swaps=getSwaps().filter(s=>s.fromUid===currentUser.id), div=document.getElementById('swapContent');
+  if(!swaps.length){ div.innerHTML=`<div class="empty-state"><div class="es-icon">📋</div><div class="es-title">No posted swaps</div><div class="es-sub">Post a shift from the "Post a Swap" tab</div></div>`; return; }
+  div.innerHTML=`<div class="swap-grid">${swaps.map(s=>{
+    const d=DAYS.find(x=>x.id===s.dayId)||{label:s.dayId,date:''}, t=TSLOTS.find(x=>x.id===s.slotId)||{label:s.slotId,time:''};
+    const sb=s.status==='claimed'?`<span class="badge bg">✓ Claimed by ${s.claimedName}</span>`:`<span class="badge ba">⏳ Open</span>`;
+    const cb=s.status==='open'?`<button class="swc-btn swb-cancel" onclick="cancelSwap('${s.id}')">Cancel Post</button>`:'';
+    return `<div class="swap-card"><div class="swc-top"><div class="swc-av" style="background:${avatarBg(s.fromUid)}">${initials(s.fromUid)}</div><div><div class="swc-name">${d.label} ${d.date}</div><div class="swc-time">${t.time}</div></div>${sb}</div><div class="swc-tags"><span class="stag">${t.icon} ${t.label}</span><span class="stag">📤 Posted ${s.postedAt}</span></div>${s.note?`<div class="swc-note">"${s.note}"</div>`:''}${cb}</div>`;
+  }).join('')}</div>`;
 }
 
-function cancelSwap(swapId){
+function cancelSwap(id){
   if(!confirm('Cancel this swap post?')) return;
-  const swaps=getSwaps();
-  const i=swaps.findIndex(s=>s.id===swapId);
+  const swaps=getSwaps(), i=swaps.findIndex(s=>s.id===id);
   if(i>=0){ swaps.splice(i,1); saveSwaps(swaps); }
-  renderMySwaps();
-  showToast('Swap post cancelled.');
+  renderMySwaps(); showToast('Swap post cancelled.');
 }
 
 // ════════════════════════════════════════
 //  MANAGER TABS
 // ════════════════════════════════════════
 function mgrTab(tab){
-  ['overview','slots','swap'].forEach(t=>{
+  ['overview','slots','swap','employees'].forEach(t=>{
     document.getElementById('mp-'+t).classList.toggle('active',t===tab);
     document.getElementById('mtb-'+t).classList.toggle('active',t===tab);
   });
-  if(tab==='overview') renderOverview();
-  if(tab==='slots')    renderManageSlots();
-  if(tab==='swap')     renderMgrSwap();
+  if(tab==='overview')   renderOverview();
+  if(tab==='slots')      renderManageSlots();
+  if(tab==='swap')       renderMgrSwap();
+  if(tab==='employees')  renderEmpMgmt();
 }
 
-// ── SCHEDULE OVERVIEW GRID ──
 function renderOverview(){
   const slots=getSlots();
-  let html=`<div class="grid-wrap"><div class="ov-grid">
-    <div class="og-hrow">
-      <div class="og-th">Shift</div>
-      ${DAYS.map(d=>`<div class="og-th">${d.label}<br><span style="font-weight:400;font-size:11px;opacity:.7;">${d.date}</span></div>`).join('')}
-    </div>`;
+  let html=`<div class="grid-wrap"><div class="ov-grid"><div class="og-hrow"><div class="og-th">Shift</div>${DAYS.map(d=>`<div class="og-th">${d.label}<br><span style="font-weight:400;font-size:11px;opacity:.7;">${d.date}</span></div>`).join('')}</div>`;
   TSLOTS.forEach(t=>{
     html+=`<div class="og-row"><div class="og-rlabel">${t.icon} ${t.label}<span class="og-rtime">${t.time}</span></div>`;
     DAYS.forEach(d=>{
-      const k=slotKey(d.id,t.id);
-      const arr=slots[k]||[];
-      const full=arr.length>=MAX;
-      let chips=arr.map(e=>`<div class="og-chip"><span>${e.name.split(' ')[0]}</span><span class="ogc-x" onclick="mgrRemove('${d.id}','${t.id}','${e.uid}')" title="Remove ${e.name}">✕</span></div>`).join('');
-      const remaining=MAX-arr.length;
-      html+=`<div class="og-cell">
-        ${chips}
-        ${full?`<div class="og-full-tag">FULL</div>`:`<div class="og-spots">${remaining} spot${remaining!==1?'s':''} open</div>`}
-      </div>`;
+      const k=slotKey(d.id,t.id), arr=slots[k]||[], full=arr.length>=MAX;
+      const chips=arr.map(e=>`<div class="og-chip"><span>${e.name.split(' ')[0]}</span><span class="ogc-x" onclick="mgrRemove('${d.id}','${t.id}','${e.uid}')">✕</span></div>`).join('');
+      const rem=MAX-arr.length;
+      html+=`<div class="og-cell">${chips}${full?`<div class="og-full-tag">FULL</div>`:`<div class="og-spots">${rem} spot${rem!==1?'s':''} open</div>`}</div>`;
     });
     html+='</div>';
   });
@@ -801,126 +765,198 @@ function renderOverview(){
   document.getElementById('overviewContent').innerHTML=html;
 }
 
-// ── MANAGE SLOTS ──
 function renderManageSlots(){
   const slots=getSlots();
   let html='<div class="ms-wrapper">';
   DAYS.forEach(d=>{
-    html+=`<div class="ms-day">
-      <div class="msd-header"><span>${d.label} · ${d.date}, 2026</span></div>
-      <div class="msd-slots">`;
+    html+=`<div class="ms-day"><div class="msd-header">${d.label} · ${d.date}, 2026</div><div class="msd-slots">`;
     TSLOTS.forEach(t=>{
-      const k=slotKey(d.id,t.id);
-      const arr=slots[k]||[];
-      const pct=arr.length;
-      let countCls=pct>=MAX?'br':pct>0?'bg':'ba';
-      let empRows=arr.map(e=>`<div class="msds-emp">
-        <span>${e.name} <span style="font-size:11px;color:var(--gy);">(${e.at})</span></span>
-        <button class="msds-rm" onclick="mgrRemove('${d.id}','${t.id}','${e.uid}')" title="Remove">✕</button>
-      </div>`).join('');
-      if(!arr.length) empRows=`<div class="msds-empty">No submissions yet</div>`;
-      html+=`<div class="msd-slot">
-        <div class="msds-top"><span class="msds-label">${t.icon} ${t.label}</span><span class="msds-count badge ${countCls}">${arr.length}/${MAX}</span></div>
-        <div class="msds-time">${t.time}</div>
-        <div class="msds-names">${empRows}</div>
-      </div>`;
+      const k=slotKey(d.id,t.id), arr=slots[k]||[], cc=arr.length>=MAX?'br':arr.length>0?'bg':'ba';
+      const rows=arr.length?arr.map(e=>`<div class="msds-emp"><span>${e.name} <span style="font-size:11px;color:var(--gy);">(${e.at})</span></span><button class="msds-rm" onclick="mgrRemove('${d.id}','${t.id}','${e.uid}')">✕</button></div>`).join(''):`<div class="msds-empty">No submissions yet</div>`;
+      html+=`<div class="msd-slot"><div class="msds-top"><span class="msds-label">${t.icon} ${t.label}</span><span class="msds-count badge ${cc}">${arr.length}/${MAX}</span></div><div class="msds-time">${t.time}</div><div class="msds-names">${rows}</div></div>`;
     });
     html+='</div></div>';
   });
-  html+='</div>';
-  document.getElementById('manageSlotsContent').innerHTML=html;
+  document.getElementById('manageSlotsContent').innerHTML=html+'</div>';
 }
 
 function mgrRemove(dayId,slotId,uid){
-  const name=USERS.find(u=>u.id===uid)?.name||uid;
+  const name=getAllUsers().find(u=>u.id===uid)?.name||uid;
   if(!confirm(`Remove ${name} from this slot?`)) return;
-  const slots=getSlots();
-  const k=slotKey(dayId,slotId);
+  const slots=getSlots(), k=slotKey(dayId,slotId);
   slots[k]=(slots[k]||[]).filter(e=>e.uid!==uid);
-  saveSlots(slots);
-  renderOverview();
-  renderManageSlots();
-  showToast(`${name} removed from slot.`);
+  saveSlots(slots); renderOverview(); renderManageSlots(); showToast(`${name} removed from slot.`);
 }
 
-// ── MANAGER SWAP ──
 function renderMgrSwap(){
-  const swaps=getSwaps();
-  const div=document.getElementById('mgrSwapContent');
-  if(!swaps.length){
-    div.innerHTML=`<div class="empty-state"><div class="es-icon">🔁</div><div class="es-title">No swap requests</div><div class="es-sub">Employees haven't posted any swaps yet.</div></div>`;
-    return;
-  }
-  const cards=swaps.map(s=>{
-    const d=DAYS.find(x=>x.id===s.dayId)||{label:s.dayId,date:''};
-    const t=TSLOTS.find(x=>x.id===s.slotId)||{label:s.slotId,time:''};
-    const statusBadge=s.status==='claimed'
-      ?`<span class="badge bg">✓ Claimed by ${s.claimedName}</span>`
-      :`<span class="badge ba">⏳ Open</span>`;
-    const actions=s.status==='open'?`
-      <div class="mgrs-actions">
-        <button class="btn-approve" onclick="mgrApproveSwap('${s.id}')">✓ Approve &amp; Close</button>
-        <button class="btn-deny"    onclick="mgrDenySwap('${s.id}')">✕ Remove Post</button>
-      </div>`:
-      `<p style="font-size:12px;color:var(--gy);margin-top:8px;">Claimed by ${s.claimedName}</p>`;
-    return `<div class="mgrs-card">
-      <div class="mgrs-top">
-        <div>
-          <div style="font-size:14px;font-weight:800;">${s.fromName}</div>
-          <div style="font-size:12px;color:var(--gy);">${d.label} ${d.date} · ${t.label} · ${t.time}</div>
-        </div>
-        ${statusBadge}
-      </div>
-      ${s.note?`<div class="swc-note" style="margin:8px 0;">"${s.note}"</div>`:''}
-      ${actions}
-    </div>`;
-  }).join('');
-  div.innerHTML=`<div class="mgrs-grid">${cards}</div>`;
+  const swaps=getSwaps(), div=document.getElementById('mgrSwapContent');
+  if(!swaps.length){ div.innerHTML=`<div class="empty-state"><div class="es-icon">🔁</div><div class="es-title">No swap requests</div><div class="es-sub">Employees haven't posted any swaps yet.</div></div>`; return; }
+  div.innerHTML=`<div class="mgrs-grid">${swaps.map(s=>{
+    const d=DAYS.find(x=>x.id===s.dayId)||{label:s.dayId,date:''}, t=TSLOTS.find(x=>x.id===s.slotId)||{label:s.slotId,time:''};
+    const sb=s.status==='claimed'?`<span class="badge bg">✓ Claimed by ${s.claimedName}</span>`:`<span class="badge ba">⏳ Open</span>`;
+    const actions=s.status==='open'?`<div class="mgrs-actions"><button class="btn-approve" onclick="mgrApproveSwap('${s.id}')">✓ Approve &amp; Close</button><button class="btn-deny" onclick="mgrDenySwap('${s.id}')">✕ Remove Post</button></div>`:`<p style="font-size:12px;color:var(--gy);margin-top:8px;">Claimed by ${s.claimedName}</p>`;
+    return `<div class="mgrs-card"><div class="mgrs-top"><div><div style="font-size:14px;font-weight:800;">${s.fromName}</div><div style="font-size:12px;color:var(--gy);">${d.label} ${d.date} · ${t.label} · ${t.time}</div></div>${sb}</div>${s.note?`<div class="swc-note" style="margin:8px 0;">"${s.note}"</div>`:''}${actions}</div>`;
+  }).join('')}</div>`;
 }
 
 function mgrApproveSwap(id){
-  showToast('Swap approved and marked as closed ✅');
-  const swaps=getSwaps();
-  const i=swaps.findIndex(s=>s.id===id);
+  const swaps=getSwaps(), i=swaps.findIndex(s=>s.id===id);
   if(i>=0){ swaps[i].status='claimed'; swaps[i].claimedName='Approved by Manager'; saveSwaps(swaps); }
-  renderMgrSwap();
+  renderMgrSwap(); showToast('Swap approved ✅');
 }
 function mgrDenySwap(id){
   if(!confirm('Remove this swap post?')) return;
-  const swaps=getSwaps();
-  const i=swaps.findIndex(s=>s.id===id);
+  const swaps=getSwaps(), i=swaps.findIndex(s=>s.id===id);
   if(i>=0){ swaps.splice(i,1); saveSwaps(swaps); }
-  renderMgrSwap();
-  showToast('Swap post removed.');
+  renderMgrSwap(); showToast('Swap post removed.');
+}
+
+// ════════════════════════════════════════
+//  EMPLOYEE MANAGEMENT
+// ════════════════════════════════════════
+function renderEmpMgmt(){
+  const emps=getEmployees();
+  const slots=getSlots();
+
+  // Count shifts per employee
+  function empShiftCount(uid){
+    let c=0;
+    DAYS.forEach(d=>TSLOTS.forEach(t=>{ if((slots[slotKey(d.id,t.id)]||[]).some(e=>e.uid===uid)) c++; }));
+    return c;
+  }
+
+  const empListHtml=emps.map((e,idx)=>{
+    const shifts=empShiftCount(e.id);
+    const hours=shifts>0?DAYS.reduce((acc,d)=>acc+TSLOTS.reduce((a,t)=>a+((slots[slotKey(d.id,t.id)]||[]).some(x=>x.uid===e.id)?t.hrs:0),0),0):0;
+    return `<div class="emp-card">
+      <div class="emp-av" style="background:${e.color}">${e.initials}</div>
+      <div class="emp-info">
+        <div class="emp-name">${e.name}</div>
+        <div class="emp-meta">@${e.id} &nbsp;·&nbsp; Password: ${'•'.repeat(e.pass.length)}</div>
+        <div class="emp-shifts-badge">${shifts} shift${shifts!==1?'s':''} · ${hours} hrs this week</div>
+      </div>
+      <div class="emp-actions">
+        <button class="btn-chpw" onclick="openChPwModal('${e.id}')">🔑 Change Password</button>
+        <button class="btn-rmemp" onclick="removeEmployee('${e.id}')">🗑 Remove</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  const addFormHtml=`
+    <div class="add-emp-card">
+      <div class="aec-title">➕ Add New Employee</div>
+      <div class="aec-sub">Employee can log in immediately after being added.</div>
+      <div class="aec-field"><label>Full Name</label><input type="text" id="newEmpName" placeholder="e.g. Jordan Smith"/></div>
+      <div class="aec-field"><label>Username</label><input type="text" id="newEmpUser" placeholder="e.g. jordan (no spaces)"/></div>
+      <div class="aec-field"><label>Password</label><input type="text" id="newEmpPass" placeholder="e.g. JS123"/></div>
+      <div class="aec-err" id="addEmpErr"></div>
+      <button class="btn-add-emp" onclick="addEmployee()">Add Employee</button>
+    </div>`;
+
+  document.getElementById('empMgmtContent').innerHTML=`
+    <div class="emp-count-bar">
+      <span class="ecb-label">👥 Total Employees</span>
+      <span class="ecb-num">${emps.length}</span>
+    </div>
+    <div class="emp-mgmt-layout">
+      <div class="emp-list">${empListHtml||`<div class="empty-state"><div class="es-icon">👥</div><div class="es-title">No employees yet</div><div class="es-sub">Add your first employee using the form.</div></div>`}</div>
+      ${addFormHtml}
+    </div>`;
+}
+
+function addEmployee(){
+  const name=document.getElementById('newEmpName').value.trim();
+  const user=document.getElementById('newEmpUser').value.trim().toLowerCase().replace(/\s+/g,'');
+  const pass=document.getElementById('newEmpPass').value.trim();
+  const errEl=document.getElementById('addEmpErr');
+  errEl.style.display='none';
+
+  if(!name||!user||!pass){ errEl.textContent='⚠️ All fields are required.'; errEl.style.display='block'; return; }
+  if(!/^[a-z0-9_]+$/.test(user)){ errEl.textContent='⚠️ Username can only contain letters, numbers and underscores.'; errEl.style.display='block'; return; }
+  if(user==='manager'){ errEl.textContent='⚠️ That username is reserved.'; errEl.style.display='block'; return; }
+
+  const emps=getEmployees();
+  if(emps.some(e=>e.id===user)){ errEl.textContent='⚠️ Username already exists.'; errEl.style.display='block'; return; }
+
+  const color=pickColor(emps.length);
+  const inits=makeInitials(name);
+  emps.push({id:user, name, role:'employee', pass, initials:inits, color});
+  saveEmployees(emps);
+  renderEmpMgmt();
+  showToast(`✅ ${name} added! They can log in as "${user}".`);
+}
+
+function removeEmployee(uid){
+  const emps=getEmployees();
+  const emp=emps.find(e=>e.id===uid);
+  if(!emp) return;
+  if(!confirm(`Remove ${emp.name} from the team?\n\nThis will also clear all their scheduled shifts.`)) return;
+
+  // Remove their shifts
+  const slots=getSlots();
+  DAYS.forEach(d=>TSLOTS.forEach(t=>{
+    const k=slotKey(d.id,t.id);
+    slots[k]=(slots[k]||[]).filter(e=>e.uid!==uid);
+  }));
+  saveSlots(slots);
+
+  // Remove their swaps
+  const swaps=getSwaps().filter(s=>s.fromUid!==uid);
+  saveSwaps(swaps);
+
+  // Remove employee
+  saveEmployees(emps.filter(e=>e.id!==uid));
+  renderEmpMgmt();
+  showToast(`${emp.name} has been removed.`);
+}
+
+function openChPwModal(uid){
+  const emps=getEmployees();
+  const emp=emps.find(e=>e.id===uid);
+  if(!emp) return;
+  openModal(`
+    <div class="modal-title">🔑 Change Password</div>
+    <div class="modal-sub">Employee: <strong>${emp.name}</strong> (@${emp.id})</div>
+    <div class="chpw-form">
+      <div><label>New Password</label><input type="text" id="chpwNew" placeholder="Enter new password" value="${emp.pass}"/></div>
+    </div>
+    <div class="modal-btns" style="margin-top:20px;">
+      <button class="btn-m-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-m-ok" onclick="saveNewPw('${uid}')">Save Password</button>
+    </div>
+  `);
+  setTimeout(()=>{ const el=document.getElementById('chpwNew'); if(el){ el.focus(); el.select(); } },100);
+}
+
+function saveNewPw(uid){
+  const newPw=document.getElementById('chpwNew')?.value.trim();
+  if(!newPw){ showToast('⚠️ Password cannot be empty.'); return; }
+  const emps=getEmployees();
+  const i=emps.findIndex(e=>e.id===uid);
+  if(i<0) return;
+  emps[i].pass=newPw;
+  saveEmployees(emps);
+  closeModal();
+  renderEmpMgmt();
+  showToast(`✅ Password updated for ${emps[i].name}`);
 }
 
 // ════════════════════════════════════════
 //  MODAL & TOAST
 // ════════════════════════════════════════
-function openModal(html){
-  document.getElementById('modalContent').innerHTML=html;
-  document.getElementById('mov').classList.add('show');
-  document.getElementById('modal').classList.add('show');
-}
-function closeModal(){
-  document.getElementById('mov').classList.remove('show');
-  document.getElementById('modal').classList.remove('show');
-}
+function openModal(html){ document.getElementById('modalContent').innerHTML=html; document.getElementById('mov').classList.add('show'); document.getElementById('modal').classList.add('show'); }
+function closeModal(){ document.getElementById('mov').classList.remove('show'); document.getElementById('modal').classList.remove('show'); }
 let _tt;
-function showToast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg; t.classList.add('show');
-  clearTimeout(_tt); _tt=setTimeout(()=>t.classList.remove('show'),3000);
-}
+function showToast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(_tt); _tt=setTimeout(()=>t.classList.remove('show'),3000); }
 
 // ════════════════════════════════════════
-//  INIT — restore session
+//  INIT
 // ════════════════════════════════════════
 (function init(){
   const sid=load(SK.SESSION);
   if(sid){
-    const u=USERS.find(x=>x.id===sid);
-    if(u){ currentUser=u; if(u.role==='manager') openManager(); else openEmployee(); return; }
+    const u=getAllUsers().find(x=>x.id===sid);
+    if(u){ currentUser=u; u.role==='manager'?openManager():openEmployee(); return; }
   }
 })();
 </script>
