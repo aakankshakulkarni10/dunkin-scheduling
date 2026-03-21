@@ -887,7 +887,6 @@ function renderEmpMgmt(){
     </div>`;
 }
 
-// pending add data stored globally so modal can access it
 let _pendingAddEmp = null;
 
 function addEmployee(){
@@ -904,45 +903,14 @@ function addEmployee(){
   const emps=getEmployees();
   if(emps.some(e=>e.id===user)){ errEl.textContent='⚠️ Username already exists.'; errEl.style.display='block'; return; }
 
-  // Store pending data and ask for password
-  _pendingAddEmp = {name, user, pass};
-  openModal(`
-    <div class="modal-title">➕ Add New Employee</div>
-    <div class="modal-sub">Adding <strong>${name}</strong> with username <strong>@${user}</strong>.<br><br>Enter the manager password to confirm.</div>
-    <div class="chpw-form">
-      <div>
-        <label>Manager Password</label>
-        <input type="password" id="addEmpPassInput" placeholder="Enter password" onkeydown="if(event.key==='Enter') doConfirmAddEmployee()"/>
-      </div>
-      <div id="addEmpPassErr" style="color:var(--rd);font-size:12px;font-weight:600;margin-top:6px;display:none;">❌ Incorrect password. Try again.</div>
-    </div>
-    <div class="modal-btns" style="margin-top:20px;">
-      <button class="btn-m-cancel" onclick="closeModal()">Cancel</button>
-      <button class="btn-m-ok" onclick="doConfirmAddEmployee()">Confirm Add</button>
-    </div>
-  `);
-  setTimeout(()=>document.getElementById('addEmpPassInput')?.focus(), 100);
-}
+  const pw=prompt(`Enter manager password to add "${name}":`, '');
+  if(pw===null) return; // cancelled
+  if(pw.trim()!=='remove101'){ showToast('❌ Incorrect password. Employee not added.'); return; }
 
-function doConfirmAddEmployee(){
-  const input=document.getElementById('addEmpPassInput');
-  const errEl=document.getElementById('addEmpPassErr');
-  if(!input||!_pendingAddEmp) return;
-  const pw=input.value.trim();
-  if(pw!=='remove101'){
-    errEl.style.display='block';
-    input.value='';
-    input.focus();
-    return;
-  }
-  const {name, user, pass}=_pendingAddEmp;
-  const emps=getEmployees();
   const color=pickColor(emps.length);
   const inits=makeInitials(name);
   emps.push({id:user, name, role:'employee', pass, initials:inits, color});
   saveEmployees(emps);
-  _pendingAddEmp=null;
-  closeModal();
   renderEmpMgmt();
   showToast(`✅ ${name} added! They can log in as "${user}".`);
 }
