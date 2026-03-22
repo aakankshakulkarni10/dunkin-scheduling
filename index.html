@@ -12,7 +12,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
 .page{display:none;min-height:100vh;}.page.active{display:block;}
 .hidden{display:none!important;}
 
-/* ── LOGIN ── */
+/* LOGIN */
 .login-bg{min-height:100vh;background:linear-gradient(135deg,var(--o) 0%,#c44e00 100%);display:flex;align-items:center;justify-content:center;padding:24px;}
 .login-box{background:#fff;border-radius:24px;padding:40px;width:100%;max-width:480px;box-shadow:0 24px 64px rgba(0,0,0,.25);text-align:center;}
 .login-logo{font-size:56px;margin-bottom:12px;}
@@ -36,10 +36,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
 .btn-login:hover{background:var(--od);transform:translateY(-1px);}
 .login-err{color:var(--rd);font-size:13px;font-weight:600;margin-top:10px;text-align:center;}
 
-/* ── HEADER ── */
+/* HEADER */
 .hdr{display:flex;align-items:center;gap:16px;padding:0 32px;height:64px;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(0,0,0,.12);}
-.hdr-emp{background:var(--o);}
-.hdr-mgr{background:var(--dk);}
+.hdr-emp{background:var(--o);}.hdr-mgr{background:var(--dk);}
 .hdr-logo{font-size:18px;font-weight:900;color:#fff;}
 .mgr-badge{background:var(--o);color:#fff;font-size:10px;font-weight:800;padding:4px 10px;border-radius:20px;letter-spacing:1px;}
 .hdr-r{display:flex;align-items:center;gap:12px;margin-left:auto;}
@@ -48,7 +47,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
 .btn-out{padding:7px 16px;background:rgba(255,255,255,.2);color:#fff;border:none;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer;transition:.2s;}
 .btn-out:hover{background:rgba(255,255,255,.35);}
 
-/* ── TAB NAV ── */
+/* TAB NAV */
 .tab-nav{background:#fff;border-bottom:2px solid #F0F0F0;display:flex;padding:0 32px;gap:4px;position:sticky;top:64px;z-index:199;overflow-x:auto;scrollbar-width:none;}
 .tab-nav::-webkit-scrollbar{display:none;}
 .mgr-tn{border-bottom-color:var(--dk);}
@@ -57,38 +56,45 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
 .tb.active{color:var(--o);border-bottom-color:var(--o);}
 .mgr-tn .tb.active{color:var(--dk);border-bottom-color:var(--dk);}
 
-/* ── CONTENT ── */
+/* CONTENT */
 .tcontent{padding:32px;max-width:1200px;margin:0 auto;}
 .tpanel{display:none;}.tpanel.active{display:block;}
-.ph{margin-bottom:28px;}
+.ph{margin-bottom:20px;}
 .ph h2{font-size:26px;font-weight:800;color:var(--dk);}
 .ph p{font-size:14px;color:var(--gy);margin-top:4px;}
 
-/* ── BADGES ── */
+/* BADGES */
 .badge{display:inline-block;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;}
-.bg{background:#E8FFF5;color:var(--gn);}
-.ba{background:#FFF8E1;color:var(--am);}
-.br{background:#FFF0F0;color:var(--rd);}
-.bo{background:#FFF0E8;color:var(--o);}
-.bp{background:#FFF0F8;color:var(--pk);}
-.bpu{background:#F0F0FF;color:var(--pu);}
+.bg{background:#E8FFF5;color:var(--gn);}.ba{background:#FFF8E1;color:var(--am);}
+.br{background:#FFF0F0;color:var(--rd);}.bo{background:#FFF0E8;color:var(--o);}
+.bp{background:#FFF0F8;color:var(--pk);}.bpu{background:#F0F0FF;color:var(--pu);}
 
-/* ── STATS CARDS ── */
-.stats-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;margin-bottom:28px;}
+/* WEEK SELECTOR */
+.week-sel{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap;background:#fff;padding:14px 20px;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,.06);}
+.ws-label{font-size:13px;font-weight:700;color:var(--gy);white-space:nowrap;}
+.ws-btns{display:flex;gap:8px;flex-wrap:wrap;}
+.ws-btn{padding:8px 16px;background:var(--lt);border:2px solid #E5E7EB;border-radius:20px;font-size:13px;font-weight:700;color:var(--gy);cursor:pointer;transition:.2s;}
+.ws-btn:hover{border-color:var(--o);color:var(--o);}
+.ws-btn.active{background:var(--o);color:#fff;border-color:var(--o);}
+
+/* CONSTRAINT BANNER */
+.constraint-banner{display:flex;flex-wrap:wrap;gap:12px;background:#fff;border-radius:14px;padding:14px 20px;box-shadow:0 2px 10px rgba(0,0,0,.06);margin-bottom:20px;border-left:4px solid var(--o);}
+.cb-item{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--gy);}
+
+/* STATS */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:16px;margin-bottom:20px;}
 .stat-card{background:#fff;border-radius:16px;padding:20px 18px;box-shadow:0 2px 10px rgba(0,0,0,.07);border-top:4px solid var(--o);text-align:center;}
-.stat-card.pink{border-color:var(--pk);}
-.stat-card.green{border-color:var(--gn);}
-.stat-card.purple{border-color:var(--pu);}
+.stat-card.pink{border-color:var(--pk);}.stat-card.green{border-color:var(--gn);}.stat-card.purple{border-color:var(--pu);}.stat-card.amber{border-color:var(--am);}
 .stat-num{font-size:32px;font-weight:900;color:var(--dk);line-height:1;}
 .stat-unit{font-size:12px;color:var(--gy);margin-top:2px;font-weight:600;}
 .stat-label{font-size:13px;color:var(--gy);margin-top:6px;}
 
-/* ── VIEW TOGGLE ── */
-.view-toggle{display:flex;gap:8px;margin-bottom:24px;}
+/* VIEW TOGGLE */
+.view-toggle{display:flex;gap:8px;margin-bottom:20px;}
 .vtbtn{padding:9px 20px;background:#fff;border:2px solid #E5E7EB;border-radius:20px;font-size:13px;font-weight:700;color:var(--gy);cursor:pointer;transition:.2s;}
 .vtbtn.active{background:var(--o);color:#fff;border-color:var(--o);}
 
-/* ── SCHEDULE LIST ── */
+/* SCHEDULE */
 .sched-list{display:flex;flex-direction:column;gap:14px;}
 .sched-card{background:#fff;border-radius:16px;padding:20px 24px;box-shadow:0 2px 10px rgba(0,0,0,.06);border-left:4px solid var(--o);}
 .sc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px;}
@@ -96,11 +102,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
 .sc-date{font-size:13px;color:var(--gy);}
 .sc-chips{display:flex;flex-wrap:wrap;gap:10px;}
 .schip{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:12px;font-size:13px;font-weight:700;}
-.schip-m{background:#FFF0E8;color:var(--o);}
-.schip-d{background:#FFF0F8;color:var(--pk);}
-.schip-e{background:#F0F0FF;color:var(--pu);}
+.schip-m{background:#FFF0E8;color:var(--o);}.schip-d{background:#FFF0F8;color:var(--pk);}.schip-e{background:#F0F0FF;color:var(--pu);}
 
-/* ── CALENDAR VIEW ── */
+/* CALENDAR */
 .cal-wrap{background:#fff;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,.08);overflow:hidden;}
 .cal-header{background:var(--dk);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;}
 .cal-header h3{color:#fff;font-size:18px;font-weight:800;}
@@ -111,29 +115,28 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
 .cgh-date{font-size:10px;font-weight:400;color:rgba(255,255,255,.5);margin-top:2px;}
 .cal-body{display:flex;flex-direction:column;}
 .cal-row{display:grid;grid-template-columns:100px repeat(5,1fr);border-top:1px solid #F0F0F0;}
-.cal-row:nth-child(odd){background:#FAFAFA;}
-.cal-row:nth-child(even){background:#fff;}
+.cal-row:nth-child(odd){background:#FAFAFA;}.cal-row:nth-child(even){background:#fff;}
 .cal-row-label{padding:16px 12px;display:flex;flex-direction:column;justify-content:center;border-right:2px solid #E5E7EB;}
 .crl-name{font-size:13px;font-weight:800;color:var(--dk);}
 .crl-time{font-size:10px;color:var(--gy);margin-top:2px;line-height:1.4;}
 .cal-cell{padding:8px;border-right:1px solid #F0F0F0;display:flex;flex-direction:column;gap:5px;min-height:72px;justify-content:center;}
 .cal-cell:last-child{border-right:none;}
-.cc-chip{padding:5px 8px;border-radius:8px;font-size:11px;font-weight:700;background:#FFF0E8;color:var(--o);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.cc-chip{padding:5px 8px;border-radius:8px;font-size:11px;font-weight:700;background:#FFF0E8;color:var(--o);}
 .cc-chip.mine{background:var(--o);color:#fff;}
-.cc-empty{font-size:11px;color:#D5D5D5;text-align:center;width:100%;}
+.cc-empty{font-size:11px;color:#D5D5D5;text-align:center;}
 .cc-full{font-size:10px;color:var(--rd);font-weight:700;text-align:center;}
 .cc-open{font-size:10px;color:var(--gy);text-align:center;}
 .cal-legend{display:flex;gap:20px;padding:14px 24px;background:#F9F9F9;border-top:1px solid #F0F0F0;flex-wrap:wrap;}
 .cl-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--gy);}
 .cl-dot{width:12px;height:12px;border-radius:4px;}
 
-/* ── EMPTY STATE ── */
+/* EMPTY */
 .empty-state{text-align:center;padding:56px 24px;background:#fff;border-radius:16px;}
 .es-icon{font-size:48px;margin-bottom:12px;}
 .es-title{font-size:16px;font-weight:700;color:var(--gy);}
 .es-sub{font-size:13px;color:#B0B0B0;margin-top:4px;}
 
-/* ── AVAILABILITY ── */
+/* AVAILABILITY */
 .avail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;}
 .avail-card{background:#fff;border-radius:20px;box-shadow:0 4px 16px rgba(0,0,0,.07);overflow:hidden;}
 .ac-head{padding:16px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #F0F0F0;}
@@ -141,25 +144,25 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
 .ac-date{font-size:13px;color:var(--gy);}
 .ac-slots{padding:12px 16px;display:flex;flex-direction:column;gap:10px;}
 .slot-opt{border:2px solid #E5E7EB;border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:12px;transition:.2s;background:var(--lt);}
-.slot-opt:hover:not(.so-full):not(.so-claimed){border-color:var(--o);background:#FFF8F5;}
+.slot-opt:hover:not(.so-full):not(.so-claimed):not(.so-blocked){border-color:var(--o);background:#FFF8F5;}
 .slot-opt.so-claimed{border-color:var(--gn);background:#E8FFF5;}
 .slot-opt.so-full{background:#FAFAFA;opacity:.65;}
+.slot-opt.so-blocked{background:#FFF8E1;opacity:.7;}
 .so-icon{font-size:20px;flex-shrink:0;}
 .so-info{flex:1;}
 .so-label{font-size:13px;font-weight:700;color:var(--dk);}
 .so-time{font-size:11px;color:var(--gy);margin-top:1px;}
 .so-r{display:flex;flex-direction:column;align-items:flex-end;gap:5px;}
 .so-spots{font-size:11px;font-weight:700;}
-.spt-ok{color:var(--gn);}
-.spt-full{color:var(--rd);}
+.spt-ok{color:var(--gn);}.spt-full{color:var(--rd);}.spt-blocked{color:var(--am);}
 .so-btn{padding:6px 14px;border:none;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;transition:.2s;}
-.sob-claim{background:var(--o);color:#fff;}
-.sob-claim:hover{background:var(--od);}
+.sob-claim{background:var(--o);color:#fff;}.sob-claim:hover{background:var(--od);}
 .sob-full{background:#E5E7EB;color:var(--gy);cursor:not-allowed;}
+.sob-blocked{background:#FFF8E1;color:var(--am);cursor:not-allowed;border:1px solid #FDE68A;}
 .sob-drop{background:#FFF0F0;color:var(--rd);border:1px solid #FECACA;}
 .sob-drop:hover{background:var(--rd);color:#fff;}
 
-/* ── SWAP BOARD ── */
+/* SWAP */
 .swap-stabs{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;}
 .stab{padding:9px 20px;background:#fff;border:2px solid #E5E7EB;border-radius:20px;font-size:13px;font-weight:700;color:var(--gy);cursor:pointer;transition:.2s;}
 .stab.active{background:var(--o);color:#fff;border-color:var(--o);}
@@ -173,10 +176,8 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
 .stag{padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600;background:var(--lt);color:var(--gy);}
 .swc-note{font-size:13px;color:var(--gy);font-style:italic;margin-bottom:12px;padding:8px 12px;background:var(--lt);border-radius:8px;}
 .swc-btn{width:100%;padding:10px;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;transition:.2s;}
-.swb-claim{background:var(--o);color:#fff;}
-.swb-claim:hover{background:var(--od);}
-.swb-cancel{background:var(--lt);color:var(--gy);}
-.swb-cancel:hover{background:#E5E7EB;}
+.swb-claim{background:var(--o);color:#fff;}.swb-claim:hover{background:var(--od);}
+.swb-cancel{background:var(--lt);color:var(--gy);}.swb-cancel:hover{background:#E5E7EB;}
 .post-form{background:#fff;border-radius:20px;padding:28px;max-width:480px;box-shadow:0 4px 16px rgba(0,0,0,.07);}
 .pf-title{font-size:18px;font-weight:800;margin-bottom:20px;color:var(--dk);}
 .pf-row{margin-bottom:16px;}
@@ -187,7 +188,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
 .btn-post-swap{width:100%;padding:14px;background:var(--o);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;transition:.2s;margin-top:8px;}
 .btn-post-swap:hover{background:var(--od);}
 
-/* ── MANAGER GRID ── */
+/* MANAGER GRID */
 .grid-wrap{overflow-x:auto;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.08);}
 .ov-grid{min-width:720px;border-radius:16px;overflow:hidden;}
 .og-hrow{display:grid;grid-template-columns:160px repeat(5,1fr);background:var(--dk);}
@@ -205,7 +206,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
 .og-full-tag{font-size:10px;color:var(--rd);text-align:center;font-weight:700;}
 .og-spots{font-size:10px;color:var(--gy);text-align:center;}
 
-/* ── MANAGE SLOTS ── */
+/* MANAGE SLOTS */
 .ms-wrapper{display:flex;flex-direction:column;gap:20px;}
 .ms-day{background:#fff;border-radius:16px;padding:20px 24px;box-shadow:0 2px 10px rgba(0,0,0,.06);}
 .msd-header{font-size:16px;font-weight:800;color:var(--dk);margin-bottom:14px;}
@@ -221,7 +222,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
 .msds-rm:hover{opacity:.7;}
 .msds-empty{font-size:12px;color:#C0C0C0;font-style:italic;padding:4px 0;}
 
-/* ── MANAGER SWAP ── */
+/* MANAGER SWAP */
 .mgrs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;}
 .mgrs-card{background:#fff;border-radius:16px;padding:20px;box-shadow:0 2px 10px rgba(0,0,0,.06);}
 .mgrs-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px;}
@@ -229,7 +230,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
 .btn-approve{flex:1;padding:9px;background:var(--gn);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;}
 .btn-deny{flex:1;padding:9px;background:var(--rd);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;}
 
-/* ── EMPLOYEE MANAGEMENT ── */
+/* EMPLOYEE MANAGEMENT */
 .emp-mgmt-layout{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:flex-start;}
 .emp-list{display:flex;flex-direction:column;gap:14px;}
 .emp-card{background:#fff;border-radius:16px;padding:20px 24px;box-shadow:0 2px 10px rgba(0,0,0,.06);display:flex;align-items:center;gap:16px;}
@@ -243,7 +244,6 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
 .btn-rmemp{padding:8px 14px;background:#FFF0F0;color:var(--rd);border:none;border-radius:10px;font-size:12px;font-weight:700;cursor:pointer;transition:.2s;}
 .btn-rmemp:hover{background:var(--rd);color:#fff;}
 .emp-shifts-badge{font-size:11px;color:var(--o);font-weight:700;background:#FFF0E8;padding:3px 8px;border-radius:20px;margin-top:5px;display:inline-block;}
-
 .add-emp-card{background:#fff;border-radius:20px;padding:28px;box-shadow:0 4px 20px rgba(0,0,0,.09);position:sticky;top:96px;}
 .aec-title{font-size:18px;font-weight:800;color:var(--dk);margin-bottom:6px;}
 .aec-sub{font-size:13px;color:var(--gy);margin-bottom:24px;}
@@ -257,14 +257,12 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
 .emp-count-bar{background:#fff;border-radius:14px;padding:16px 20px;box-shadow:0 2px 10px rgba(0,0,0,.06);margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
 .ecb-label{font-size:14px;color:var(--gy);font-weight:600;}
 .ecb-num{font-size:28px;font-weight:900;color:var(--o);}
-
-/* ── CHANGE PASSWORD MODAL ── */
 .chpw-form{display:flex;flex-direction:column;gap:14px;}
 .chpw-form label{font-size:11px;font-weight:700;color:var(--gy);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:5px;}
 .chpw-form input{width:100%;padding:12px 14px;border:1.5px solid #E5E7EB;border-radius:12px;font-size:14px;background:var(--lt);outline:none;}
 .chpw-form input:focus{border-color:var(--o);}
 
-/* ── RESET PANEL ── */
+/* RESET */
 .reset-panel{max-width:560px;display:flex;flex-direction:column;gap:20px;}
 .reset-card{background:#fff;border-radius:18px;padding:28px;box-shadow:0 4px 16px rgba(0,0,0,.08);}
 .reset-card.danger{border:2px solid #FECACA;}
@@ -274,18 +272,16 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
 .rc-head-sub{font-size:13px;color:var(--gy);margin-top:2px;}
 .rc-desc{font-size:13px;color:var(--gy);line-height:1.6;margin-bottom:20px;padding:12px 14px;background:var(--lt);border-radius:10px;}
 .btn-reset-action{width:100%;padding:14px;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;transition:.2s;}
-.btn-reset-shifts{background:#FFF0E8;color:var(--o);}
-.btn-reset-shifts:hover{background:var(--o);color:#fff;}
-.btn-reset-swaps{background:#FFF0F8;color:var(--pk);}
-.btn-reset-swaps:hover{background:var(--pk);color:#fff;}
-.btn-reset-all{background:#FFF0F0;color:var(--rd);}
-.btn-reset-all:hover{background:var(--rd);color:#fff;}
-.btn-reset-emps{background:#F0F0FF;color:var(--pu);}
-.btn-reset-emps:hover{background:var(--pu);color:#fff;}
+.btn-reset-shifts{background:#FFF0E8;color:var(--o);}.btn-reset-shifts:hover{background:var(--o);color:#fff;}
+.btn-reset-swaps{background:#FFF0F8;color:var(--pk);}.btn-reset-swaps:hover{background:var(--pk);color:#fff;}
+.btn-reset-all{background:#FFF0F0;color:var(--rd);}.btn-reset-all:hover{background:var(--rd);color:#fff;}
+.btn-reset-emps{background:#F0F0FF;color:var(--pu);}.btn-reset-emps:hover{background:var(--pu);color:#fff;}
+
+/* TOAST */
 .toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%);background:var(--dk);color:#fff;padding:13px 28px;border-radius:14px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .3s;z-index:9999;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.2);}
 .toast.show{opacity:1;}
 
-/* ── MODAL ── */
+/* MODAL */
 .mov{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:1000;display:none;}
 .mov.show{display:block;}
 .modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;border-radius:20px;padding:28px;width:420px;max-width:calc(100vw - 32px);z-index:1001;display:none;box-shadow:0 24px 64px rgba(0,0,0,.2);}
@@ -293,35 +289,25 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
 .modal-close{position:absolute;top:16px;right:16px;background:var(--lt);border:none;border-radius:50%;width:32px;height:32px;font-size:16px;cursor:pointer;}
 .modal-title{font-size:18px;font-weight:800;color:var(--dk);margin-bottom:6px;}
 .modal-sub{font-size:13px;color:var(--gy);margin-bottom:20px;}
-.modal-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #F5F5F5;font-size:14px;}
-.modal-row span{color:var(--gy);}
-.modal-row strong{color:var(--dk);}
 .modal-btns{display:flex;gap:10px;margin-top:16px;}
 .btn-m-ok{flex:1;padding:12px;background:var(--o);color:#fff;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;}
 .btn-m-cancel{flex:1;padding:12px;background:var(--lt);color:var(--gy);border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;}
 
-/* ── RESPONSIVE ── */
-@media(max-width:900px){
-  .emp-mgmt-layout{grid-template-columns:1fr;}
-  .add-emp-card{position:static;}
-}
+/* RESPONSIVE */
+@media(max-width:900px){.emp-mgmt-layout{grid-template-columns:1fr;}.add-emp-card{position:static;}}
 @media(max-width:768px){
-  .tcontent{padding:20px 16px;}
-  .hdr{padding:0 16px;}
-  .tab-nav{padding:0 16px;}
-  .hdr-store{display:none;}
-  .tb{padding:14px 10px;font-size:12px;}
+  .tcontent{padding:20px 16px;}.hdr{padding:0 16px;}.tab-nav{padding:0 16px;}
+  .hdr-store{display:none;}.tb{padding:14px 10px;font-size:12px;}
   .avail-grid{grid-template-columns:1fr;}
   .og-hrow,.og-row{grid-template-columns:110px repeat(5,1fr);}
   .cal-grid-header,.cal-row{grid-template-columns:80px repeat(5,1fr);}
-  .stats-row{grid-template-columns:repeat(2,1fr);}
-  .emp-card{flex-wrap:wrap;}
+  .stats-row{grid-template-columns:repeat(2,1fr);}.emp-card{flex-wrap:wrap;}
 }
 </style>
 </head>
 <body>
 
-<!-- ══════════════ LOGIN ══════════════ -->
+<!-- LOGIN -->
 <div id="page-login" class="page active">
   <div class="login-bg">
     <div class="login-box">
@@ -344,7 +330,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
   </div>
 </div>
 
-<!-- ══════════════ EMPLOYEE DASHBOARD ══════════════ -->
+<!-- EMPLOYEE DASHBOARD -->
 <div id="page-employee" class="page">
   <header class="hdr hdr-emp">
     <div class="hdr-logo">☕ Dunkin' Crew</div>
@@ -361,11 +347,11 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
   </nav>
   <div class="tcontent">
     <div class="tpanel active" id="ep-schedule">
-      <div class="ph"><h2>My Schedule</h2><p>Week of March 17–21, 2026</p></div>
+      <div class="ph"><h2>My Schedule</h2><p>View your confirmed shifts by week</p></div>
       <div id="mySchedContent"></div>
     </div>
     <div class="tpanel" id="ep-availability">
-      <div class="ph"><h2>Submit Availability</h2><p>Mon–Fri, March 17–21 · Max 3 employees per slot · First come, first served!</p></div>
+      <div class="ph"><h2>Submit Availability</h2><p>Mon–Fri · Max 3 employees per slot · First come, first served</p></div>
       <div id="availContent"></div>
     </div>
     <div class="tpanel" id="ep-swap">
@@ -380,7 +366,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
   </div>
 </div>
 
-<!-- ══════════════ MANAGER DASHBOARD ══════════════ -->
+<!-- MANAGER DASHBOARD -->
 <div id="page-manager" class="page">
   <header class="hdr hdr-mgr">
     <div class="hdr-logo">☕ Dunkin' Crew</div>
@@ -392,19 +378,19 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
     </div>
   </header>
   <nav class="tab-nav mgr-tn">
-    <button class="tb active" onclick="mgrTab('overview')"   id="mtb-overview">📊 Schedule Overview</button>
-    <button class="tb"        onclick="mgrTab('slots')"      id="mtb-slots">✏️ Manage Slots</button>
-    <button class="tb"        onclick="mgrTab('swap')"       id="mtb-swap">🔁 Swap Requests</button>
-    <button class="tb"        onclick="mgrTab('employees')"  id="mtb-employees">👥 Employees</button>
-    <button class="tb"        onclick="mgrTab('reset')"      id="mtb-reset">🔄 Reset Data</button>
+    <button class="tb active" onclick="mgrTab('overview')"  id="mtb-overview">📊 Schedule Overview</button>
+    <button class="tb"        onclick="mgrTab('slots')"     id="mtb-slots">✏️ Manage Slots</button>
+    <button class="tb"        onclick="mgrTab('swap')"      id="mtb-swap">🔁 Swap Requests</button>
+    <button class="tb"        onclick="mgrTab('employees')" id="mtb-employees">👥 Employees</button>
+    <button class="tb"        onclick="mgrTab('reset')"     id="mtb-reset">🔄 Reset Data</button>
   </nav>
   <div class="tcontent">
     <div class="tpanel active" id="mp-overview">
-      <div class="ph"><h2>Schedule Overview</h2><p>Week of March 17–21, 2026 · Click ✕ to remove a booking</p></div>
+      <div class="ph"><h2>Schedule Overview</h2><p>Click ✕ to remove a booking</p></div>
       <div id="overviewContent"></div>
     </div>
     <div class="tpanel" id="mp-slots">
-      <div class="ph"><h2>Manage All Slots</h2><p>View, edit, and remove employee availability submissions</p></div>
+      <div class="ph"><h2>Manage All Slots</h2><p>View, edit, and remove employee submissions</p></div>
       <div id="manageSlotsContent"></div>
     </div>
     <div class="tpanel" id="mp-swap">
@@ -412,11 +398,11 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
       <div id="mgrSwapContent"></div>
     </div>
     <div class="tpanel" id="mp-employees">
-      <div class="ph"><h2>Employee Management</h2><p>Add or remove employees and manage their login credentials</p></div>
+      <div class="ph"><h2>Employee Management</h2><p>Add or remove employees and manage credentials</p></div>
       <div id="empMgmtContent"></div>
     </div>
     <div class="tpanel" id="mp-reset">
-      <div class="ph"><h2>⚠️ Reset Data</h2><p>Clear all shifts, swaps, and availability for the current week</p></div>
+      <div class="ph"><h2>⚠️ Reset Data</h2><p>Clear shifts, swaps, and availability</p></div>
       <div id="resetContent"></div>
     </div>
   </div>
@@ -431,31 +417,60 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--lt);color:var(
 
 <script>
 // ════════════════════════════════════════
-//  CONFIG & CONSTANTS
+//  WEEKS CONFIG
 // ════════════════════════════════════════
-const DAYS = [
-  {id:'mon',label:'Monday',   date:'Mar 17'},
-  {id:'tue',label:'Tuesday',  date:'Mar 18'},
-  {id:'wed',label:'Wednesday',date:'Mar 19'},
-  {id:'thu',label:'Thursday', date:'Mar 20'},
-  {id:'fri',label:'Friday',   date:'Mar 21'},
+const WEEKS = [
+  {id:'w0', label:'Week 1', range:'Mar 17–21, 2026', days:[
+    {id:'mon',label:'Monday',   date:'Mar 17'},
+    {id:'tue',label:'Tuesday',  date:'Mar 18'},
+    {id:'wed',label:'Wednesday',date:'Mar 19'},
+    {id:'thu',label:'Thursday', date:'Mar 20'},
+    {id:'fri',label:'Friday',   date:'Mar 21'},
+  ]},
+  {id:'w1', label:'Week 2', range:'Mar 24–28, 2026', days:[
+    {id:'mon',label:'Monday',   date:'Mar 24'},
+    {id:'tue',label:'Tuesday',  date:'Mar 25'},
+    {id:'wed',label:'Wednesday',date:'Mar 26'},
+    {id:'thu',label:'Thursday', date:'Mar 27'},
+    {id:'fri',label:'Friday',   date:'Mar 28'},
+  ]},
+  {id:'w2', label:'Week 3', range:'Mar 31–Apr 4, 2026', days:[
+    {id:'mon',label:'Monday',   date:'Mar 31'},
+    {id:'tue',label:'Tuesday',  date:'Apr 1'},
+    {id:'wed',label:'Wednesday',date:'Apr 2'},
+    {id:'thu',label:'Thursday', date:'Apr 3'},
+    {id:'fri',label:'Friday',   date:'Apr 4'},
+  ]},
+  {id:'w3', label:'Week 4', range:'Apr 7–11, 2026', days:[
+    {id:'mon',label:'Monday',   date:'Apr 7'},
+    {id:'tue',label:'Tuesday',  date:'Apr 8'},
+    {id:'wed',label:'Wednesday',date:'Apr 9'},
+    {id:'thu',label:'Thursday', date:'Apr 10'},
+    {id:'fri',label:'Friday',   date:'Apr 11'},
+  ]},
 ];
+
 const TSLOTS = [
-  {id:'morning',label:'Morning',time:'7:00 AM – 12:00 PM',hrs:5,icon:'🌅',chip:'schip-m',color:'#FF6E1F'},
-  {id:'midday', label:'Midday', time:'12:00 PM – 4:00 PM',hrs:4,icon:'☀️', chip:'schip-d',color:'#DA1884'},
-  {id:'evening',label:'Evening',time:'4:00 PM – 8:00 PM', hrs:4,icon:'🌆',chip:'schip-e',color:'#6366F1'},
+  {id:'morning',label:'Morning',time:'7:00 AM – 12:00 PM',hrs:5,icon:'🌅',chip:'schip-m'},
+  {id:'midday', label:'Midday', time:'12:00 PM – 4:00 PM',hrs:4,icon:'☀️', chip:'schip-d'},
+  {id:'evening',label:'Evening',time:'4:00 PM – 8:00 PM', hrs:4,icon:'🌆',chip:'schip-e'},
 ];
-const MAX = 3;
-const SK = {SLOTS:'dk_slots_v3',SWAPS:'dk_swaps_v3',SESSION:'dk_session_v3',EMPS:'dk_emps_v3'};
+
+// Constraints
+const MAX_PER_SLOT   = 3;   // max employees per slot
+const MAX_WEEK_HRS   = 20;  // max hours per week per employee
+const MAX_DAY_SHIFTS = 1;   // max shifts per day per employee
+
+const SK = {SESSION:'dk_session_v4', SWAPS:'dk_swaps_v4', EMPS:'dk_emps_v4'};
+function slotsKey(wid){ return 'dk_slots_v4_'+wid; }
 
 const AVATAR_COLORS = ['#FF6E1F','#DA1884','#6366F1','#10B981','#F59E0B','#3B82F6','#EC4899','#8B5CF6','#14B8A6','#F97316'];
-
 const DEFAULT_EMPLOYEES = [
-  {id:'aakanksha',   name:'Aakanksha Kulkarni',  role:'employee', pass:'AK123',      initials:'AK', color:'#FF6E1F'},
-  {id:'shefali',     name:'Shefali Hegde',        role:'employee', pass:'SH123',      initials:'SH', color:'#DA1884'},
-  {id:'darshil',     name:'Darshil Gogri',        role:'employee', pass:'DG123',      initials:'DG', color:'#6366F1'},
-  {id:'rushit',      name:'Rushit Gohil',         role:'employee', pass:'RG123',      initials:'RG', color:'#10B981'},
-  {id:'prabhsimran', name:'Prabhsimran Garcha',   role:'employee', pass:'PG123',      initials:'PG', color:'#F59E0B'},
+  {id:'aakanksha',   name:'Aakanksha Kulkarni', role:'employee',pass:'AK123',initials:'AK',color:'#FF6E1F'},
+  {id:'shefali',     name:'Shefali Hegde',       role:'employee',pass:'SH123',initials:'SH',color:'#DA1884'},
+  {id:'darshil',     name:'Darshil Gogri',        role:'employee',pass:'DG123',initials:'DG',color:'#6366F1'},
+  {id:'rushit',      name:'Rushit Gohil',         role:'employee',pass:'RG123',initials:'RG',color:'#10B981'},
+  {id:'prabhsimran', name:'Prabhsimran Garcha',   role:'employee',pass:'PG123',initials:'PG',color:'#F59E0B'},
 ];
 const MANAGER = {id:'lisa',name:'Lisa Martin',role:'manager',pass:'manager123',initials:'LM',color:'#1A1A1A'};
 
@@ -465,46 +480,66 @@ const MANAGER = {id:'lisa',name:'Lisa Martin',role:'manager',pass:'manager123',i
 let currentUser    = null;
 let currentSwapSub = 'available';
 let schedView      = 'list';
+let empWeekIdx     = 0;   // employee selected week
+let mgrWeekIdx     = 0;   // manager selected week
 
 // ════════════════════════════════════════
-//  STORAGE HELPERS
+//  STORAGE
 // ════════════════════════════════════════
 function load(k){ try{ const v=localStorage.getItem(k); return v?JSON.parse(v):null; }catch(e){ return null; } }
 function save(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
 
-function getEmployees(){
-  let e=load(SK.EMPS);
-  if(!e){ e=[...DEFAULT_EMPLOYEES]; save(SK.EMPS,e); }
-  return e;
-}
-function saveEmployees(e){ save(SK.EMPS,e); }
-
-function getAllUsers(){ return [MANAGER, ...getEmployees()]; }
-
-function getSlots(){
-  let s=load(SK.SLOTS);
-  if(!s){ s={}; DAYS.forEach(d=>TSLOTS.forEach(t=>{ s[d.id+'_'+t.id]=[]; })); save(SK.SLOTS,s); }
-  DAYS.forEach(d=>TSLOTS.forEach(t=>{ if(!s[d.id+'_'+t.id]) s[d.id+'_'+t.id]=[]; }));
+function getSlotsForWeek(wid){
+  const key = slotsKey(wid);
+  const days = WEEKS.find(w=>w.id===wid)?.days || [];
+  let s = load(key);
+  if(!s){ s={}; days.forEach(d=>TSLOTS.forEach(t=>{ s[d.id+'_'+t.id]=[]; })); save(key,s); }
+  days.forEach(d=>TSLOTS.forEach(t=>{ if(!s[d.id+'_'+t.id]) s[d.id+'_'+t.id]=[]; }));
   return s;
 }
-function saveSlots(s){ save(SK.SLOTS,s); }
+function saveSlotsForWeek(wid,s){ save(slotsKey(wid),s); }
+
+// helpers for current emp / mgr week
+function empSlots(){ return getSlotsForWeek(WEEKS[empWeekIdx].id); }
+function saveEmpSlots(s){ saveSlotsForWeek(WEEKS[empWeekIdx].id,s); }
+function mgrSlots(){ return getSlotsForWeek(WEEKS[mgrWeekIdx].id); }
+
+function getEmployees(){ let e=load(SK.EMPS); if(!e){ e=[...DEFAULT_EMPLOYEES]; save(SK.EMPS,e); } return e; }
+function saveEmployees(e){ save(SK.EMPS,e); }
+function getAllUsers(){ return [MANAGER,...getEmployees()]; }
 function getSwaps(){ return load(SK.SWAPS)||[]; }
 function saveSwaps(sw){ save(SK.SWAPS,sw); }
 function slotKey(d,t){ return d+'_'+t; }
-
-function makeInitials(name){
-  return name.trim().split(/\s+/).map(w=>w[0]?.toUpperCase()||'').slice(0,2).join('');
-}
-function pickColor(idx){ return AVATAR_COLORS[idx % AVATAR_COLORS.length]; }
-
+function makeInitials(n){ return n.trim().split(/\s+/).map(w=>w[0]?.toUpperCase()||'').slice(0,2).join(''); }
+function pickColor(i){ return AVATAR_COLORS[i%AVATAR_COLORS.length]; }
 function avatarBg(uid){ const u=getAllUsers().find(x=>x.id===uid); return u?u.color:'#888'; }
 function initials(uid){ const u=getAllUsers().find(x=>x.id===uid); return u?u.initials:'??'; }
+
+// ════════════════════════════════════════
+//  WEEK SELECTOR BUILDER
+// ════════════════════════════════════════
+function buildWeekSelector(currentIdx, onSelect){
+  return `<div class="week-sel">
+    <span class="ws-label">📅 Select Week:</span>
+    <div class="ws-btns">
+      ${WEEKS.map((w,i)=>`<button class="ws-btn ${i===currentIdx?'active':''}" onclick="(${onSelect})(${i})">${w.label}<br><span style="font-size:10px;font-weight:500;">${w.range}</span></button>`).join('')}
+    </div>
+  </div>`;
+}
+
+function constraintBanner(){
+  return `<div class="constraint-banner">
+    <div class="cb-item">📋 <strong>1 shift per day</strong></div>
+    <div class="cb-item">⏰ <strong>Max 20 hrs/week</strong></div>
+    <div class="cb-item">⚠️ <strong>Max 8 hrs/day</strong></div>
+    <div class="cb-item">👥 <strong>3 employees max per slot</strong></div>
+  </div>`;
+}
 
 // ════════════════════════════════════════
 //  AUTH
 // ════════════════════════════════════════
 let selectedRole=null;
-
 function selectRole(role){
   selectedRole=role;
   document.getElementById('roleSelector').classList.add('hidden');
@@ -515,45 +550,28 @@ function selectRole(role){
   document.getElementById('loginPass').value='';
   setTimeout(()=>document.getElementById('loginUser').focus(),50);
 }
-
 function backToRoles(){
   document.getElementById('loginForm').classList.add('hidden');
   document.getElementById('roleSelector').classList.remove('hidden');
 }
-
 function doLogin(){
   const u=document.getElementById('loginUser').value.trim().toLowerCase();
   const p=document.getElementById('loginPass').value.trim();
-  const user=getAllUsers().find(x=>x.id===u && x.pass===p && x.role===selectedRole);
+  const user=getAllUsers().find(x=>x.id===u&&x.pass===p&&x.role===selectedRole);
   if(!user){ document.getElementById('loginErr').classList.remove('hidden'); return; }
-  currentUser=user;
-  save(SK.SESSION,user.id);
+  currentUser=user; save(SK.SESSION,user.id);
   document.getElementById('loginErr').classList.add('hidden');
   user.role==='manager'?openManager():openEmployee();
 }
-
 function logout(){
-  currentUser=null;
-  localStorage.removeItem(SK.SESSION);
+  currentUser=null; localStorage.removeItem(SK.SESSION);
   showPage('page-login');
   document.getElementById('loginForm').classList.add('hidden');
   document.getElementById('roleSelector').classList.remove('hidden');
 }
-
-function showPage(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-}
-function openEmployee(){
-  document.getElementById('empHdrName').textContent=currentUser.name;
-  showPage('page-employee');
-  empTab('schedule');
-}
-function openManager(){
-  document.getElementById('mgrHdrName').textContent=currentUser.name;
-  showPage('page-manager');
-  mgrTab('overview');
-}
+function showPage(id){ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active')); document.getElementById(id).classList.add('active'); }
+function openEmployee(){ document.getElementById('empHdrName').textContent=currentUser.name; showPage('page-employee'); empTab('schedule'); }
+function openManager(){ document.getElementById('mgrHdrName').textContent=currentUser.name; showPage('page-manager'); mgrTab('overview'); }
 
 // ════════════════════════════════════════
 //  EMPLOYEE TABS
@@ -568,24 +586,33 @@ function empTab(tab){
   if(tab==='swap')         swapSubTab(currentSwapSub);
 }
 
+function changeEmpWeek(idx){ empWeekIdx=idx; renderMySchedule(); }
+function changeEmpWeekAvail(idx){ empWeekIdx=idx; renderAvailability(); }
+
 // ── STATS ──
 function calcStats(){
-  const slots=getSlots(), swaps=getSwaps(), uid=currentUser.id;
+  const slots=empSlots(), swaps=getSwaps(), uid=currentUser.id;
+  const days=WEEKS[empWeekIdx].days;
   let totalShifts=0, totalHours=0;
-  DAYS.forEach(d=>TSLOTS.forEach(t=>{
+  days.forEach(d=>TSLOTS.forEach(t=>{
     if((slots[slotKey(d.id,t.id)]||[]).some(e=>e.uid===uid)){ totalShifts++; totalHours+=t.hrs; }
   }));
   const openSwaps=swaps.filter(s=>s.status==='open'&&s.fromUid!==uid).length;
-  const openSlots=DAYS.reduce((acc,d)=>acc+TSLOTS.filter(t=>{ const a=slots[slotKey(d.id,t.id)]||[]; return a.length<MAX&&!a.some(e=>e.uid===uid); }).length,0);
-  return {totalShifts,totalHours,openSwaps,openSlots};
+  const openSlots=days.reduce((acc,d)=>acc+TSLOTS.filter(t=>{
+    const a=slots[slotKey(d.id,t.id)]||[];
+    return a.length<MAX_PER_SLOT&&!a.some(e=>e.uid===uid);
+  }).length,0);
+  return {totalShifts,totalHours,openSwaps,openSlots,remainingHrs:MAX_WEEK_HRS-totalHours};
 }
 
 // ── MY SCHEDULE ──
 function renderMySchedule(){
-  const {totalShifts,totalHours,openSwaps,openSlots}=calcStats();
+  const {totalShifts,totalHours,openSwaps,openSlots,remainingHrs}=calcStats();
+  const w=WEEKS[empWeekIdx];
   const statsHtml=`<div class="stats-row">
-    <div class="stat-card"><div class="stat-num">${totalShifts}</div><div class="stat-unit">shifts</div><div class="stat-label">This Week</div></div>
+    <div class="stat-card"><div class="stat-num">${totalShifts}</div><div class="stat-unit">shifts</div><div class="stat-label">${w.label}</div></div>
     <div class="stat-card pink"><div class="stat-num">${totalHours}</div><div class="stat-unit">hrs</div><div class="stat-label">Total Hours</div></div>
+    <div class="stat-card amber"><div class="stat-num">${remainingHrs}</div><div class="stat-unit">hrs</div><div class="stat-label">Hrs Remaining</div></div>
     <div class="stat-card green"><div class="stat-num">${openSwaps}</div><div class="stat-unit">swaps</div><div class="stat-label">Open Swaps</div></div>
     <div class="stat-card purple"><div class="stat-num">${openSlots}</div><div class="stat-unit">slots</div><div class="stat-label">Available Slots</div></div>
   </div>`;
@@ -593,15 +620,16 @@ function renderMySchedule(){
     <button class="vtbtn ${schedView==='list'?'active':''}"     onclick="setSchedView('list')">☰ List View</button>
     <button class="vtbtn ${schedView==='calendar'?'active':''}" onclick="setSchedView('calendar')">📆 Calendar View</button>
   </div>`;
-  document.getElementById('mySchedContent').innerHTML=statsHtml+toggleHtml+(schedView==='calendar'?buildCalendarView():buildListView());
+  document.getElementById('mySchedContent').innerHTML=
+    buildWeekSelector(empWeekIdx,'changeEmpWeek')+statsHtml+toggleHtml+
+    (schedView==='calendar'?buildCalendarView():buildListView());
 }
-
 function setSchedView(v){ schedView=v; renderMySchedule(); }
 
 function buildListView(){
-  const slots=getSlots(), uid=currentUser.id;
+  const slots=empSlots(), uid=currentUser.id, days=WEEKS[empWeekIdx].days;
   let hasAny=false, html='<div class="sched-list">';
-  DAYS.forEach(d=>{
+  days.forEach(d=>{
     const myChips=TSLOTS.filter(t=>(slots[slotKey(d.id,t.id)]||[]).some(e=>e.uid===uid));
     if(!myChips.length) return;
     hasAny=true;
@@ -617,30 +645,31 @@ function buildListView(){
     </div>`;
   });
   html+='</div>';
-  return hasAny?html:`<div class="empty-state"><div class="es-icon">📅</div><div class="es-title">No shifts yet</div><div class="es-sub">Go to Availability tab to claim your shifts!</div></div>`;
+  return hasAny?html:`<div class="empty-state"><div class="es-icon">📅</div><div class="es-title">No shifts for ${WEEKS[empWeekIdx].label}</div><div class="es-sub">Go to Availability tab to claim your shifts!</div></div>`;
 }
 
 function buildCalendarView(){
-  const slots=getSlots(), uid=currentUser.id;
-  const headerCells=DAYS.map(d=>`<div class="cgh-cell">${d.label}<div class="cgh-date">${d.date}</div></div>`).join('');
+  const slots=empSlots(), uid=currentUser.id, days=WEEKS[empWeekIdx].days;
+  const w=WEEKS[empWeekIdx];
+  const headerCells=days.map(d=>`<div class="cgh-cell">${d.label}<div class="cgh-date">${d.date}</div></div>`).join('');
   const bodyRows=TSLOTS.map(t=>{
-    const cells=DAYS.map(d=>{
+    const cells=days.map(d=>{
       const k=slotKey(d.id,t.id), arr=slots[k]||[];
-      const mine=arr.some(e=>e.uid===uid), full=arr.length>=MAX;
+      const mine=arr.some(e=>e.uid===uid), full=arr.length>=MAX_PER_SLOT;
       let inner='';
       if(mine){
         inner=`<div class="cc-chip mine">${t.icon} You</div>`;
         arr.filter(e=>e.uid!==uid).forEach(e=>{ inner+=`<div class="cc-chip">${e.name.split(' ')[0]}</div>`; });
       } else if(arr.length>0){
         arr.forEach(e=>{ inner+=`<div class="cc-chip">${e.name.split(' ')[0]}</div>`; });
-        inner+=full?`<div class="cc-full">FULL</div>`:`<div class="cc-open">${MAX-arr.length} open</div>`;
+        inner+=full?`<div class="cc-full">FULL</div>`:`<div class="cc-open">${MAX_PER_SLOT-arr.length} open</div>`;
       } else { inner=`<div class="cc-empty">—</div>`; }
       return `<div class="cal-cell">${inner}</div>`;
     }).join('');
     return `<div class="cal-row"><div class="cal-row-label"><div class="crl-name">${t.icon} ${t.label}</div><div class="crl-time">${t.time}</div></div>${cells}</div>`;
   }).join('');
   return `<div class="cal-wrap">
-    <div class="cal-header"><h3>📆 Week of March 17–21, 2026</h3><span>Mon – Fri</span></div>
+    <div class="cal-header"><h3>📆 ${w.range}</h3><span>Mon – Fri</span></div>
     <div class="cal-grid-header"><div class="cgh-cell">Shift</div>${headerCells}</div>
     <div class="cal-body">${bodyRows}</div>
     <div class="cal-legend">
@@ -653,17 +682,61 @@ function buildCalendarView(){
 
 // ── AVAILABILITY ──
 function renderAvailability(){
-  const slots=getSlots(), uid=currentUser.id;
-  let html='<div class="avail-grid">';
-  DAYS.forEach(d=>{
+  const slots=empSlots(), uid=currentUser.id, days=WEEKS[empWeekIdx].days;
+  // pre-calc weekly hours for this week
+  let weeklyHrs=0;
+  days.forEach(d=>TSLOTS.forEach(t=>{
+    if((slots[slotKey(d.id,t.id)]||[]).some(e=>e.uid===uid)) weeklyHrs+=t.hrs;
+  }));
+
+  let html=buildWeekSelector(empWeekIdx,'changeEmpWeekAvail')+constraintBanner();
+  // weekly hours progress bar
+  const pct=Math.min(100,Math.round(weeklyHrs/MAX_WEEK_HRS*100));
+  const barColor=weeklyHrs>=MAX_WEEK_HRS?'var(--rd)':weeklyHrs>=16?'var(--am)':'var(--gn)';
+  html+=`<div style="background:#fff;border-radius:14px;padding:16px 20px;box-shadow:0 2px 10px rgba(0,0,0,.06);margin-bottom:20px;">
+    <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+      <span style="font-size:13px;font-weight:700;color:var(--gy);">Weekly Hours Used</span>
+      <span style="font-size:14px;font-weight:800;color:${barColor};">${weeklyHrs} / ${MAX_WEEK_HRS} hrs</span>
+    </div>
+    <div style="height:10px;background:#F0F0F0;border-radius:10px;overflow:hidden;">
+      <div style="height:100%;width:${pct}%;background:${barColor};border-radius:10px;transition:.4s;"></div>
+    </div>
+    ${weeklyHrs>=MAX_WEEK_HRS?`<p style="font-size:12px;color:var(--rd);font-weight:600;margin-top:8px;">⛔ You have reached the 20-hour weekly limit.</p>`:`<p style="font-size:12px;color:var(--gy);margin-top:8px;">${MAX_WEEK_HRS-weeklyHrs} hrs remaining this week</p>`}
+  </div>`;
+
+  html+='<div class="avail-grid">';
+  days.forEach(d=>{
+    // check if employee already has a shift this day
+    const hasShiftToday=TSLOTS.some(t=>(slots[slotKey(d.id,t.id)]||[]).some(e=>e.uid===uid));
     html+=`<div class="avail-card"><div class="ac-head"><span class="ac-day">${d.label}</span><span class="ac-date">${d.date}</span></div><div class="ac-slots">`;
     TSLOTS.forEach(t=>{
       const k=slotKey(d.id,t.id), arr=slots[k]||[];
-      const mine=arr.some(e=>e.uid===uid), full=arr.length>=MAX&&!mine;
-      let cls='slot-opt', spotCls='spt-ok', spotTxt=`${arr.length}/${MAX} filled`, btnHtml='';
-      if(mine){ cls+=' so-claimed'; btnHtml=`<button class="so-btn sob-drop" onclick="dropSlot('${d.id}','${t.id}')">Drop</button>`; spotTxt="You're in ✓"; }
-      else if(full){ cls+=' so-full'; btnHtml=`<button class="so-btn sob-full" disabled>Full</button>`; spotCls='spt-full'; spotTxt='3/3 Full'; }
-      else { btnHtml=`<button class="so-btn sob-claim" onclick="claimSlot('${d.id}','${t.id}')">Claim</button>`; }
+      const mine=arr.some(e=>e.uid===uid);
+      const slotFull=arr.length>=MAX_PER_SLOT&&!mine;
+      const wouldExceedHrs=!mine&&(weeklyHrs+t.hrs>MAX_WEEK_HRS);
+      const blockedByDay=!mine&&hasShiftToday; // already has a shift today
+
+      let cls='slot-opt', spotCls='spt-ok', spotTxt=`${arr.length}/${MAX_PER_SLOT} filled`, btnHtml='';
+
+      if(mine){
+        cls+=' so-claimed';
+        btnHtml=`<button class="so-btn sob-drop" onclick="dropSlot('${d.id}','${t.id}')">Drop</button>`;
+        spotTxt="You're in ✓";
+      } else if(slotFull){
+        cls+=' so-full';
+        btnHtml=`<button class="so-btn sob-full" disabled>Full</button>`;
+        spotCls='spt-full'; spotTxt='3/3 Full';
+      } else if(blockedByDay){
+        cls+=' so-blocked';
+        btnHtml=`<button class="so-btn sob-blocked" disabled>1/day limit</button>`;
+        spotCls='spt-blocked'; spotTxt='Day taken';
+      } else if(wouldExceedHrs){
+        cls+=' so-blocked';
+        btnHtml=`<button class="so-btn sob-blocked" disabled>20hr limit</button>`;
+        spotCls='spt-blocked'; spotTxt='Hours full';
+      } else {
+        btnHtml=`<button class="so-btn sob-claim" onclick="claimSlot('${d.id}','${t.id}')">Claim</button>`;
+      }
       html+=`<div class="${cls}"><span class="so-icon">${t.icon}</span><div class="so-info"><div class="so-label">${t.label}</div><div class="so-time">${t.time}</div></div><div class="so-r"><span class="so-spots ${spotCls}">${spotTxt}</span>${btnHtml}</div></div>`;
     });
     html+='</div></div>';
@@ -672,21 +745,40 @@ function renderAvailability(){
 }
 
 function claimSlot(dayId,slotId){
-  const slots=getSlots(), k=slotKey(dayId,slotId), arr=slots[k]||[];
-  if(arr.length>=MAX){ showToast('Sorry, this slot is full! 🚫'); return; }
-  if(arr.some(e=>e.uid===currentUser.id)){ showToast('You already have this slot!'); return; }
+  const slots=empSlots(), uid=currentUser.id;
+  const k=slotKey(dayId,slotId), arr=slots[k]||[];
+  const days=WEEKS[empWeekIdx].days;
+  const tslot=TSLOTS.find(x=>x.id===slotId);
+
+  if(arr.length>=MAX_PER_SLOT){ showToast('Sorry, this slot is full! 🚫'); return; }
+  if(arr.some(e=>e.uid===uid)){ showToast('You already have this slot!'); return; }
+
+  // Constraint: 1 shift per day
+  const hasShiftToday=TSLOTS.some(t=>t.id!==slotId&&(slots[slotKey(dayId,t.id)]||[]).some(e=>e.uid===uid));
+  if(hasShiftToday){ showToast('❌ Only 1 shift per day allowed!'); return; }
+
+  // Constraint: max 20 hrs/week
+  let weeklyHrs=0;
+  days.forEach(d=>TSLOTS.forEach(t=>{
+    if((slots[slotKey(d.id,t.id)]||[]).some(e=>e.uid===uid)) weeklyHrs+=t.hrs;
+  }));
+  if(weeklyHrs+tslot.hrs>MAX_WEEK_HRS){
+    showToast('❌ Would exceed 20 hrs/week limit! ('+weeklyHrs+' hrs used)'); return;
+  }
+
   const now=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
-  arr.push({uid:currentUser.id,name:currentUser.name,at:now});
-  slots[k]=arr; saveSlots(slots); renderAvailability();
-  const d=DAYS.find(x=>x.id===dayId), t=TSLOTS.find(x=>x.id===slotId);
-  showToast(`✅ ${t.label} on ${d.label} confirmed! (${arr.length}/3)`);
+  arr.push({uid,name:currentUser.name,at:now});
+  slots[k]=arr; saveEmpSlots(slots);
+  renderAvailability();
+  const d=days.find(x=>x.id===dayId);
+  showToast('✅ '+tslot.label+' on '+d.label+' confirmed! ('+arr.length+'/3)');
 }
 
 function dropSlot(dayId,slotId){
   if(!confirm('Drop this shift? You may not get it back if others claim it.')) return;
-  const slots=getSlots(), k=slotKey(dayId,slotId);
+  const slots=empSlots(), k=slotKey(dayId,slotId);
   slots[k]=(slots[k]||[]).filter(e=>e.uid!==currentUser.id);
-  saveSlots(slots); renderAvailability(); showToast('Shift dropped.');
+  saveEmpSlots(slots); renderAvailability(); showToast('Shift dropped.');
 }
 
 // ── SWAP BOARD ──
@@ -701,51 +793,93 @@ function swapSubTab(sub){
 function renderAvailableSwaps(){
   const swaps=getSwaps().filter(s=>s.status==='open'&&s.fromUid!==currentUser.id);
   const div=document.getElementById('swapContent');
-  if(!swaps.length){ div.innerHTML=`<div class="empty-state"><div class="es-icon">🔁</div><div class="es-title">No swaps available right now</div><div class="es-sub">Check back later or post your own shift!</div></div>`; return; }
+  if(!swaps.length){ div.innerHTML=`<div class="empty-state"><div class="es-icon">🔁</div><div class="es-title">No swaps available right now</div><div class="es-sub">Check back later or post your own!</div></div>`; return; }
   div.innerHTML=`<div class="swap-grid">${swaps.map(s=>{
-    const d=DAYS.find(x=>x.id===s.dayId)||{label:s.dayId,date:''}, t=TSLOTS.find(x=>x.id===s.slotId)||{label:s.slotId,time:''};
-    return `<div class="swap-card"><div class="swc-top"><div class="swc-av" style="background:${avatarBg(s.fromUid)}">${initials(s.fromUid)}</div><div><div class="swc-name">${s.fromName}</div><div class="swc-time">Posted ${s.postedAt}</div></div></div><div class="swc-tags"><span class="stag">📅 ${d.label} ${d.date}</span><span class="stag">⏰ ${t.time}</span><span class="stag">${t.icon} ${t.label}</span></div>${s.note?`<div class="swc-note">"${s.note}"</div>`:''}<button class="swc-btn swb-claim" onclick="claimSwap('${s.id}')">Claim This Shift</button></div>`;
+    const wk=WEEKS.find(x=>x.id===s.weekId)||WEEKS[0];
+    const d=wk.days.find(x=>x.id===s.dayId)||{label:s.dayId,date:''};
+    const t=TSLOTS.find(x=>x.id===s.slotId)||{label:s.slotId,time:''};
+    return `<div class="swap-card">
+      <div class="swc-top"><div class="swc-av" style="background:${avatarBg(s.fromUid)}">${initials(s.fromUid)}</div>
+        <div><div class="swc-name">${s.fromName}</div><div class="swc-time">Posted ${s.postedAt}</div></div>
+      </div>
+      <div class="swc-tags">
+        <span class="stag">📅 ${wk.label}: ${d.label} ${d.date}</span>
+        <span class="stag">⏰ ${t.time}</span>
+        <span class="stag">${t.icon} ${t.label}</span>
+      </div>
+      ${s.note?`<div class="swc-note">"${s.note}"</div>`:''}
+      <button class="swc-btn swb-claim" onclick="claimSwap('${s.id}')">Claim This Shift</button>
+    </div>`;
   }).join('')}</div>`;
 }
 
 function claimSwap(swapId){
   const swaps=getSwaps(), i=swaps.findIndex(s=>s.id===swapId);
   if(i<0||swaps[i].status!=='open'){ showToast('Swap no longer available.'); return; }
-  const sw=swaps[i], slots=getSlots(), k=slotKey(sw.dayId,sw.slotId), arr=slots[k]||[];
+  const sw=swaps[i];
+  const wid=sw.weekId||WEEKS[0].id;
+  const slots=getSlotsForWeek(wid);
+  const k=slotKey(sw.dayId,sw.slotId), arr=slots[k]||[];
   const idx=arr.findIndex(e=>e.uid===sw.fromUid);
   if(idx>=0) arr[idx]={uid:currentUser.id,name:currentUser.name,at:arr[idx].at};
-  slots[k]=arr; saveSlots(slots);
+  slots[k]=arr; saveSlotsForWeek(wid,slots);
   swaps[i].status='claimed'; swaps[i].claimedBy=currentUser.id; swaps[i].claimedName=currentUser.name;
   saveSwaps(swaps); renderAvailableSwaps();
-  const t=TSLOTS.find(x=>x.id===sw.slotId), d=DAYS.find(x=>x.id===sw.dayId);
-  showToast(`🎉 Swap claimed! You now have ${t.label} on ${d.label}`);
+  const t=TSLOTS.find(x=>x.id===sw.slotId), wk=WEEKS.find(x=>x.id===wid)||WEEKS[0];
+  const d=wk.days.find(x=>x.id===sw.dayId)||{label:sw.dayId};
+  showToast('🎉 Swap claimed! '+t.label+' on '+d.label+' ('+wk.label+')');
 }
 
 function renderPostSwap(){
-  const slots=getSlots(), uid=currentUser.id;
   let opts='<option value="">-- Select a shift --</option>';
-  DAYS.forEach(d=>TSLOTS.forEach(t=>{ if((slots[slotKey(d.id,t.id)]||[]).some(e=>e.uid===uid)) opts+=`<option value="${d.id}|${t.id}">${d.label} ${d.date} · ${t.label} (${t.time})</option>`; }));
-  document.getElementById('swapContent').innerHTML=`<div class="post-form"><div class="pf-title">📤 Post a Shift for Swap</div><div class="pf-row"><label>Select Your Shift</label><select id="postSwapShift">${opts}</select></div><div class="pf-row"><label>Note (optional)</label><textarea id="postSwapNote" placeholder="e.g. Looking to swap for family event..."></textarea></div><button class="btn-post-swap" onclick="postSwap()">Post Shift for Swap</button></div>`;
+  const uid=currentUser.id;
+  WEEKS.forEach(w=>{
+    const slots=getSlotsForWeek(w.id);
+    w.days.forEach(d=>TSLOTS.forEach(t=>{
+      if((slots[slotKey(d.id,t.id)]||[]).some(e=>e.uid===uid))
+        opts+=`<option value="${w.id}|${d.id}|${t.id}">${w.label}: ${d.label} ${d.date} · ${t.label} (${t.time})</option>`;
+    }));
+  });
+  document.getElementById('swapContent').innerHTML=`
+    <div class="post-form">
+      <div class="pf-title">📤 Post a Shift for Swap</div>
+      <div class="pf-row"><label>Select Your Shift</label><select id="postSwapShift">${opts}</select></div>
+      <div class="pf-row"><label>Note (optional)</label><textarea id="postSwapNote" placeholder="e.g. Looking to swap for family event..."></textarea></div>
+      <button class="btn-post-swap" onclick="postSwap()">Post Shift for Swap</button>
+    </div>`;
 }
 
 function postSwap(){
   const val=document.getElementById('postSwapShift').value;
   if(!val){ showToast('Please select a shift ⚠️'); return; }
-  const [dayId,slotId]=val.split('|'), note=document.getElementById('postSwapNote').value.trim(), swaps=getSwaps();
-  if(swaps.some(s=>s.fromUid===currentUser.id&&s.dayId===dayId&&s.slotId===slotId&&s.status==='open')){ showToast('You already posted this shift!'); return; }
+  const [weekId,dayId,slotId]=val.split('|');
+  const note=document.getElementById('postSwapNote').value.trim();
+  const swaps=getSwaps();
+  if(swaps.some(s=>s.fromUid===currentUser.id&&s.weekId===weekId&&s.dayId===dayId&&s.slotId===slotId&&s.status==='open')){
+    showToast('You already posted this shift!'); return;
+  }
   const now=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
-  swaps.push({id:'sw_'+Date.now(),fromUid:currentUser.id,fromName:currentUser.name,dayId,slotId,note,postedAt:now,status:'open',claimedBy:null,claimedName:null});
+  swaps.push({id:'sw_'+Date.now(),fromUid:currentUser.id,fromName:currentUser.name,weekId,dayId,slotId,note,postedAt:now,status:'open',claimedBy:null,claimedName:null});
   saveSwaps(swaps); swapSubTab('mine'); showToast('✅ Shift posted to swap board!');
 }
 
 function renderMySwaps(){
-  const swaps=getSwaps().filter(s=>s.fromUid===currentUser.id), div=document.getElementById('swapContent');
-  if(!swaps.length){ div.innerHTML=`<div class="empty-state"><div class="es-icon">📋</div><div class="es-title">No posted swaps</div><div class="es-sub">Post a shift from the "Post a Swap" tab</div></div>`; return; }
+  const swaps=getSwaps().filter(s=>s.fromUid===currentUser.id);
+  const div=document.getElementById('swapContent');
+  if(!swaps.length){ div.innerHTML=`<div class="empty-state"><div class="es-icon">📋</div><div class="es-title">No posted swaps</div><div class="es-sub">Post a shift from "Post a Swap" tab</div></div>`; return; }
   div.innerHTML=`<div class="swap-grid">${swaps.map(s=>{
-    const d=DAYS.find(x=>x.id===s.dayId)||{label:s.dayId,date:''}, t=TSLOTS.find(x=>x.id===s.slotId)||{label:s.slotId,time:''};
+    const wk=WEEKS.find(x=>x.id===s.weekId)||WEEKS[0];
+    const d=wk.days.find(x=>x.id===s.dayId)||{label:s.dayId,date:''};
+    const t=TSLOTS.find(x=>x.id===s.slotId)||{label:s.slotId,time:''};
     const sb=s.status==='claimed'?`<span class="badge bg">✓ Claimed by ${s.claimedName}</span>`:`<span class="badge ba">⏳ Open</span>`;
     const cb=s.status==='open'?`<button class="swc-btn swb-cancel" onclick="cancelSwap('${s.id}')">Cancel Post</button>`:'';
-    return `<div class="swap-card"><div class="swc-top"><div class="swc-av" style="background:${avatarBg(s.fromUid)}">${initials(s.fromUid)}</div><div><div class="swc-name">${d.label} ${d.date}</div><div class="swc-time">${t.time}</div></div>${sb}</div><div class="swc-tags"><span class="stag">${t.icon} ${t.label}</span><span class="stag">📤 Posted ${s.postedAt}</span></div>${s.note?`<div class="swc-note">"${s.note}"</div>`:''}${cb}</div>`;
+    return `<div class="swap-card">
+      <div class="swc-top"><div class="swc-av" style="background:${avatarBg(s.fromUid)}">${initials(s.fromUid)}</div>
+        <div><div class="swc-name">${wk.label}: ${d.label} ${d.date}</div><div class="swc-time">${t.time}</div></div>${sb}
+      </div>
+      <div class="swc-tags"><span class="stag">${t.icon} ${t.label}</span><span class="stag">📤 Posted ${s.postedAt}</span></div>
+      ${s.note?`<div class="swc-note">"${s.note}"</div>`:''}${cb}
+    </div>`;
   }).join('')}</div>`;
 }
 
@@ -764,22 +898,29 @@ function mgrTab(tab){
     document.getElementById('mp-'+t).classList.toggle('active',t===tab);
     document.getElementById('mtb-'+t).classList.toggle('active',t===tab);
   });
-  if(tab==='overview')   renderOverview();
-  if(tab==='slots')      renderManageSlots();
-  if(tab==='swap')       renderMgrSwap();
-  if(tab==='employees')  renderEmpMgmt();
-  if(tab==='reset')      renderResetPanel();
+  if(tab==='overview')  renderOverview();
+  if(tab==='slots')     renderManageSlots();
+  if(tab==='swap')      renderMgrSwap();
+  if(tab==='employees') renderEmpMgmt();
+  if(tab==='reset')     renderResetPanel();
 }
 
+function changeMgrWeekOv(idx){ mgrWeekIdx=idx; renderOverview(); }
+function changeMgrWeekSlots(idx){ mgrWeekIdx=idx; renderManageSlots(); }
+
 function renderOverview(){
-  const slots=getSlots();
-  let html=`<div class="grid-wrap"><div class="ov-grid"><div class="og-hrow"><div class="og-th">Shift</div>${DAYS.map(d=>`<div class="og-th">${d.label}<br><span style="font-weight:400;font-size:11px;opacity:.7;">${d.date}</span></div>`).join('')}</div>`;
+  const slots=mgrSlots(), w=WEEKS[mgrWeekIdx];
+  let html=buildWeekSelector(mgrWeekIdx,'changeMgrWeekOv');
+  html+=`<div class="grid-wrap"><div class="ov-grid">
+    <div class="og-hrow"><div class="og-th">Shift</div>
+    ${w.days.map(d=>`<div class="og-th">${d.label}<br><span style="font-weight:400;font-size:11px;opacity:.7;">${d.date}</span></div>`).join('')}
+    </div>`;
   TSLOTS.forEach(t=>{
     html+=`<div class="og-row"><div class="og-rlabel">${t.icon} ${t.label}<span class="og-rtime">${t.time}</span></div>`;
-    DAYS.forEach(d=>{
-      const k=slotKey(d.id,t.id), arr=slots[k]||[], full=arr.length>=MAX;
+    w.days.forEach(d=>{
+      const k=slotKey(d.id,t.id), arr=slots[k]||[], full=arr.length>=MAX_PER_SLOT;
       const chips=arr.map(e=>`<div class="og-chip"><span>${e.name.split(' ')[0]}</span><span class="ogc-x" onclick="mgrRemove('${d.id}','${t.id}','${e.uid}')">✕</span></div>`).join('');
-      const rem=MAX-arr.length;
+      const rem=MAX_PER_SLOT-arr.length;
       html+=`<div class="og-cell">${chips}${full?`<div class="og-full-tag">FULL</div>`:`<div class="og-spots">${rem} spot${rem!==1?'s':''} open</div>`}</div>`;
     });
     html+='</div>';
@@ -789,14 +930,14 @@ function renderOverview(){
 }
 
 function renderManageSlots(){
-  const slots=getSlots();
-  let html='<div class="ms-wrapper">';
-  DAYS.forEach(d=>{
+  const slots=mgrSlots(), w=WEEKS[mgrWeekIdx];
+  let html=buildWeekSelector(mgrWeekIdx,'changeMgrWeekSlots')+'<div class="ms-wrapper">';
+  w.days.forEach(d=>{
     html+=`<div class="ms-day"><div class="msd-header">${d.label} · ${d.date}, 2026</div><div class="msd-slots">`;
     TSLOTS.forEach(t=>{
-      const k=slotKey(d.id,t.id), arr=slots[k]||[], cc=arr.length>=MAX?'br':arr.length>0?'bg':'ba';
+      const k=slotKey(d.id,t.id), arr=slots[k]||[], cc=arr.length>=MAX_PER_SLOT?'br':arr.length>0?'bg':'ba';
       const rows=arr.length?arr.map(e=>`<div class="msds-emp"><span>${e.name} <span style="font-size:11px;color:var(--gy);">(${e.at})</span></span><button class="msds-rm" onclick="mgrRemove('${d.id}','${t.id}','${e.uid}')">✕</button></div>`).join(''):`<div class="msds-empty">No submissions yet</div>`;
-      html+=`<div class="msd-slot"><div class="msds-top"><span class="msds-label">${t.icon} ${t.label}</span><span class="msds-count badge ${cc}">${arr.length}/${MAX}</span></div><div class="msds-time">${t.time}</div><div class="msds-names">${rows}</div></div>`;
+      html+=`<div class="msd-slot"><div class="msds-top"><span class="msds-label">${t.icon} ${t.label}</span><span class="msds-count badge ${cc}">${arr.length}/${MAX_PER_SLOT}</span></div><div class="msds-time">${t.time}</div><div class="msds-names">${rows}</div></div>`;
     });
     html+='</div></div>';
   });
@@ -805,20 +946,24 @@ function renderManageSlots(){
 
 function mgrRemove(dayId,slotId,uid){
   const name=getAllUsers().find(u=>u.id===uid)?.name||uid;
-  if(!confirm(`Remove ${name} from this slot?`)) return;
-  const slots=getSlots(), k=slotKey(dayId,slotId);
+  if(!confirm('Remove '+name+' from this slot?')) return;
+  const wid=WEEKS[mgrWeekIdx].id;
+  const slots=getSlotsForWeek(wid), k=slotKey(dayId,slotId);
   slots[k]=(slots[k]||[]).filter(e=>e.uid!==uid);
-  saveSlots(slots); renderOverview(); renderManageSlots(); showToast(`${name} removed from slot.`);
+  saveSlotsForWeek(wid,slots); renderOverview(); renderManageSlots();
+  showToast(name+' removed from slot.');
 }
 
 function renderMgrSwap(){
   const swaps=getSwaps(), div=document.getElementById('mgrSwapContent');
   if(!swaps.length){ div.innerHTML=`<div class="empty-state"><div class="es-icon">🔁</div><div class="es-title">No swap requests</div><div class="es-sub">Employees haven't posted any swaps yet.</div></div>`; return; }
   div.innerHTML=`<div class="mgrs-grid">${swaps.map(s=>{
-    const d=DAYS.find(x=>x.id===s.dayId)||{label:s.dayId,date:''}, t=TSLOTS.find(x=>x.id===s.slotId)||{label:s.slotId,time:''};
+    const wk=WEEKS.find(x=>x.id===s.weekId)||WEEKS[0];
+    const d=wk.days.find(x=>x.id===s.dayId)||{label:s.dayId,date:''};
+    const t=TSLOTS.find(x=>x.id===s.slotId)||{label:s.slotId,time:''};
     const sb=s.status==='claimed'?`<span class="badge bg">✓ Claimed by ${s.claimedName}</span>`:`<span class="badge ba">⏳ Open</span>`;
     const actions=s.status==='open'?`<div class="mgrs-actions"><button class="btn-approve" onclick="mgrApproveSwap('${s.id}')">✓ Approve &amp; Close</button><button class="btn-deny" onclick="mgrDenySwap('${s.id}')">✕ Remove Post</button></div>`:`<p style="font-size:12px;color:var(--gy);margin-top:8px;">Claimed by ${s.claimedName}</p>`;
-    return `<div class="mgrs-card"><div class="mgrs-top"><div><div style="font-size:14px;font-weight:800;">${s.fromName}</div><div style="font-size:12px;color:var(--gy);">${d.label} ${d.date} · ${t.label} · ${t.time}</div></div>${sb}</div>${s.note?`<div class="swc-note" style="margin:8px 0;">"${s.note}"</div>`:''}${actions}</div>`;
+    return `<div class="mgrs-card"><div class="mgrs-top"><div><div style="font-size:14px;font-weight:800;">${s.fromName}</div><div style="font-size:12px;color:var(--gy);">${wk.label}: ${d.label} ${d.date} · ${t.label} · ${t.time}</div></div>${sb}</div>${s.note?`<div class="swc-note" style="margin:8px 0;">"${s.note}"</div>`:''}${actions}</div>`;
   }).join('')}</div>`;
 }
 
@@ -839,24 +984,20 @@ function mgrDenySwap(id){
 // ════════════════════════════════════════
 function renderEmpMgmt(){
   const emps=getEmployees();
-  const slots=getSlots();
-
-  // Count shifts per employee
-  function empShiftCount(uid){
-    let c=0;
-    DAYS.forEach(d=>TSLOTS.forEach(t=>{ if((slots[slotKey(d.id,t.id)]||[]).some(e=>e.uid===uid)) c++; }));
-    return c;
-  }
-
-  const empListHtml=emps.map((e,idx)=>{
-    const shifts=empShiftCount(e.id);
-    const hours=shifts>0?DAYS.reduce((acc,d)=>acc+TSLOTS.reduce((a,t)=>a+((slots[slotKey(d.id,t.id)]||[]).some(x=>x.uid===e.id)?t.hrs:0),0),0):0;
+  const empListHtml=emps.map(e=>{
+    let shifts=0, hours=0;
+    WEEKS.forEach(w=>{
+      const slots=getSlotsForWeek(w.id);
+      w.days.forEach(d=>TSLOTS.forEach(t=>{
+        if((slots[slotKey(d.id,t.id)]||[]).some(x=>x.uid===e.id)){ shifts++; hours+=t.hrs; }
+      }));
+    });
     return `<div class="emp-card">
       <div class="emp-av" style="background:${e.color}">${e.initials}</div>
       <div class="emp-info">
         <div class="emp-name">${e.name}</div>
         <div class="emp-meta">@${e.id} &nbsp;·&nbsp; Password: ${'•'.repeat(e.pass.length)}</div>
-        <div class="emp-shifts-badge">${shifts} shift${shifts!==1?'s':''} · ${hours} hrs this week</div>
+        <div class="emp-shifts-badge">${shifts} shift${shifts!==1?'s':''} · ${hours} total hrs (all weeks)</div>
       </div>
       <div class="emp-actions">
         <button class="btn-chpw" onclick="openChPwModal('${e.id}')">🔑 Change Password</button>
@@ -865,83 +1006,60 @@ function renderEmpMgmt(){
     </div>`;
   }).join('');
 
-  const addFormHtml=`
-    <div class="add-emp-card">
-      <div class="aec-title">➕ Add New Employee</div>
-      <div class="aec-sub">Employee can log in immediately after being added.</div>
-      <div class="aec-field"><label>Full Name</label><input type="text" id="newEmpName" placeholder="e.g. Jordan Smith"/></div>
-      <div class="aec-field"><label>Username</label><input type="text" id="newEmpUser" placeholder="e.g. jordan (no spaces)"/></div>
-      <div class="aec-field"><label>Password</label><input type="text" id="newEmpPass" placeholder="e.g. JS123"/></div>
-      <div class="aec-err" id="addEmpErr"></div>
-      <button class="btn-add-emp" onclick="addEmployee()">Add Employee</button>
-    </div>`;
-
   document.getElementById('empMgmtContent').innerHTML=`
-    <div class="emp-count-bar">
-      <span class="ecb-label">👥 Total Employees</span>
-      <span class="ecb-num">${emps.length}</span>
-    </div>
+    <div class="emp-count-bar"><span class="ecb-label">👥 Total Employees</span><span class="ecb-num">${emps.length}</span></div>
     <div class="emp-mgmt-layout">
-      <div class="emp-list">${empListHtml||`<div class="empty-state"><div class="es-icon">👥</div><div class="es-title">No employees yet</div><div class="es-sub">Add your first employee using the form.</div></div>`}</div>
-      ${addFormHtml}
+      <div class="emp-list">${empListHtml||`<div class="empty-state"><div class="es-icon">👥</div><div class="es-title">No employees yet</div></div>`}</div>
+      <div class="add-emp-card">
+        <div class="aec-title">➕ Add New Employee</div>
+        <div class="aec-sub">Employee can log in immediately after being added.</div>
+        <div class="aec-field"><label>Full Name</label><input type="text" id="newEmpName" placeholder="e.g. Jordan Smith"/></div>
+        <div class="aec-field"><label>Username</label><input type="text" id="newEmpUser" placeholder="e.g. jordan (no spaces)"/></div>
+        <div class="aec-field"><label>Password</label><input type="text" id="newEmpPass" placeholder="e.g. JS123"/></div>
+        <div class="aec-err" id="addEmpErr"></div>
+        <button class="btn-add-emp" onclick="addEmployee()">Add Employee</button>
+      </div>
     </div>`;
 }
 
-let _pendingAddEmp = null;
-
+let _pendingAddEmp=null;
 function addEmployee(){
   const name=document.getElementById('newEmpName').value.trim();
   const user=document.getElementById('newEmpUser').value.trim().toLowerCase().replace(/\s+/g,'');
   const pass=document.getElementById('newEmpPass').value.trim();
   const errEl=document.getElementById('addEmpErr');
   errEl.style.display='none';
-
   if(!name||!user||!pass){ errEl.textContent='⚠️ All fields are required.'; errEl.style.display='block'; return; }
-  if(!/^[a-z0-9_]+$/.test(user)){ errEl.textContent='⚠️ Username can only contain letters, numbers and underscores.'; errEl.style.display='block'; return; }
+  if(!/^[a-z0-9_]+$/.test(user)){ errEl.textContent='⚠️ Username: letters, numbers, underscores only.'; errEl.style.display='block'; return; }
   if(user==='lisa'||user==='manager'){ errEl.textContent='⚠️ That username is reserved.'; errEl.style.display='block'; return; }
-
   const emps=getEmployees();
   if(emps.some(e=>e.id===user)){ errEl.textContent='⚠️ Username already exists.'; errEl.style.display='block'; return; }
-
-  const pw=prompt(`Enter manager password to add "${name}":`, '');
-  if(pw===null) return; // cancelled
+  const pw=prompt('Enter manager password to add "'+name+'":', '');
+  if(pw===null) return;
   if(pw.trim()!=='remove101'){ showToast('❌ Incorrect password. Employee not added.'); return; }
-
-  const color=pickColor(emps.length);
-  const inits=makeInitials(name);
-  emps.push({id:user, name, role:'employee', pass, initials:inits, color});
-  saveEmployees(emps);
-  renderEmpMgmt();
-  showToast(`✅ ${name} added! They can log in as "${user}".`);
+  emps.push({id:user,name,role:'employee',pass,initials:makeInitials(name),color:pickColor(emps.length)});
+  saveEmployees(emps); renderEmpMgmt();
+  showToast('✅ '+name+' added! Login: "'+user+'"');
 }
 
 function removeEmployee(uid){
-  const emps=getEmployees();
-  const emp=emps.find(e=>e.id===uid);
+  const emps=getEmployees(), emp=emps.find(e=>e.id===uid);
   if(!emp) return;
-  if(!confirm(`Remove ${emp.name} from the team?\n\nThis will also clear all their scheduled shifts.`)) return;
-
-  // Remove their shifts
-  const slots=getSlots();
-  DAYS.forEach(d=>TSLOTS.forEach(t=>{
-    const k=slotKey(d.id,t.id);
-    slots[k]=(slots[k]||[]).filter(e=>e.uid!==uid);
-  }));
-  saveSlots(slots);
-
-  // Remove their swaps
-  const swaps=getSwaps().filter(s=>s.fromUid!==uid);
-  saveSwaps(swaps);
-
-  // Remove employee
+  const pw=prompt('Enter manager password to remove "'+emp.name+'":', '');
+  if(pw===null) return;
+  if(pw.trim()!=='remove101'){ showToast('❌ Incorrect password. Employee not removed.'); return; }
+  WEEKS.forEach(w=>{
+    const slots=getSlotsForWeek(w.id);
+    w.days.forEach(d=>TSLOTS.forEach(t=>{ const k=slotKey(d.id,t.id); slots[k]=(slots[k]||[]).filter(e=>e.uid!==uid); }));
+    saveSlotsForWeek(w.id,slots);
+  });
+  saveSwaps(getSwaps().filter(s=>s.fromUid!==uid));
   saveEmployees(emps.filter(e=>e.id!==uid));
-  renderEmpMgmt();
-  showToast(`${emp.name} has been removed.`);
+  renderEmpMgmt(); showToast(emp.name+' has been removed.');
 }
 
 function openChPwModal(uid){
-  const emps=getEmployees();
-  const emp=emps.find(e=>e.id===uid);
+  const emp=getEmployees().find(e=>e.id===uid);
   if(!emp) return;
   openModal(`
     <div class="modal-title">🔑 Change Password</div>
@@ -952,87 +1070,80 @@ function openChPwModal(uid){
     <div class="modal-btns" style="margin-top:20px;">
       <button class="btn-m-cancel" onclick="closeModal()">Cancel</button>
       <button class="btn-m-ok" onclick="saveNewPw('${uid}')">Save Password</button>
-    </div>
-  `);
+    </div>`);
   setTimeout(()=>{ const el=document.getElementById('chpwNew'); if(el){ el.focus(); el.select(); } },100);
 }
-
 function saveNewPw(uid){
   const newPw=document.getElementById('chpwNew')?.value.trim();
   if(!newPw){ showToast('⚠️ Password cannot be empty.'); return; }
-  const emps=getEmployees();
-  const i=emps.findIndex(e=>e.id===uid);
+  const emps=getEmployees(), i=emps.findIndex(e=>e.id===uid);
   if(i<0) return;
-  emps[i].pass=newPw;
-  saveEmployees(emps);
-  closeModal();
-  renderEmpMgmt();
-  showToast(`✅ Password updated for ${emps[i].name}`);
+  emps[i].pass=newPw; saveEmployees(emps); closeModal(); renderEmpMgmt();
+  showToast('✅ Password updated for '+emps[i].name);
 }
 
+// ════════════════════════════════════════
+//  RESET
+// ════════════════════════════════════════
 function renderResetPanel(){
   document.getElementById('resetContent').innerHTML=`
     <div class="reset-panel">
       <div class="reset-card">
-        <div class="rc-head"><div class="rc-head-icon">🌅</div><div><div class="rc-head-title">Reset All Shifts</div><div class="rc-head-sub">Clears all employee availability for the week</div></div></div>
-        <div class="rc-desc">Removes every claimed shift across all days and time slots. Employees will need to resubmit their availability. Swap posts and employee accounts are not affected.</div>
-        <button class="btn-reset-action btn-reset-shifts" onclick="resetShifts()">Clear All Shifts</button>
+        <div class="rc-head"><div class="rc-head-icon">🌅</div><div><div class="rc-head-title">Reset Current Week's Shifts</div><div class="rc-head-sub">Clears shifts for the currently viewed week only</div></div></div>
+        <div class="rc-desc">Removes every claimed shift for the selected week. Use the week selector in Schedule Overview to choose which week to clear.</div>
+        <button class="btn-reset-action btn-reset-shifts" onclick="resetShifts()">Clear Current Week's Shifts</button>
       </div>
       <div class="reset-card">
-        <div class="rc-head"><div class="rc-head-icon">🔁</div><div><div class="rc-head-title">Reset Swap Board</div><div class="rc-head-sub">Removes all posted and claimed swaps</div></div></div>
-        <div class="rc-desc">Wipes the entire swap board. All posted and claimed swap entries are permanently deleted. Shifts and employee accounts are not affected.</div>
+        <div class="rc-head"><div class="rc-head-icon">📅</div><div><div class="rc-head-title">Reset All Weeks' Shifts</div><div class="rc-head-sub">Clears all shifts across all 4 weeks</div></div></div>
+        <div class="rc-desc">Wipes every shift across all weeks. All employees must resubmit availability for all weeks.</div>
+        <button class="btn-reset-action btn-reset-shifts" onclick="resetAllWeeksShifts()">Clear All Weeks' Shifts</button>
+      </div>
+      <div class="reset-card">
+        <div class="rc-head"><div class="rc-head-icon">🔁</div><div><div class="rc-head-title">Reset Swap Board</div><div class="rc-head-sub">Removes all swap posts</div></div></div>
+        <div class="rc-desc">Wipes all posted and claimed swaps across all weeks.</div>
         <button class="btn-reset-action btn-reset-swaps" onclick="resetSwaps()">Clear Swap Board</button>
       </div>
       <div class="reset-card">
-        <div class="rc-head"><div class="rc-head-icon">👥</div><div><div class="rc-head-title">Reset Employees to Default</div><div class="rc-head-sub">Restores the original 5 employee accounts</div></div></div>
-        <div class="rc-desc">Removes any added employees and restores the original team: Aakanksha, Shefali, Darshil, Rushit, and Prabhsimran. All their shifts and swaps are also cleared.</div>
+        <div class="rc-head"><div class="rc-head-icon">👥</div><div><div class="rc-head-title">Reset Employees to Default</div><div class="rc-head-sub">Restores original 5 employees</div></div></div>
+        <div class="rc-desc">Restores the original team (Aakanksha, Shefali, Darshil, Rushit, Prabhsimran). All shifts and swaps are also cleared.</div>
         <button class="btn-reset-action btn-reset-emps" onclick="resetEmployees()">Reset to Default Employees</button>
       </div>
       <div class="reset-card danger">
-        <div class="rc-head"><div class="rc-head-icon">⚠️</div><div><div class="rc-head-title">Reset Everything</div><div class="rc-head-sub">Wipes all data — shifts, swaps, and employees</div></div></div>
-        <div class="rc-desc">Completely resets the app to factory defaults. All shifts, swaps, and custom employee accounts are permanently deleted. This cannot be undone.</div>
+        <div class="rc-head"><div class="rc-head-icon">⚠️</div><div><div class="rc-head-title">Reset Everything</div><div class="rc-head-sub">Full factory reset</div></div></div>
+        <div class="rc-desc">Permanently deletes all shifts (all weeks), swaps, and custom employees. Cannot be undone.</div>
         <button class="btn-reset-action btn-reset-all" onclick="resetAll()">Reset Everything</button>
       </div>
     </div>`;
 }
 
 function resetShifts(){
-  if(!confirm('Clear ALL shifts for all employees this week? This cannot be undone.')) return;
-  const s={};
-  DAYS.forEach(d=>TSLOTS.forEach(t=>{ s[d.id+'_'+t.id]=[]; }));
-  saveSlots(s);
-  showToast('✅ All shifts cleared.');
+  if(!confirm('Clear shifts for '+WEEKS[mgrWeekIdx].range+'? Cannot be undone.')) return;
+  const s={}, wid=WEEKS[mgrWeekIdx].id, days=WEEKS[mgrWeekIdx].days;
+  days.forEach(d=>TSLOTS.forEach(t=>{ s[d.id+'_'+t.id]=[]; }));
+  saveSlotsForWeek(wid,s); showToast('✅ Shifts cleared for '+WEEKS[mgrWeekIdx].label+'.');
 }
-
-function resetSwaps(){
-  if(!confirm('Clear the entire swap board? This cannot be undone.')) return;
-  saveSwaps([]);
-  showToast('✅ Swap board cleared.');
+function resetAllWeeksShifts(){
+  if(!confirm('Clear ALL shifts across ALL 4 weeks? Cannot be undone.')) return;
+  WEEKS.forEach(w=>{ const s={}; w.days.forEach(d=>TSLOTS.forEach(t=>{ s[d.id+'_'+t.id]=[]; })); saveSlotsForWeek(w.id,s); });
+  showToast('✅ All weeks cleared.');
 }
-
+function resetSwaps(){ if(!confirm('Clear all swaps?')) return; saveSwaps([]); showToast('✅ Swap board cleared.'); }
 function resetEmployees(){
-  if(!confirm('Reset employees to the default 5 team members?\nAll custom accounts and their shifts/swaps will be removed.')) return;
+  if(!confirm('Reset to default 5 employees?\nAll shifts and swaps will also be cleared.')) return;
   saveEmployees([...DEFAULT_EMPLOYEES]);
-  // Clear shifts for removed employees — easiest to just wipe all
-  const s={};
-  DAYS.forEach(d=>TSLOTS.forEach(t=>{ s[d.id+'_'+t.id]=[]; }));
-  saveSlots(s);
-  saveSwaps([]);
-  renderResetPanel();
-  showToast('✅ Employees reset to defaults.');
+  WEEKS.forEach(w=>{ const s={}; w.days.forEach(d=>TSLOTS.forEach(t=>{ s[d.id+'_'+t.id]=[]; })); saveSlotsForWeek(w.id,s); });
+  saveSwaps([]); renderResetPanel(); showToast('✅ Employees and data reset to defaults.');
 }
-
 function resetAll(){
-  if(!confirm('⚠️ Reset EVERYTHING?\n\nAll shifts, swaps, and custom employees will be permanently deleted.\n\nThis cannot be undone.')) return;
-  const s={};
-  DAYS.forEach(d=>TSLOTS.forEach(t=>{ s[d.id+'_'+t.id]=[]; }));
-  saveSlots(s);
-  saveSwaps([]);
-  saveEmployees([...DEFAULT_EMPLOYEES]);
-  localStorage.removeItem(SK.SESSION);
-  showToast('✅ All data reset. Redirecting to login...');
+  if(!confirm('⚠️ Reset EVERYTHING?\n\nAll shifts, swaps, and custom employees will be deleted.\n\nThis cannot be undone.')) return;
+  WEEKS.forEach(w=>{ const s={}; w.days.forEach(d=>TSLOTS.forEach(t=>{ s[d.id+'_'+t.id]=[]; })); saveSlotsForWeek(w.id,s); });
+  saveSwaps([]); saveEmployees([...DEFAULT_EMPLOYEES]); localStorage.removeItem(SK.SESSION);
+  showToast('✅ Everything reset. Redirecting...');
   setTimeout(()=>{ currentUser=null; showPage('page-login'); document.getElementById('loginForm').classList.add('hidden'); document.getElementById('roleSelector').classList.remove('hidden'); },1800);
 }
+
+// ════════════════════════════════════════
+//  MODAL & TOAST
 // ════════════════════════════════════════
 function openModal(html){ document.getElementById('modalContent').innerHTML=html; document.getElementById('mov').classList.add('show'); document.getElementById('modal').classList.add('show'); }
 function closeModal(){ document.getElementById('mov').classList.remove('show'); document.getElementById('modal').classList.remove('show'); }
@@ -1044,10 +1155,7 @@ function showToast(msg){ const t=document.getElementById('toast'); t.textContent
 // ════════════════════════════════════════
 (function init(){
   const sid=load(SK.SESSION);
-  if(sid){
-    const u=getAllUsers().find(x=>x.id===sid);
-    if(u){ currentUser=u; u.role==='manager'?openManager():openEmployee(); return; }
-  }
+  if(sid){ const u=getAllUsers().find(x=>x.id===sid); if(u){ currentUser=u; u.role==='manager'?openManager():openEmployee(); return; } }
 })();
 </script>
 </body>
